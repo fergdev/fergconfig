@@ -24,6 +24,8 @@ if ["$platform" -eq "cygwin" ]; then
 	# Get vim
 	apt-cyg install vim
 
+	# Get vundle
+	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
 
