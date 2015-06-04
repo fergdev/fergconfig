@@ -8,7 +8,6 @@ if [clean_rc = true ]; then
 	rm ~/.vimrc
 fi
 
-
 mkdir ~/git 
 
 if ["$platform" -eq "cygwin" ]; then
@@ -31,8 +30,8 @@ fi
 
 
 
-echo "\nalias ls = 'ls -al'" >> ~/.bashrc 
-echo '\nset linenumbers\n' >> ~/.vimrc
+echo .bashrc >> ~/.bashrc 
+echo .vimrc >> ~/.vimrc
 
 
 source ~/.bashrc
