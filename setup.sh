@@ -16,7 +16,10 @@ if ["$platform" -eq "cygwin" ]; then
 	mkdir ~/git/apt-cyg
 	lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg > ~/git/apt-cyg
 	install ~/git/apt-cyg /bin
-	
+
+	# Get wget
+	apt-cyg install wget
+
 	# Get git
 	apt-cyg install git
 
