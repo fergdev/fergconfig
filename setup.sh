@@ -1,16 +1,18 @@
-echo("configuring!")
+#!/bin/bash
+echo "configuring"
 
-clean_rc = false
-platform = "cygwin" #osx ... linux
+clean_rc="true"
+platform="cygwin" #osx ... linux
 
-if [clean_rc = true ]; then
+if [ "$clean_rc" = "true" ]; then
+	echo "Whiping out old rc files..."
 	rm ~/.bashrc
 	rm ~/.vimrc
 fi
 
 mkdir ~/git 
 
-if ["$platform" -eq "cygwin" ]; then
+if [ "$platform" = "cygwin" ]; then
 	
 	# Get apt-cyg
 	mkdir ~/git/apt-cyg
@@ -27,12 +29,8 @@ if ["$platform" -eq "cygwin" ]; then
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
-
-
-
-echo .bashrc >> ~/.bashrc 
-echo .vimrc >> ~/.vimrc
-
+cat .bashrc >> ~/.bashrc 
+cat .vimrc >> ~/.vimrc
 
 source ~/.bashrc
 
