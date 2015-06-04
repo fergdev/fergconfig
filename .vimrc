@@ -28,4 +28,6 @@ autocmd vimenter * NERDTree
 " Mah keys
 nnoremap <F3> :NumbersToggle<CR>
 nnoremap <F4> :NumbersOnOff<CR>
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
 
