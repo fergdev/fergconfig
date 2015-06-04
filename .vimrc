@@ -13,6 +13,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'scrooloose/syntastic'
 Plugin 'Buffergator'
+Plugin 'myusuf3/numbers.vim'
 
 "End vundle
 call vundle#end()
@@ -24,3 +25,7 @@ set number
 syntax on
 
 autocmd vimenter * NERDTree
+" Mah keys
+nnoremap <F3> :NumbersToggle<CR>
+nnoremap <F4> :NumbersOnOff<CR>
+
