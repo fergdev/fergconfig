@@ -14,7 +14,9 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'scrooloose/syntastic'
 Plugin 'Buffergator'
 Plugin 'myusuf3/numbers.vim'
-
+Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
+ 
 "End vundle
 call vundle#end()
 
