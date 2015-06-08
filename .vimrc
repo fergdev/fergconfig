@@ -1,13 +1,14 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 
 " This is the Vundle package, which can be found on GitHub.
 " For GitHub repos, you specify plugins using the
 " 'user/repository' format
+
 Plugin 'gmarik/vundle'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree.git'
@@ -16,7 +17,9 @@ Plugin 'Buffergator'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
- 
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Lokaltog/vim-easymotion'
+
 "End vundle
 call vundle#end()
 
@@ -25,11 +28,36 @@ filetype plugin indent on
 
 set number
 syntax on
+set background=light
+colorscheme solarized
 
 autocmd vimenter * NERDTree
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Easy motion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-s2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mah keys
 nnoremap <F3> :NumbersToggle<CR>
 nnoremap <F4> :NumbersOnOff<CR>
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
+
 
