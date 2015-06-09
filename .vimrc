@@ -19,6 +19,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-easymotion'
+Bundle 'zhaocai/GoldenView.Vim'
 
 "End vundle
 call vundle#end()
@@ -57,7 +58,25 @@ map <Leader>k <Plug>(easymotion-k)
 " Mah keys
 nnoremap <F3> :NumbersToggle<CR>
 nnoremap <F4> :NumbersOnOff<CR>
-nnoremap <C-n> :bnext<CR>
-nnoremap <C-p> :bprevious<CR>
+nnoremap <S-N> :bnext<CR>
+nnoremap <S-P> :bprevious<CR>
+
+"nnoremap <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+"nnoremap <Leader>- :exe "resize " . (winheight(0) * 3/2)<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Golden Window
+" 1. split to tiled windows
+nmap <silent> <C-L>  <Plug>GoldenViewSplit
+
+" 2. quickly switch current window with the main pane
+" and toggle back
+nmap <F8> <Plug>GoldenViewSwitchMain
+nmap <F9> <Plug>GoldenViewSwitchToggle
+
+" 3. jump to next and previous window
+nmap <silent> <C-N>  <Plug>GoldenViewNext
+nmap <silent> <C-P>  <Plug>GoldenViewPrevious
+
 
 
