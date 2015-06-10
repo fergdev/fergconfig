@@ -56,8 +56,12 @@ map <Leader>k <Plug>(easymotion-k)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mah keys
-nnoremap <F3> :NumbersToggle<CR>
-nnoremap <F4> :NumbersOnOff<CR>
+
+map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
+map <F3> :source ~/.vim_session <cr>     " And load session with F`$i3
+
+noremap <F4> :NumbersToggle<CR>
+nnoremap <F5> :NumbersOnOff<CR>
 nnoremap <S-N> :bnext<CR>
 nnoremap <S-P> :bprevious<CR>
 
@@ -77,6 +81,7 @@ nmap <F9> <Plug>GoldenViewSwitchToggle
 " 3. jump to next and previous window
 nmap <silent> <C-N>  <Plug>GoldenViewNext
 nmap <silent> <C-P>  <Plug>GoldenViewPrevious
+
 
 
 
