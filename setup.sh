@@ -6,6 +6,11 @@ platform="cygwin" #osx ... linux
 
 if [ "$clean_rc" = "true" ]; then
 	echo "Whiping out old rc files..."
+	
+	
+	mv ~/.bahsrc ~/.bashrc_bak  
+	mv ~/.vimrc ~/.vimrc_bak
+
 	rm ~/.bashrc
 	rm ~/.vimrc
 fi
@@ -34,6 +39,8 @@ fi
 
 cat .bashrc >> ~/.bashrc 
 cat .vimrc >> ~/.vimrc
+
+cat ~/.bashrc_local >> ~/.bashrc
 
 source ~/.bashrc
 
