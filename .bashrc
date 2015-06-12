@@ -14,10 +14,35 @@ echo -ne "${LIGHTPURPLE}Sysinfo:";uptime ;echo ""
 # Mah aliases
 alias ls='ls -al'
 
+## get rid of command not found ##
+alias cd..='cd ..'
+
+alias mkdir='mkdir -p'
+
+alias ps='p saux'
+
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+# Git
 alias gits='git status'
+alias gitr='git reset'
 alias gita='git add --all'
 alias gitp='git pull'
 alias gitc='git commit -m'
+
+# HG
+alias hgs='hg status'
+alias hgr='hg revert -all'
+alias hgpl='hg pull'
+alias hgps='hg push'
+
+
 
 # Show me the size (sorted) of only the folders in this directory
 alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"

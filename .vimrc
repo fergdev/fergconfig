@@ -34,6 +34,8 @@ colorscheme solarized
 
 autocmd vimenter * NERDTree
 
+set hlsearch incsearch
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easy motion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
