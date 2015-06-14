@@ -62,6 +62,9 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F`$i3
 
 noremap <F4> :NumbersToggle<CR>
 nnoremap <F5> :NumbersOnOff<CR>
+nnoremap <F6> :set paste<CR>
+nnoremap <F7> :set nopaste<CR>
+
 nnoremap <S-N> :bnext<CR>
 nnoremap <S-P> :bprevious<CR>
 
