@@ -19,7 +19,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-easymotion'
-Bundle 'zhaocai/GoldenView.Vim'
+Plugin 'zhaocai/GoldenView.Vim'
+Plugin 'elzr/vim-json'
 
 "End vundle
 call vundle#end()
