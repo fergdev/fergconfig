@@ -21,6 +21,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'zhaocai/GoldenView.Vim'
 Plugin 'elzr/vim-json'
+Plugin 'bling/vim-airline'
 
 "End vundle
 call vundle#end()

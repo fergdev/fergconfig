@@ -37,10 +37,10 @@ alias hgps='hg push'
 alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
 
 
-alias diff='vimdiff'
+
 
 #########################################################################
-# Mah aliases
+# Mah functions
 
 #dirsize - finds directory sizes and lists them for the current directory
 dirsize ()
@@ -74,5 +74,5 @@ extract () {
 }
 
 
-
+source ~/.bashrc_local
 

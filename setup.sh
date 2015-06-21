@@ -10,7 +10,9 @@ then
 
 	rm -rf ~/.bashrc_bak
 	rm -rf ~/.vimrc_bak	
-	
+
+	rm -rf ~/.bashrc_bak2
+
 	mv ~/.bashrc ~/.bashrc_bak  
 	mv ~/.vimrc ~/.vimrc_bak
 
@@ -29,8 +31,8 @@ else
 	cat .bashrc_native >> ~/.bashrc
 fi	
 
-# Add local rc code
-cat ~/.bashrc_local >> ~/.bashrc
+# Make backup for diffing 
+cp ~/.bashrc ~/.bashrc_bak2
 
 source ~/.bashrc
 
