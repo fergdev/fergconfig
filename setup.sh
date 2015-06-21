@@ -4,20 +4,42 @@ echo "configuring"
 clean_rc="true"
 platform="cygwin" #osx ... linux
 
-if [ "$clean_rc" = "true" ]; then
+if [ "$clean_rc" = "true" ]; 
+then
 	echo "Whiping out old rc files..."
+
+	rm -rf ~/.bashrc_bak
+	rm -rf ~/.vimrc_bak	
 	
-	
-	mv ~/.bahsrc ~/.bashrc_bak  
+	mv ~/.bashrc ~/.bashrc_bak  
 	mv ~/.vimrc ~/.vimrc_bak
 
-	rm ~/.bashrc
-	rm ~/.vimrc
+	#rm -rf ~/.bashrc
+	#rm -rf ~/.vimrc
 fi
 
+# Add the rc's
+cat .bashrc >> ~/.bashrc 
+cat .vimrc >> ~/.vimrc
+
+# Add platform rc code
+if [ "$platform" = "cygwin" ]; then
+	cat .bashrc_cygwin >> ~/.bashrc
+else
+	cat .bashrc_native >> ~/.bashrc
+fi	
+
+# Add local rc code
+cat ~/.bashrc_local >> ~/.bashrc
+
+source ~/.bashrc
+
+###############################################################
+# Platform specific
 mkdir ~/git 
 
-if [ "$platform" = "cygwin" ]; then
+if [ "$platform" = "cygwin" ]; 
+then
 	
 	# Get apt-cyg
 	mkdir ~/git/apt-cyg
@@ -36,11 +58,4 @@ if [ "$platform" = "cygwin" ]; then
 	# Get vundle
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
-
-cat .bashrc >> ~/.bashrc 
-cat .vimrc >> ~/.vimrc
-
-cat ~/.bashrc_local >> ~/.bashrc
-
-source ~/.bashrc
 

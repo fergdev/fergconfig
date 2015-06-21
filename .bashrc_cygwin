@@ -1,0 +1,12 @@
+netinfo ()
+{
+echo "--------------- Network Information ---------------"
+
+echo 'TODO cygwin network information'
+
+ipconfig
+
+echo "---------------------------------------------------"
+}
+
+

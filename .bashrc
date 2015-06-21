@@ -1,15 +1,4 @@
 #!/bin/bash
-
-
-#########################################################################
-# Say hai
-clear
-
-echo -ne "${LIGHTGREEN}" "Hello, $USER. today is, "; date
-echo -e "${WHITE}"; cal ; 
-echo -ne "${CYAN}";
-echo -ne "${LIGHTPURPLE}Sysinfo:";uptime ;echo ""
-
 #########################################################################
 # Mah aliases
 alias ls='ls -al'
@@ -47,21 +36,11 @@ alias hgps='hg push'
 # Show me the size (sorted) of only the folders in this directory
 alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
 
+
+alias diff='vimdiff'
+
 #########################################################################
 # Mah aliases
-# show network infs
-netinfo ()
-{
-echo "--------------- Network Information ---------------"
-/sbin/ifconfig | awk /'inet addr/ {print $2}'
-echo ""
-/sbin/ifconfig | awk /'Bcast/ {print $3}'
-echo ""
-/sbin/ifconfig | awk /'inet addr/ {print $4}'
-
-# /sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
-echo "---------------------------------------------------"
-}
 
 #dirsize - finds directory sizes and lists them for the current directory
 dirsize ()
