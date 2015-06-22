@@ -4,7 +4,7 @@ echo "Changes ... "
 BASH_DIFF_OUT="$(diff ~/.bashrc ~/.bashrc_bak2)" 
 BASH_ERR_CODE=$?
 
-VIM_DIF_OUT="$(diff ~/.vimrc ~/git/fergconfig/.vimrc)"
+VIM_DIFF_OUT="$(diff ~/.vimrc ~/git/fergconfig/.vimrc)"
 VIM_ERR_CODE=$?
 
 

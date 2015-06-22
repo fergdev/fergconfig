@@ -1,4 +1,17 @@
 #!/bin/bash
+
+# don't put duplicate lines in the history. See bash(1) for more options
+HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+HISTCONTROL=ignoreboth
+
+# Expand the history size
+HISTFILESIZE=10000 
+HISTSIZE=100
+
+# commands with leading space do not get added to history
+HISTCONTROL=ignorespace
+
 #########################################################################
 # Mah aliases
 alias ls='ls -al'
