@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FergDev bashrc
+" FergDev vimrc
 
 """ Lets get some plugins 
 set nocompatible
@@ -18,9 +18,9 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'zhaocai/GoldenView.Vim'
 Plugin 'elzr/vim-json'
-Plugin 'bling/vim-airline'                  " status bar
-Plugin 'mbbill/undotree'                    " undo visualiser
-
+Plugin 'bling/vim-airline'                  " Status bar
+Plugin 'mbbill/undotree'                    " Undo visualiser
+Plugin 'ervandew/supertab'                  " Code Completion 
 call vundle#end()
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
