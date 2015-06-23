@@ -87,9 +87,6 @@ extract () {
 
 source ~/.bashrc_local
 
-
-
-#alias cpu="grep 'cpu ' /proc/stat | awk '{usage=(\$2+\$4)*100/(\$2+\$4+\$5)} END {print usage}' | awk '{printf(\"%.1f\n\", \$1)}'"
 function __setprompt
 {
     local LAST_COMMAND=$? # Must come first!
@@ -160,14 +157,11 @@ function __setprompt
     PS1+="${BLUE} $(date +'%-I':%M:%S%P)\[${DARKGRAY}\])-" # Time
 
     # CPU
-   PS1+="(\[${MAGENTA}\]CPU 0.0%"
+    PS1+="(\[${MAGENTA}\]PROC $(ps ax | wc -l | awk '{print $1}')"
 
     # Jobs
-    PS1+="\[${DARKGRAY}\]:\[${MAGENTA}\]\j"
-
-    # Network Connections (for a server - comment out for non-server)
-    #PS1+="\[${DARKGRAY}\]:\[${MAGENTA}\]Net $(awk 'END {print NR}' /proc/net/tcp)"
-
+    PS1+="\[${DARKGRAY}\]:\[${MAGENTA}\]"
+    PS1+="$(ps | wc -l | awk '{print $1}')"
     PS1+="\[${DARKGRAY}\])-"
 
     # User and server
@@ -183,27 +177,29 @@ function __setprompt
     PS1+="\[${DARKGRAY}\]:\[${BROWN}\]\w\[${DARKGRAY}\])-"
 
     # Total size of files in current directory
-    PS1+="(\[${GREEN}\]$(/bin/ls -lah | /usr/bin/grep -m 1 total | /usr/bin/sed 's/total //')\[${DARKGRAY}\]:"
+    PS1+="(\[${GREEN}\]$(/bin/ls -lah | /usr/bin/grep -m 1 total | awk '{print $2}')\[${DARKGRAY}\]:"
 
     # Number of files
-    PS1+="\[${GREEN}\]\$(/bin/ls -A -1 | /usr/bin/wc -l)\[${DARKGRAY}\])"
+    PS1+="\[${GREEN}\] $(/bin/ls -A -1 | /usr/bin/wc -l | awk '{print $1}')\[${DARKGRAY}\])"
 
     # Skip to the next line
     PS1+="\n"
 
     if [[ $EUID -ne 0 ]]; then
-        PS1+="\[${GREEN}\]>\[${NOCOLOR}\] " # Normal user
+        PS1+="\[${GREEN}\]:\[${NOCOLOR}\] " # Normal user
     else
-        PS1+="\[${RED}\]>\[${NOCOLOR}\] " # Root user
+        PS1+="\[${RED}\]:\[${NOCOLOR}\] " # Root user
     fi
 
     # PS2 is used to continue a command using the \ character
-    PS2="\[${DARKGRAY}\]>\[${NOCOLOR}\] "
+    #PS2="\[${DARKGRAY}\]>\[${NOCOLOR}\] "
 
     # PS3 is used to enter a number choice in a script
-    PS3='Please enter a number from above list: '
+    #PS3='Please enter a number from above list: '
 
     # PS4 is used for tracing a script in debug mode
-    PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
+    #PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
 }
 PROMPT_COMMAND='__setprompt'
+
+
