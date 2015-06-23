@@ -57,7 +57,7 @@ set foldenable		" enable folding
 set foldlevelstart=10	" open most folds by default
 set foldnestmax=10	" 10 nested fold max
 set foldmethod=indent 	" fold based on indent level
-set nnoremap <space> za	" space open/closes folds
+nnoremap <space> za	" space open/closes folds
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Movement
@@ -76,7 +76,9 @@ autocmd vimenter * NERDTree	" start with nerd tree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Undotree
 
-<leader>u :UndotreeToggle<CR> 
+nnoremap <leader>u :UndotreeToggle<CR> 
+let g:undotree_WindowLayout=3
+let g:undotree_SetFocusWhenToggle=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easy motion
