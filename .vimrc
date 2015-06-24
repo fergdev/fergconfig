@@ -18,33 +18,35 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'zhaocai/GoldenView.Vim'
 Plugin 'elzr/vim-json'
-Plugin 'bling/vim-airline'                  " Status bar
-Plugin 'mbbill/undotree'                    " Undo visualiser
-Plugin 'ervandew/supertab'                  " Code Completion 
+Plugin 'bling/vim-airline'               " Status bar
+Plugin 'mbbill/undotree'                 " Undo visualiser
+Plugin 'ervandew/supertab'               " Code Completion
+Plugin 'nathanaelkane/vim-indent-guides' " Indent helper
+Plugin 'godlygeek/tabular'               " Aligns text
+
 call vundle#end()
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors 
-set background=light 	" light bg
-colorscheme solarized 	" colorscheme
-
-syntax on 		" syntax highligting
+" Colors
+set background=light  " light bg
+colorscheme solarized " colorscheme
+syntax on             " syntax highligting
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tabs and spaces 
+" Tabs and spaces
 
 set tabstop=4 		" number of visual spaces per tab
 set softtabstop=4 	" number of spaces in tab when editing
 set expandtab 		" tabs are spaces
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" UI config 
-set cursorline 		" highlight currentline
-set wildmenu		" visual autocomplete for command menu
-set number 		" line numbers
-set showmatch 		" highlight matching [{()}]
+" UI config
+set cursorline " highlight currentline
+set wildmenu   " visual autocomplete for command menu
+set number     " line numbers
+set showmatch  " highlight matching [{()}]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
@@ -53,11 +55,11 @@ set incsearch		" search as characters are entered
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding
-set foldenable		" enable folding
-set foldlevelstart=10	" open most folds by default
-set foldnestmax=10	" 10 nested fold max
-set foldmethod=indent 	" fold based on indent level
-nnoremap <space> za	" space open/closes folds
+set foldenable        " enable folding
+set foldlevelstart=10 " open most folds by default
+set foldnestmax=10    " 10 nested fold max
+set foldmethod=indent " fold based on indent level
+nnoremap <space> za   " space open/closes folds
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Movement
@@ -103,10 +105,10 @@ map <Leader>k <Plug>(easymotion-k)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mah keys
 
-map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
-map <F3> :source ~/.vim_session <cr>     " And load session with F`$i3
+map      <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
+map      <F3> :source ~/.vim_session <cr>     " And load session with F`$i3
 
-noremap <F4> :NumbersToggle<CR>
+noremap  <F4> :NumbersToggle<CR>
 nnoremap <F5> :NumbersOnOff<CR>
 nnoremap <F6> :set paste<CR>
 nnoremap <F7> :set nopaste<CR>

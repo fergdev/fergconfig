@@ -1,5 +1,19 @@
 #!/bin/bash
 
+#########################################################################
+# Shell options
+
+shopt -s cdspell
+shopt -s cmdhist
+shopt -s dotglob
+shopt -s expand_aliases
+shopt -s extglob
+shopt -s histappend
+shopt -s huponexit
+
+#########################################################################
+# Shell history 
+
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 
@@ -153,34 +167,32 @@ function __setprompt
     fi
 
     # Date
-    PS1+="\[${DARKGRAY}\](\[${CYAN}\]\$(date +%a) $(date +%b-'%-m')" # Date
-    PS1+="${BLUE} $(date +'%-I':%M:%S%P)\[${DARKGRAY}\])-" # Time
+    PS1+="\[${CYAN}\]\$(date +%a-%d-%b)" # Date
+    PS1+="${BLUE} $(date +%H:%M:%S) " # Time
 
     # CPU
-    PS1+="(\[${MAGENTA}\]PROC $(ps ax | wc -l | awk '{print $1}')"
+    PS1+="\[${MAGENTA}\]$(ps ax | wc -l | awk '{print $1}')"
 
     # Jobs
-    PS1+="\[${DARKGRAY}\]:\[${MAGENTA}\]"
-    PS1+="$(ps | wc -l | awk '{print $1}')"
-    PS1+="\[${DARKGRAY}\])-"
+    PS1+=":$(ps | wc -l | awk '{print $1}') "
 
     # User and server
     local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
     local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
     if [ $SSH2_IP ] || [ $SSH_IP ] ; then
-        PS1+="(\[${RED}\]\u@\h"
+        PS1+="\[${RED}\]\u@\h"
     else
-        PS1+="(\[${RED}\]\u"
+        PS1+="\[${RED}\]\u"
     fi
 
     # Current directory
-    PS1+="\[${DARKGRAY}\]:\[${BROWN}\]\w\[${DARKGRAY}\])-"
+    PS1+="\[${BROWN}\]:\w "
 
     # Total size of files in current directory
-    PS1+="(\[${GREEN}\]$(/bin/ls -lah | /usr/bin/grep -m 1 total | awk '{print $2}')\[${DARKGRAY}\]:"
+    PS1+="\[${GREEN}\]$(/bin/ls -lah | /usr/bin/grep -m 1 total | awk '{print $2}')\[${DARKGRAY}\]:"
 
     # Number of files
-    PS1+="\[${GREEN}\] $(/bin/ls -A -1 | /usr/bin/wc -l | awk '{print $1}')\[${DARKGRAY}\])"
+    PS1+="\[${GREEN}\]$(/bin/ls -A -1 | /usr/bin/wc -l | awk '{print $1}')"
 
     # Skip to the next line
     PS1+="\n"
@@ -201,5 +213,3 @@ function __setprompt
     #PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
 }
 PROMPT_COMMAND='__setprompt'
-
-
