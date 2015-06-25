@@ -49,20 +49,16 @@ alias gitr='git reset'
 alias gita='git add --all'
 alias gitp='git pull'
 alias gitc='git commit -m'
-
+alias gitd='git diff'
 # HG
 alias hgs='hg status'
 alias hgr='hg revert -all'
 alias hgpl='hg pull'
 alias hgps='hg push'
 alias hgu='hg update'
-
-
+alias hgd='hg diff'
 # Show me the size (sorted) of only the folders in this directory
 alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
-
-
-
 
 #########################################################################
 # Mah functions
@@ -77,6 +73,7 @@ egrep '^ *[0-9.]*G' /tmp/list
 rm -rf /tmp/list
 }
 
+# Extract a file
 extract () {
      if [ -f $1 ] ; then
          case $1 in
@@ -99,8 +96,30 @@ extract () {
 }
 
 
+# A simple note taker
+note ()
+{
+    # if note does not exist ... make it
+    if [ -f $HOME/.notes ] ; then 
+            touch $HOME/.notes
+    fi
+    # no argumnets, print file
+    if [ $# = 0 ] ; then
+            cat $HOME/.notes
+    elif [ $1 = -c ]; then
+            > $HOME/.notes
+    else
+            echo "$@" >> $HOME/.notes
+    fi
+}
+
+#########################################################################
+# Setup mcahine specific stuff
+
 source ~/.bashrc_local
 
+#########################################################################
+# Mah prompt
 function __setprompt
 {
     local LAST_COMMAND=$? # Must come first!

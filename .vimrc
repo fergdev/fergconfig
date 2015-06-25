@@ -23,7 +23,7 @@ Plugin 'mbbill/undotree'                 " Undo visualiser
 Plugin 'ervandew/supertab'               " Code Completion
 Plugin 'nathanaelkane/vim-indent-guides' " Indent helper
 Plugin 'godlygeek/tabular'               " Aligns text
-
+Plugin 'ctrlp.vim'                       " Full path fuzzy file, buffer, mru, ta, .... finder for vim
 call vundle#end()
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
