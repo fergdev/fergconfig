@@ -55,7 +55,7 @@ alias hgs='hg status'
 alias hgr='hg revert -all'
 alias hgpl='hg pull'
 alias hgps='hg push'
-
+alias hgu='hg update'
 
 
 # Show me the size (sorted) of only the folders in this directory
@@ -126,7 +126,6 @@ function __setprompt
 
     # Show error exit code if there is one
     if [[ $LAST_COMMAND != 0 ]]; then
-        # PS1="\[${RED}\](\[${LIGHTRED}\]ERROR\[${RED}\])-(\[${LIGHTRED}\]Exit Code \[${WHITE}\]${LAST_COMMAND}\[${RED}\])-(\[${LIGHTRED}\]"
         PS1="\[${DARKGRAY}\](\[${LIGHTRED}\]ERROR\[${DARKGRAY}\])-(\[${RED}\]Exit Code \[${LIGHTRED}\]${LAST_COMMAND}\[${DARKGRAY}\])-(\[${RED}\]"
         if [[ $LAST_COMMAND == 1 ]]; then
             PS1+="General error"

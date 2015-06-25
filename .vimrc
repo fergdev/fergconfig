@@ -37,9 +37,9 @@ syntax on             " syntax highligting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabs and spaces
 
-set tabstop=4 		" number of visual spaces per tab
-set softtabstop=4 	" number of spaces in tab when editing
-set expandtab 		" tabs are spaces
+set tabstop=4     " number of visual spaces per tab
+set softtabstop=4 " number of spaces in tab when editing
+set expandtab     " tabs are spaces
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI config
@@ -71,6 +71,15 @@ nnoremap k gk
 let mapleader=","
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabular 
+if exists(":Tabularize")
+    nmap <Leader>t= :Tabularize /=<CR>
+    vmap <Leader>t= :Tabularize /=<CR>
+    nmap <Leader>t" :Tabularize /"<CR>
+    vmap <Leader>t" :Tabularize /"<CR>
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree 
 
 autocmd vimenter * NERDTree	" start with nerd tree
@@ -79,8 +88,8 @@ autocmd vimenter * NERDTree	" start with nerd tree
 " Undotree
 
 nnoremap <leader>u :UndotreeToggle<CR> 
-let g:undotree_WindowLayout=3
-let g:undotree_SetFocusWhenToggle=1
+let g:undotree_WindowLayout       = 3
+let g:undotree_SetFocusWhenToggle = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easy motion
