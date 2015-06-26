@@ -71,6 +71,12 @@ nnoremap k gk
 let mapleader=","
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP 
+let g:ctrlp_max_files=0          " Set no max file limit
+let g:ctrlp_working_path_mode=0  " Search from current directory instead of project root
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular 
 if exists(":Tabularize")
     nmap <Leader>t= :Tabularize /=<CR>
