@@ -43,11 +43,11 @@ set expandtab     " tabs are spaces
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI config
-set cursorline " highlight currentline
-set wildmenu   " visual autocomplete for command menu
-set number     " line numbers
-set showmatch  " highlight matching [{()}]
-
+set cursorline          " highlight currentline
+set wildmenu            " visual autocomplete for command menu
+set number              " line numbers
+set showmatch           " highlight matching [{()}]
+set virtualedit=onemore " allows me to go to end of line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
 set hlsearch 		" highlight matches
@@ -120,14 +120,14 @@ map <Leader>k <Plug>(easymotion-k)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mah keys
 
-map      <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
-map      <F3> :source ~/.vim_session <cr>     " And load session with F`$i3
+map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
+map <F3> :source ~/.vim_session <cr>     " And load session with F`$i3
 
-noremap  <F4> :NumbersToggle<CR>
+nnoremap <F4> :NumbersToggle<CR>
 nnoremap <F5> :NumbersOnOff<CR>
 nnoremap <F6> :set paste<CR>
 nnoremap <F7> :set nopaste<CR>
-
+nnoremap $ g$
 nnoremap <S-N> :bnext<CR>
 nnoremap <S-P> :bprevious<CR>
 
@@ -253,6 +253,7 @@ function! SetArrowKeysAsTextShifters()
     " insert mode
     imap <silent> <Left> <C-D>
     imap <silent> <Right> <C-T>
+
     inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
     inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
     inoremap <silent> <C-Up> <Esc>:call DelEmptyLineBelow()<CR>a
@@ -275,5 +276,56 @@ endfunction
 
 call SetArrowKeysAsTextShifters()
 
+" Toggle hard mode
+let g:HardModeOn=1
+let g:HardMode_message="Stop being NOOOOOOOOOOOOOB"
+function! HardModeEcho(message)
+    echo a:message
+endfunction
+function! ToggleHardMode()
+        if g:HardModeOn==1
+            call EasyMode()
+        else
+            call HardMode()
+        endif
+endfunction
+function! HardMode()
+    let g:HardModeOn=1 
+    vnoremap <buffer> h <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    vnoremap <buffer> j <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    vnoremap <buffer> k <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    vnoremap <buffer> l <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    vnoremap <buffer> - <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    vnoremap <buffer> + <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+
+    " Display line motions
+    vnoremap <buffer> gj <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    vnoremap <buffer> gk <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    nnoremap <buffer> gk <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    nnoremap <buffer> gj <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+
+    nnoremap <buffer> h <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+
+    nnoremap <buffer> j <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    nnoremap <buffer> k <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    nnoremap <buffer> l <Esc>:call HardModeEcho(g:HardMode_message)<CR>
+    nnoremap <buffer> - <Esc>:call HardModeEcho(g:HardMode_message)<CR>
 
 
+endfunction
+function! EasyMode()
+        let g:HardModeOn=0
+        silent ! vunmap <buffer> h
+        silent ! vunmap <buffer> j
+        silent ! vunmap <buffer> k
+        silent ! vunmap <buffer> l
+        silent ! vunmap <buffer> -
+        silent ! vunmap <buffer> +
+
+        silent ! nunmap <buffer> h
+        silent ! nunmap <buffer> j
+        silent ! nunmap <buffer> k
+        silent ! nunmap <buffer> l
+        silent ! nunmap <buffer> -
+        silent ! nunmap <buffer> +
+endfunction
