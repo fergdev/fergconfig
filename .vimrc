@@ -329,3 +329,4 @@ function! EasyMode()
         silent ! nunmap <buffer> -
         silent ! nunmap <buffer> +
 endfunction
+call HardMode()  " Lets go hard mode
