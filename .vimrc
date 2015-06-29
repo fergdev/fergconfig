@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FergDev vimrc
 
-""" Lets get some plugins 
+""" Lets get some plugins
 set nocompatible
 filetype off
 
@@ -29,6 +29,12 @@ call vundle#end()
 filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"History
+set history=1000    " remember more commands and search history
+set undolevels=1000 " more undo
+set nobackup        " dont need backups
+set noswapfile      " stop the annoy file appearing
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors
 set background=light  " light bg
 colorscheme solarized " colorscheme
@@ -40,6 +46,12 @@ syntax on             " syntax highligting
 set tabstop=4     " number of visual spaces per tab
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab     " tabs are spaces
+nmap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
+"Invisible character colors 
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI config
@@ -71,13 +83,13 @@ nnoremap k gk
 let mapleader=","
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP 
+" CtrlP
 let g:ctrlp_max_files=0          " Set no max file limit
 let g:ctrlp_working_path_mode=0  " Search from current directory instead of project root
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tabular 
+" Tabular
 if exists(":Tabularize")
     nmap <Leader>t= :Tabularize /=<CR>
     vmap <Leader>t= :Tabularize /=<CR>
@@ -86,14 +98,14 @@ if exists(":Tabularize")
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree 
+" NERDTree
 
 autocmd vimenter * NERDTree	" start with nerd tree
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Undotree
+" Undotree                   
 
-nnoremap <leader>u :UndotreeToggle<CR> 
+nnoremap <leader>u :UndotreeToggle<CR>
 let g:undotree_WindowLayout       = 3
 let g:undotree_SetFocusWhenToggle = 1
 
@@ -148,7 +160,7 @@ nmap <silent> <C-N>  <Plug>GoldenViewNext
 nmap <silent> <C-P>  <Plug>GoldenViewPrevious
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Autogroups 
+" Autogroups
 
 augroup configgroup
     autocmd!
@@ -177,7 +189,7 @@ augroup configgroup
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Custom functions 
+" Custom functions
 
 " strips trailing whitespace at the end of files. this
 " is called on buffer write in the autogroup above.
@@ -201,6 +213,10 @@ function! DelEmptyLineAbove()
         .-1d
         silent normal! <C-y>
         call cursor(line("."), l:colsave)
+
+
+
+
     endif
 endfunction
 
@@ -290,7 +306,7 @@ function! ToggleHardMode()
         endif
 endfunction
 function! HardMode()
-    let g:HardModeOn=1 
+    let g:HardModeOn=1
     vnoremap <buffer> h <Esc>:call HardModeEcho(g:HardMode_message)<CR>
     vnoremap <buffer> j <Esc>:call HardModeEcho(g:HardMode_message)<CR>
     vnoremap <buffer> k <Esc>:call HardModeEcho(g:HardMode_message)<CR>
@@ -329,4 +345,4 @@ function! EasyMode()
         silent ! nunmap <buffer> -
         silent ! nunmap <buffer> +
 endfunction
-call HardMode()  " Lets go hard mode
+"call HardMode()  " Lets go hard mode

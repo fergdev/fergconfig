@@ -12,6 +12,10 @@ shopt -s histappend
 shopt -s huponexit
 
 #########################################################################
+# Key bindings
+bind "^W":backward-delete-word
+
+#########################################################################
 # Shell history 
 
 # don't put duplicate lines in the history. See bash(1) for more options
