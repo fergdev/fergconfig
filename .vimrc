@@ -24,6 +24,7 @@ Plugin 'ervandew/supertab'               " Code Completion
 Plugin 'nathanaelkane/vim-indent-guides' " Indent helper
 Plugin 'godlygeek/tabular'               " Aligns text
 Plugin 'ctrlp.vim'                       " Full path fuzzy file, buffer, mru, ta, .... finder for vim
+Plugin 'fergdev/vim-umajin-syntax'       " Syntax highlighting for .u
 call vundle#end()
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
@@ -58,6 +59,7 @@ highlight SpecialKey guifg=#4a4a59
 set cursorline          " highlight currentline
 set wildmenu            " visual autocomplete for command menu
 set number              " line numbers
+set nuw=6               " set the indent for linenumbers
 set showmatch           " highlight matching [{()}]
 set virtualedit=onemore " allows me to go to end of line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -77,6 +79,11 @@ nnoremap <space> za   " space open/closes folds
 " Movement
 nnoremap j gj
 nnoremap k gk
+map <silent> <PageUp> 1000<C-U>         " This code forces page up/down
+map <silent> <PageDown> 1000<C-D>       " to maintain the cursor position
+imap <silent> <PageUp> <C-O>1000<C-U>   " in the x and the y of the document
+imap <silent> <PageDown> <C-O>1000<C-D> " ..... very nice
+set nostartofline
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader
@@ -86,7 +93,6 @@ let mapleader=","
 " CtrlP
 let g:ctrlp_max_files=0          " Set no max file limit
 let g:ctrlp_working_path_mode=0  " Search from current directory instead of project root
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular
@@ -99,7 +105,6 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
-
 autocmd vimenter * NERDTree	" start with nerd tree
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
