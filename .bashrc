@@ -28,7 +28,7 @@ shopt -s histappend
 
 #########################################################################
 # Mah aliases
-alias ls='ls -al'
+alias ls='ls -AlhG'
 
 ## get rid of command not found ##
 alias cd..='cd ..'
