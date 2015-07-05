@@ -68,6 +68,10 @@ alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
 
 # Make colordiff a lil easier
 alias cdiff='colordiff'
+
+set show-all-if-ambiguous on
+set completion-ignore-case on 
+
 #########################################################################
 # Other exports 
 export GREP_OPTIONS='--color=auto'        # give me some color in my grep 

@@ -164,6 +164,8 @@ nmap <F9> <Plug>GoldenViewSwitchToggle
 nmap <silent> <C-N>  <Plug>GoldenViewNext
 nmap <silent> <C-P>  <Plug>GoldenViewPrevious
 
+nmap <Leader>s :source $MYVIMRC<CR>
+nmap <Leader>v :e $MYVIMRC<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autogroups
 
