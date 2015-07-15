@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FergDev vimrc
 
 """ Lets get some plugins
@@ -25,7 +25,9 @@ Plugin 'nathanaelkane/vim-indent-guides' " Indent helper
 Plugin 'godlygeek/tabular'               " Aligns text
 Plugin 'ctrlp.vim'                       " Full path fuzzy file, buffer, mru, ta, .... finder for vim
 Plugin 'fergdev/vim-umajin-syntax'       " Syntax highlighting for .u
+Plugin 'dkprice/vim-easygrep'           " Allow for greping in files
 call vundle#end()
+
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
 
@@ -47,7 +49,7 @@ syntax on             " syntax highligting
 set tabstop=4     " number of visual spaces per tab
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab     " tabs are spaces
-nmap <leader>l :set list!<CR>
+nnoremap <Leader>l=set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 "Invisible character colors 
 highlight NonText guifg=#4a4a59
@@ -59,7 +61,6 @@ highlight SpecialKey guifg=#4a4a59
 set cursorline          " highlight currentline
 set wildmenu            " visual autocomplete for command menu
 set number              " line numbers
-set nuw=6               " set the indent for linenumbers
 set showmatch           " highlight matching [{()}]
 set virtualedit=onemore " allows me to go to end of line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -69,22 +70,22 @@ set incsearch		" search as characters are entered
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding
-set foldenable        " enable folding
-set foldlevelstart=10 " open most folds by default
-set foldnestmax=10    " 10 nested fold max
-set foldmethod=indent " fold based on indent level
-nnoremap <space> za   " space open/closes folds
+"set foldenable        " enable folding
+"set foldlevelstart=10 " open most folds by default
+"set foldnestmax=10    " 10 nested fold max
+"set foldmethod=indent " fold based on indent level
+"nnoremap <space> za   " space open/closes folds
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Movement
 nnoremap j gj
 nnoremap k gk
+
 map <silent> <PageUp> 1000<C-U>         " This code forces page up/down
 map <silent> <PageDown> 1000<C-D>       " to maintain the cursor position
 imap <silent> <PageUp> <C-O>1000<C-U>   " in the x and the y of the document
 imap <silent> <PageDown> <C-O>1000<C-D> " ..... very nice
 set nostartofline
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader
 let mapleader=","
@@ -93,6 +94,7 @@ let mapleader=","
 " CtrlP
 let g:ctrlp_max_files=0          " Set no max file limit
 let g:ctrlp_working_path_mode=0  " Search from current directory instead of project root
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular
@@ -105,6 +107,7 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
+
 autocmd vimenter * NERDTree	" start with nerd tree
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -145,27 +148,28 @@ nnoremap <F5> :NumbersOnOff<CR>
 nnoremap <F6> :set paste<CR>
 nnoremap <F7> :set nopaste<CR>
 nnoremap $ g$
-nnoremap <S-N> :bnext<CR>
-nnoremap <S-P> :bprevious<CR>
+nnoremap <S-j> :bnext<CR>
+nnoremap <S-k> :bprevious<CR>
 
 inoremap <ESC> <NOP>
+
+nmap <Leader>s :source $MYVIMRC<CR>
+nmap <Leader>v :e $MYVIMRC<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Golden Window
 " 1. split to tiled windows
-nmap <silent> <C-L>  <Plug>GoldenViewSplit
+nmap <silent> <C-L> <Plug>GoldenViewSplit<CR>
 
 " 2. quickly switch current window with the main pane
 " and toggle back
-nmap <F8> <Plug>GoldenViewSwitchMain
-nmap <F9> <Plug>GoldenViewSwitchToggle
+nmap <F8> <Plug>GoldenViewSwitchMain<CR>
+nmap <F9> <Plug>GoldenViewSwitchToggle<CR>
 
 " 3. jump to next and previous window
-nmap <silent> <C-N>  <Plug>GoldenViewNext
-nmap <silent> <C-P>  <Plug>GoldenViewPrevious
+nmap <silent> <C-j> <Plug>GoldenViewNext<CR>
+nmap <silent> <C-k> <Plug>GoldenViewPrevious<CR>
 
-nmap <Leader>s :source $MYVIMRC<CR>
-nmap <Leader>v :e $MYVIMRC<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autogroups
 
@@ -220,10 +224,6 @@ function! DelEmptyLineAbove()
         .-1d
         silent normal! <C-y>
         call cursor(line("."), l:colsave)
-
-
-
-
     endif
 endfunction
 
