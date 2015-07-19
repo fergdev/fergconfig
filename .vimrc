@@ -25,7 +25,8 @@ Plugin 'nathanaelkane/vim-indent-guides' " Indent helper
 Plugin 'godlygeek/tabular'               " Aligns text
 Plugin 'ctrlp.vim'                       " Full path fuzzy file, buffer, mru, ta, .... finder for vim
 Plugin 'fergdev/vim-umajin-syntax'       " Syntax highlighting for .u
-Plugin 'dkprice/vim-easygrep'           " Allow for greping in files
+Plugin 'dkprice/vim-easygrep'            " Allow for greping in files
+Plugin 'fergdev/vim-cursor-hist'         " Mah cursor hist
 call vundle#end()
 
 " Now we can turn our filetype functionality back on
