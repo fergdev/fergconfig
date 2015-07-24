@@ -64,6 +64,7 @@ set wildmenu            " visual autocomplete for command menu
 set number              " line numbers
 set showmatch           " highlight matching [{()}]
 set virtualedit=onemore " allows me to go to end of line
+set noeb vb t_vb=
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching
 set hlsearch 		" highlight matches
