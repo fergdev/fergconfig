@@ -1,0 +1,10 @@
+--recurse=yes
+--tag-relative=yes
+--exclude=\.(git|hg)
+
+--langdef=Umajin
+--langmap=Umajin:.u
+--regex-Umajin=/define[ \t]+([a-z0-9_]+)[ \t]+([a-z0-9_]+)/\2/n,namespace/
+--regex-Umajin=/instance[ \t]+([a-z0-9_]+)[ \t]+([a-z0-9_]+)/\2/d,definition/
+--regex-Umajin=/method[ \t]+([a-z0-9_]+)\(/\1/f,function/
+--regex-Umajin=/[ \t]*property[ \t]+[a-z0-9_]+[ \t]+([a-z0-9_]+)/\1/d,definition/
