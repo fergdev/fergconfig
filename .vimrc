@@ -27,6 +27,8 @@ Plugin 'ctrlp.vim'                       " Full path fuzzy file, buffer, mru, ta
 Plugin 'fergdev/vim-umajin-syntax'       " Syntax highlighting for .u
 Plugin 'dkprice/vim-easygrep'            " Allow for greping in files
 Plugin 'fergdev/vim-cursor-hist'         " Mah cursor hist
+Plugin 'mileszs/ack.vim'                 " Try using ack for searching
+Plugin 'majutsushi/tagbar'               " Displaying mah tags
 call vundle#end()
 
 " Now we can turn our filetype functionality back on
@@ -355,3 +357,15 @@ function! EasyMode()
         silent ! nunmap <buffer> +
 endfunction
 "call HardMode()  " Lets go hard mode
+"
+let g:tagbar_type_umajin = {
+    \ 'ctagstype' : 'umajin',
+    \ 'kinds' : [
+            \'d:Define',
+            \'i:Instance',
+            \'m:Method',
+            \'p:Property',
+    \]
+\}
+
+
