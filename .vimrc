@@ -29,6 +29,7 @@ Plugin 'dkprice/vim-easygrep'            " Allow for greping in files
 Plugin 'fergdev/vim-cursor-hist'         " Mah cursor hist
 Plugin 'mileszs/ack.vim'                 " Try using ack for searching
 Plugin 'majutsushi/tagbar'               " Displaying mah tags
+Plugin 'scrooloose/nerdcommenter'        " Orgasmic commenting
 call vundle#end()
 
 " Now we can turn our filetype functionality back on
@@ -112,7 +113,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 
-autocmd vimenter * NERDTree	" start with nerd tree
+"autocmd vimenter * NERDTree	" start with nerd tree
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Undotree                   
@@ -356,8 +357,9 @@ function! EasyMode()
         silent ! nunmap <buffer> -
         silent ! nunmap <buffer> +
 endfunction
-"call HardMode()  " Lets go hard mode
-"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Custom tagbar stuff
 let g:tagbar_type_umajin = {
     \ 'ctagstype' : 'umajin',
     \ 'kinds' : [
@@ -368,4 +370,8 @@ let g:tagbar_type_umajin = {
     \]
 \}
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Custom commenting stuff
+let g:NERDCustomDelimiters = {
+    \'umajin' : { 'left' : '/*', 'right':'*/', 'leftAlt':'//'}
+\}
