@@ -13,8 +13,9 @@ shopt -s huponexit
 
 #########################################################################
 # Key bindings
-bind "^W":backward-delete-word
-
+#bind "^W":backward-delete-word
+# Lets gogo vim mode
+set -o vi
 #########################################################################
 # Shell history 
 
