@@ -6,7 +6,7 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
     Plugin 'tpope/vim-fugitive'
@@ -22,7 +22,8 @@ call vundle#rc()
     Plugin 'mileszs/ack.vim'                     " Try using ack for searching
     Plugin 'majutsushi/tagbar'                   " Displaying mah tags
     Plugin 'scrooloose/nerdcommenter'            " Orgasmic commenting
-    Plugin 'michaeljsmith/vim-indent-object.git' " Allows indent to be used as a text objet
+    Plugin 'michaeljsmith/vim-indent-object.git' " Indent Object
+    Plugin 'inside/vim-grep-operator'            " Grep text objects
     
 call vundle#end()
 
@@ -119,6 +120,12 @@ let g:undotree_WindowLayout       = 3
 let g:undotree_SetFocusWhenToggle = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Inside vim-grep-operator
+set grepprg=grep\ -rn\ $*\ .
+"let g:grep_operator = 'Ag'
+"let g:grep_operator = 'Ack'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mah keys
 
 map <silent> <PageUp> 1000<C-U>         " This code forces page up/down
@@ -137,6 +144,11 @@ nnoremap gr :execute "vimgrep /" . expand("<cword>") . "/gj **/*." . expand("%:e
 nnoremap gR :execute "vimgrep /\<" . expand("<cword>") . "\>/gj **/*." . expand("%:e")<Bar> cw<CR>
 nnoremap Gr :execute "vimgrep /" . expand("<cWORD>") . "/gj **/*." . expand("%:e")<Bar> cw<CR>
 nnoremap GR :execute "vimgrep /\<" . expand("<cWORD>") . "\>/gj **/*." . expand("%:e")<Bar> cw<CR>
+
+nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 
 " Turn of silly keys that are too far away
 inoremap <ESC> <NOP>
