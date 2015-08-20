@@ -121,7 +121,7 @@ let g:undotree_SetFocusWhenToggle = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Inside vim-grep-operator
-set grepprg=grep\ -rn\ $*\ .
+set grepprg=grep\ -rn\ $*\ . 
 "let g:grep_operator = 'Ag'
 "let g:grep_operator = 'Ack'
 
@@ -358,3 +358,59 @@ let g:NERDCustomDelimiters = {
 function! SetUmajinMacros()
     "let @p='yoprintln(\'" = "\'+"+\'"\')' " Prints the selected variable
 endfunction
+
+function! QPrintArgs()
+    echom 'QPrintArgs'
+
+    " Get line and number
+    let currLineNumber = line('.') 
+    let currLine = getline('.')
+    "echom 'currLineNumber ' . currLineNumber
+    "echom 'currLine ' . currLine
+
+    " Extract method name
+    let methodName = matchstr(currLine, '\vmethod\s+\zs\w+\ze\(') 
+    "echom 'methodName "' . methodName . '"'
+    if methodName == ''
+        return
+    end
+    call append(currLineNumber ,'println("\n' . methodName . '")' )
+    let currLineNumber += 1
+
+    " Extract args
+    let argsStr = matchstr(currLine, '\v\(\zs.*\ze\)' )
+    let argsSplit = split(argsStr, ',')
+    let i = 0
+    let splitLen = len(argsSplit)
+    while i < splitLen
+        "let arg = argsSplit[i]
+        "echom 'SP ' . arg
+        let arg = matchstr(argsSplit[i], '\v\s*\w+\s+\zs\w+\ze') 
+        "echom 'SP ' . arg
+        call append(currLineNumber, 'println("'.arg.' = "+'.arg.')' )
+        let currLineNumber += 1
+        let i += 1
+    endwhile
+    " Add print statements to doc
+
+endfunction
+function! QPrintVar()
+
+    let currLineNumber = line('.') 
+    let currLine = getline('.')
+    echom 'currLineNumber ' . currLineNumber
+    echom 'currLine ' . currLine
+
+    " Extract method name
+    let varName = matchstr(currLine, '\v\zs\w+\ze\s*\=') 
+    call append(currLineNumber ,'println("' . varName . ' = "+'.varName.')' )
+endfunction
+function! QPrintComment()
+
+endfunction
+function! QPrintDelete()
+
+endfunction
+nnoremap <Leader>pa :call QPrintArgs()<CR> " Print args
+nnoremap <Leader>pv :call QPrintVar()<CR> " Print var 
+" Print variable
