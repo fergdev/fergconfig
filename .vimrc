@@ -275,7 +275,6 @@ augroup configgroup
     autocmd BufEnter *.sh setlocal shiftwidth=2
     autocmd BufEnter *.sh setlocal softtabstop=2
     autocmd BufEnter *.u setlocal formatprg=par\ -w80\ -T4
-    autocmd BufEnter *.u call SetUmajinMacros() 
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -354,10 +353,8 @@ let g:NERDCustomDelimiters = {
 \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" My default macros
-function! SetUmajinMacros()
-    "let @p='yoprintln(\'" = "\'+"+\'"\')' " Prints the selected variable
-endfunction
+" My printing functions - I never want to have to type a println ever again
+let g:QPrintToken = 'QQQPrintTokenQQQ'
 
 function! QPrintArgs()
     echom 'QPrintArgs'
@@ -365,16 +362,17 @@ function! QPrintArgs()
     " Get line and number
     let currLineNumber = line('.') 
     let currLine = getline('.')
-    "echom 'currLineNumber ' . currLineNumber
-    "echom 'currLine ' . currLine
+    if currLine == ''
+        return
+    end
 
     " Extract method name
     let methodName = matchstr(currLine, '\vmethod\s+\zs\w+\ze\(') 
-    "echom 'methodName "' . methodName . '"'
     if methodName == ''
         return
     end
-    call append(currLineNumber ,'println("\n' . methodName . '")' )
+
+    call append(currLineNumber ,'println("\n' . methodName . '")//'.g:QPrintToken )
     let currLineNumber += 1
 
     " Extract args
@@ -387,30 +385,39 @@ function! QPrintArgs()
         "echom 'SP ' . arg
         let arg = matchstr(argsSplit[i], '\v\s*\w+\s+\zs\w+\ze') 
         "echom 'SP ' . arg
-        call append(currLineNumber, 'println("'.arg.' = "+'.arg.')' )
+        call append(currLineNumber, 'println("'.arg.' = "+'.arg.')//'.g:QPrintToken )
         let currLineNumber += 1
         let i += 1
     endwhile
-    " Add print statements to doc
-
 endfunction
 function! QPrintVar()
 
+    " Get the current line and the line number
     let currLineNumber = line('.') 
     let currLine = getline('.')
-    echom 'currLineNumber ' . currLineNumber
-    echom 'currLine ' . currLine
-
+    if currLine == ''
+        return
+    end
     " Extract method name
     let varName = matchstr(currLine, '\v\zs\w+\ze\s*\=') 
-    call append(currLineNumber ,'println("' . varName . ' = "+'.varName.')' )
+    if varName == '' 
+        return
+    end
+
+    " Add print statement
+    call append(currLineNumber ,'println("' . varName . ' = "+'.varName.')//'.g:QPrintToken )
 endfunction
 function! QPrintComment()
-
+   execute 's/\v.*'.g:QPrintToken.'/\/\/&'
 endfunction
+function! QPrintUnComment()
+    execute 's/\v/\/\\zs.*'.g:QPrintToken.'$/&'
+endfunction 
 function! QPrintDelete()
-
+   execute 'g/\v'.g:QPrintToken.'/d'
 endfunction
-nnoremap <Leader>pa :call QPrintArgs()<CR> " Print args
-nnoremap <Leader>pv :call QPrintVar()<CR> " Print var 
-" Print variable
+nnoremap <silent> <Leader>pa :call QPrintArgs()<CR>      " Print args
+nnoremap <silent> <Leader>pv :call QPrintVar()<CR>       " Print var
+nnoremap <silent> <Leader>pc :call QPrintComment()<CR>   " Comment out print statements
+nnoremap <silent> <Leader>pC :call QPrintUnComment()<CR> " UnComment out print statements
+nnoremap <silent> <Leader>pd :call QPrintDelete()<CR>    " Delete all print statements
