@@ -150,6 +150,11 @@ vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 
+" Make <C-c> act the same as escape
+inoremap <C-c> <Esc>    
+nnoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+
 " Turn of silly keys that are too far away
 inoremap <ESC> <NOP>
 nnoremap <PageUp> <NOP>
