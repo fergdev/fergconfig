@@ -24,7 +24,8 @@ call vundle#rc()
     Plugin 'scrooloose/nerdcommenter'            " Orgasmic commenting
     Plugin 'michaeljsmith/vim-indent-object.git' " Indent Object
     Plugin 'inside/vim-grep-operator'            " Grep text objects
-    
+    Plugin 'fergdev/NAPaLM'                      " Auto printlns boooooooom
+
 call vundle#end()
 
 " Now we can turn our filetype functionality back on
@@ -85,7 +86,7 @@ set ignorecase " ignore case when searching
 set smartcase  " no ignorecase if Uppercase is on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader
-let mapleader=","
+let mapleader=" "
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
@@ -357,72 +358,18 @@ let g:NERDCustomDelimiters = {
     \'umajin' : { 'left' : '/*', 'right':'*/', 'leftAlt':'//'}
 \}
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" My printing functions - I never want to have to type a println ever again
-let g:QPrintToken = 'QQQPrintTokenQQQ'
-
-function! QPrintArgs()
-    echom 'QPrintArgs'
-
-    " Get line and number
-    let currLineNumber = line('.') 
-    let currLine = getline('.')
-    if currLine == ''
-        return
-    end
-
-    " Extract method name
-    let methodName = matchstr(currLine, '\vmethod\s+\zs\w+\ze\(') 
-    if methodName == ''
-        return
-    end
-
-    call append(currLineNumber ,'println("\n' . methodName . '")//'.g:QPrintToken )
-    let currLineNumber += 1
-
-    " Extract args
-    let argsStr = matchstr(currLine, '\v\(\zs.*\ze\)' )
-    let argsSplit = split(argsStr, ',')
-    let i = 0
-    let splitLen = len(argsSplit)
-    while i < splitLen
-        "let arg = argsSplit[i]
-        "echom 'SP ' . arg
-        let arg = matchstr(argsSplit[i], '\v\s*\w+\s+\zs\w+\ze') 
-        "echom 'SP ' . arg
-        call append(currLineNumber, 'println("'.arg.' = "+'.arg.')//'.g:QPrintToken )
-        let currLineNumber += 1
-        let i += 1
-    endwhile
-endfunction
-function! QPrintVar()
-
-    " Get the current line and the line number
-    let currLineNumber = line('.') 
-    let currLine = getline('.')
-    if currLine == ''
-        return
-    end
-    " Extract method name
-    let varName = matchstr(currLine, '\v\zs\w+\ze\s*\=') 
-    if varName == '' 
-        return
-    end
-
-    " Add print statement
-    call append(currLineNumber ,'println("' . varName . ' = "+'.varName.')//'.g:QPrintToken )
-endfunction
-function! QPrintComment()
-   execute 's/\v.*'.g:QPrintToken.'/\/\/&'
-endfunction
-function! QPrintUnComment()
-    execute 's/\v/\/\\zs.*'.g:QPrintToken.'$/&'
-endfunction 
-function! QPrintDelete()
-   execute 'g/\v'.g:QPrintToken.'/d'
-endfunction
-nnoremap <silent> <Leader>pa :call QPrintArgs()<CR>      " Print args
-nnoremap <silent> <Leader>pv :call QPrintVar()<CR>       " Print var
-nnoremap <silent> <Leader>pc :call QPrintComment()<CR>   " Comment out print statements
-nnoremap <silent> <Leader>pC :call QPrintUnComment()<CR> " UnComment out print statements
-nnoremap <silent> <Leader>pd :call QPrintDelete()<CR>    " Delete all print statements
+" NAPaLM custom langdefs
+let g:NAPaLMCustomLanguageDefs = {
+    \  'umajin' : {'sps' : 'println("\n${name}")',
+    \              'vps' : 'println("${name} = " + ${var}.name + " , " + ${var}.typeof())',
+    \              'ops' : 
+    \              {
+    \                'int'    : 'println("${name} = " + ${var})',
+    \                'string' : 'println("${name} = " + ${var})',
+    \                'real'   : 'println("${name} = " + ${var})',
+    \                'bool'   : 'println("${name} = " + ${var})'
+    \              },
+    \              'comment' : '//'}
+    \}
