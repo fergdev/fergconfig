@@ -12,11 +12,6 @@ shopt -s histappend
 shopt -s huponexit
 
 #########################################################################
-# Key bindings
-#bind "^W":backward-delete-word
-# Lets gogo vim mode
-set -o vi
-#########################################################################
 # Shell history 
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -29,24 +24,23 @@ shopt -s histappend
 
 #########################################################################
 # Mah aliases
-alias ls='ls -AlhG'
+alias lsl='ls -AlhG'
 
 ## get rid of command not found ##
 alias cd..='cd ..'
 
-alias mkdir='mkdir -p'
+alias mkdirp='mkdir -p'
 
 # process
-alias ps='p saux'
-alias p="ps aux | grep "
+alias mps='p saux'
+alias mp="ps aux | grep "
 alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 
 ## a quick way to get out of current directory ##
-alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../'
-alias .4='cd ../../../../'
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # Git
@@ -56,6 +50,7 @@ alias gita='git add --all'
 alias gitp='git pull'
 alias gitc='git commit -m'
 alias gitd='git diff'
+
 # HG
 alias hgs='hg status'
 alias hgr='hg revert -all'
@@ -75,7 +70,8 @@ set completion-ignore-case on
 
 #########################################################################
 # Other exports 
-export GREP_OPTIONS='--color=auto'        # give me some color in my grep 
+# GREP colors
+export GREP_OPTIONS='--color=auto'
 
 #Man page colors
 # Less Colors for Man Pages
@@ -139,7 +135,6 @@ note ()
             echo "$@" >> $HOME/.notes
     fi
 }
-
 #########################################################################
 # Setup mcahine specific stuff
 
@@ -248,13 +243,5 @@ function __setprompt
         PS1+="\[${RED}\]:\[${NOCOLOR}\] " # Root user
     fi
 
-    # PS2 is used to continue a command using the \ character
-    #PS2="\[${DARKGRAY}\]>\[${NOCOLOR}\] "
-
-    # PS3 is used to enter a number choice in a script
-    #PS3='Please enter a number from above list: '
-
-    # PS4 is used for tracing a script in debug mode
-    #PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
 }
 PROMPT_COMMAND='__setprompt'
