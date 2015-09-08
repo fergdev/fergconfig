@@ -1,10 +1,10 @@
 #!/bin/bash
 echo "Changes ... "
 
-BASH_DIFF_OUT="$(diff ~/.bashrc ~/.bashrc_bak2)" 
+BASH_DIFF_OUT="$(diff ~/.bashrc .bashrc)" 
 BASH_ERR_CODE=$?
 
-VIM_DIFF_OUT="$(diff ~/.vimrc ~/git/fergconfig/.vimrc)"
+VIM_DIFF_OUT="$(diff ~/.vimrc .vimrc)"
 VIM_ERR_CODE=$?
 
 
