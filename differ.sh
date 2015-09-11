@@ -26,30 +26,10 @@ function compare_update(){
 }
 
 # Test Files 
-BASHRC_PATH=~/.bashrc
-BASHRC_GIT=.bashrc
-compare_update $BASHRC_PATH $BASHRC_GIT
-
-BASHRC_CYGWIN_PATH=~/.bashrc_cygwin
-BASHRC_CYGWIN_GIT=.bashrc_cygwin
-compare_update $BASHRC_CYGWIN_PATH $BASHRC_CYGWIN_PATH
-
-BASHRC_NATIVE_PATH=~/.bashrc_native
-BASHRC_NATIVE_GIT=.bashrc_native
-compare_update $BASHRC_NATIVE_PATH $BASHRC_NATIVE_PATH
- 
-CTAGS_PATH=~/.ctags
-CTAGS_GIT=.ctags
-compare_update $CTAGS_PATH $CTAGS_GIT
-
-HGRC_PATH=~/.hgrc
-HGRC_GIT=.hgrc
-compare_update $HGRC_PATH $HGRC_GIT
-
-TMUX_CONF_PATH=~/.tmux.conf
-TMUX_CONF_GIT=.tmux.conf
-compare_update $TMUX_CONF_PATH $TMUX_CONF_GIT
-
-VIM_PATH=~/.vimrc
-VIM_GIT=.vimrc
-compare_update $VIM_PATH $VIM_GIT
+compare_update ~/.bashrc .bashrc
+compare_update ~/.bashrc_cygwin .bashrc_cygwin
+compare_update ~/.bashrc_native .bashrc_native
+compare_update ~/.ctags .ctags
+compare_update ~/.hgrc .hgrc
+compare_update ~/.tmux.conf .tmux.conf
+compare_update ~/.vimrc .vimrc
