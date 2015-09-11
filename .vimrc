@@ -95,24 +95,15 @@ let g:ctrlp_working_path_mode=0  " Search from current directory instead of proj
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular
-if exists(":Tabularize")
-    nmap <Leader>t= :Tabularize /=<CR>
-    vmap <Leader>t= :Tabularize /=<CR>
-    nmap <Leader>t" :Tabularize /"<CR>
-    nmap <Leader>t" :Tabularize /"<CR>
-    nmap <Leader>t' :Tabularize /'<CR>
-    vmap <Leader>t' :Tabularize /'<CR>
-    nmap <Leader>t` :Tabularize /`<CR>
-    vmap <Leader>t` :Tabularize /`<CR>
-    vmap <Leader>t+ :Tabularize /+<CR>
-    vmap <Leader>t+ :Tabularize /+<CR>
-    nmap <Leader>t, :Tabularize /,<CR>
-    vmap <Leader>t, :Tabularize /,<CR>
-    nmap <Leader>t: :Tabularize /:<CR>
-    vmap <Leader>t: :Tabularize /:<CR>
-    nmap <Leader>t; :Tabularize /;<CR>
-    vmap <Leader>t; :Tabularize /;<CR>
-endif
+vnoremap <Leader>t= :Tabularize /=<CR>
+vnoremap <Leader>t= :Tabularize /=<CR>
+vnoremap <Leader>t' :Tabularize /'<CR>
+vnoremap <Leader>t` :Tabularize /`<CR>
+vnoremap <Leader>t+ :Tabularize /+<CR>
+vnoremap <Leader>t+ :Tabularize /+<CR>
+vnoremap <Leader>t, :Tabularize /,<CR>
+vnoremap <Leader>t: :Tabularize /:<CR>
+vnoremap <Leader>t; :Tabularize /;<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Undotree                   

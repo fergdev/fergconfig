@@ -4,7 +4,8 @@
 
 --langdef=Umajin
 --langmap=Umajin:.u
---regex-Umajin=/define[ \t]+([a-z0-9_]+)[ \t]+([a-z0-9_]+)/\2/n,namespace/
---regex-Umajin=/instance[ \t]+([a-z0-9_]+)[ \t]+([a-z0-9_]+)/\2/d,definition/
---regex-Umajin=/method[ \t]+([a-z0-9_]+)\(/\1/f,function/
---regex-Umajin=/[ \t]*property[ \t]+[a-z0-9_]+[ \t]+([a-z0-9_]+)/\1/d,definition/
+--regex-Umajin=/[ \t]*define[ \t]+[a-z0-9_]+[ \t]+([a-z0-9_]+)/\1/d,define/
+--regex-Umajin=/[ \t]*instance[ \t]+[a-z0-9_]+[ \t]+([a-z0-9_]+)/\1/i,instance/
+--regex-Umajin=/[ \t]*method[ \t]+([a-z0-9_]+)\(/\1/m,method/
+--regex-Umajin=/[ \t]*property[ \t]+[a-z0-9_]+[ \t]+([a-z0-9_]+)/\1/p,property/
+--regex-Umajin=/[ \t]*[a-z0-9_]+[ \t]+([a-z0-9_]+)[ \t]+\=[ \t]+[a-z0-9_]+/\1/o,object/
