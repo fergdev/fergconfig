@@ -50,6 +50,7 @@ alias gita='git add --all'
 alias gitp='git pull'
 alias gitc='git commit -m'
 alias gitd='git diff'
+alias gutb='git branch -av'
 
 # HG
 alias hgs='hg status'
