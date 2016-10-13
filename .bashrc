@@ -51,6 +51,8 @@ alias gitp='git pull'
 alias gitc='git commit -m'
 alias gitd='git diff'
 alias gutb='git branch -av'
+# Prett git log on the command line :) :)
+git config --global alias.lg "log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'"  
 
 # HG
 alias hgs='hg status'
