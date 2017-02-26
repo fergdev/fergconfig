@@ -12,7 +12,6 @@ call vundle#rc()
     Plugin 'tpope/vim-fugitive'
     Plugin 'scrooloose/syntastic'
     Plugin 'pangloss/vim-javascript'
-    Plugin 'altercation/vim-colors-solarized'    " Colorscheme
     Plugin 'elzr/vim-json'
     Plugin 'mbbill/undotree'                     " Undo visualiser
     Plugin 'godlygeek/tabular'                   " Aligns text
@@ -25,6 +24,11 @@ call vundle#rc()
     Plugin 'michaeljsmith/vim-indent-object.git' " Indent Object
     Plugin 'inside/vim-grep-operator'            " Grep text objects
     Plugin 'fergdev/NAPaLM'                      " Auto printlns boooooooom
+    Plugin 'vim-airline/vim-airline'             " Tab-line
+    Plugin 'vim-airline/vim-airline-themes'      " Some arline themes
+    Plugin 'kristijanhusak/vim-hybrid-material'  " Color scheme
+    Plugin 'Raimondi/delimitMate'                " Matching delims
+    Plugin 'jez/vim-superman'                    " Man vim
 
 call vundle#end()
 
@@ -40,8 +44,9 @@ set noswapfile      " stop the annoy file appearing
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors
-set background=light  " light bg
-colorscheme solarized " colorscheme
+set background=dark
+colorscheme hybrid_material
+let g:airline_theme = "hybrid"
 syntax on             " syntax highligting
 filetype on
 filetype indent on
@@ -56,7 +61,7 @@ set shiftwidth=4
 nnoremap <Leader>l=set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
-"Invisible character colors 
+"Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
@@ -73,7 +78,6 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 set scrolloff=10         " keep 3 lines when scrolling
 set showmode            " Show the current mode
 " Set a helpful status bar
-set stl=%f\ %m\ %r\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
 set laststatus=2        " always a status line
 set complete=.,w,b,t   " Order to search for completion
 
@@ -106,19 +110,26 @@ vnoremap <Leader>t: :Tabularize /:<CR>
 vnoremap <Leader>t; :Tabularize /;<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Undotree                   
+" Undotree
 nnoremap <leader>u :UndotreeToggle<CR>
 let g:undotree_WindowLayout       = 3
 let g:undotree_SetFocusWhenToggle = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline
+let g:airline#extensions#tabline#enabled = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Inside vim-grep-operator
-set grepprg=grep\ -rn\ $*\ . 
+set grepprg=grep\ -rn\ $*\ .
 "let g:grep_operator = 'Ag'
 "let g:grep_operator = 'Ack'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mah keys
+"
+
+imap <C-c> <CR><Esc>O                   " Does a line split plus new line 
 
 map <silent> <PageUp> 1000<C-U>         " This code forces page up/down
 map <silent> <PageDown> 1000<C-D>       " to maintain the cursor position
@@ -142,13 +153,7 @@ vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 
-" Make <C-c> act the same as escape
-inoremap <C-c> <Esc>    
-nnoremap <C-c> <Esc>
-vnoremap <C-c> <Esc>
-
 " Turn of silly keys that are too far away
-inoremap <ESC> <NOP>
 nnoremap <PageUp> <NOP>
 nnoremap <PageDown> <NOP>
 nnoremap <Del> <NOP>
@@ -275,63 +280,6 @@ augroup configgroup
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Custom functions
-" Toggle hard mode
-let g:HardModeOn=1
-let g:HardMode_message="Stop being NOOOOOOOOOOOOOB"
-function! HardModeEcho(message)
-    echo a:message
-endfunction
-
-function! ToggleHardMode()
-        if g:HardModeOn==1
-            call EasyMode()
-        else
-            call HardMode()
-        endif
-endfunction
-
-function! HardMode()
-    let g:HardModeOn=1
-    vnoremap <buffer> h <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-
-    vnoremap <buffer> j <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    vnoremap <buffer> k <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    vnoremap <buffer> l <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    vnoremap <buffer> - <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    vnoremap <buffer> + <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-
-    " Display line motions
-    vnoremap <buffer> gj <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    vnoremap <buffer> gk <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    nnoremap <buffer> gk <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    nnoremap <buffer> gj <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-
-    nnoremap <buffer> h <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-
-    nnoremap <buffer> j <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    nnoremap <buffer> k <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    nnoremap <buffer> l <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-    nnoremap <buffer> - <Esc>:call HardModeEcho(g:HardMode_message)<CR>
-endfunction
-
-function! EasyMode()
-    let g:HardModeOn=0
-    silent ! vunmap <buffer> h
-    silent ! vunmap <buffer> j
-    silent ! vunmap <buffer> k
-    silent ! vunmap <buffer> l
-    silent ! vunmap <buffer> -
-    silent ! vunmap <buffer> +
-
-    silent ! nunmap <buffer> h
-    silent ! nunmap <buffer> j
-    silent ! nunmap <buffer> k
-    silent ! nunmap <buffer> l
-    silent ! nunmap <buffer> -
-    silent ! nunmap <buffer> +
-endfunction
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Custom tagbar stuff
 let g:tagbar_type_umajin = {
     \ 'ctagstype' : 'umajin',
@@ -349,13 +297,12 @@ let g:NERDCustomDelimiters = {
     \'umajin' : { 'left' : '/*', 'right':'*/', 'leftAlt':'//'}
 \}
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NAPaLM custom langdefs
 let g:NAPaLMCustomLanguageDefs = {
     \  'umajin' : {'sps' : 'println("\n${name}")',
     \              'vps' : 'println("${name} = " + ${var}.name + " , " + ${var}.typeof())',
-    \              'ops' : 
+    \              'ops' :
     \              {
     \                'int'    : 'println("${name} = " + ${var})',
     \                'string' : 'println("${name} = " + ${var})',

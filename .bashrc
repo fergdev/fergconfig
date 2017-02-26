@@ -2,37 +2,32 @@
 
 #########################################################################
 # Shell options
-
 shopt -s cdspell
+shopt -s checkjobs
 shopt -s cmdhist
 shopt -s dotglob
 shopt -s expand_aliases
 shopt -s extglob
 shopt -s histappend
+shopt -s histverify
+shopt -s hostcomplete
 shopt -s huponexit
 
 #########################################################################
 # Shell history 
-
-# don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=erasedups:ignoredups:ignorespace
-
-# Expand the history size
+export EDITOR=vim
 export HISTFILESIZE=10000 
 export HISTSIZE=100
-shopt -s histappend
 
 #########################################################################
 # Mah aliases
+
 alias lsl='ls -AlhG'
-
-## get rid of command not found ##
 alias cd..='cd ..'
-
 alias mkdirp='mkdir -p'
 
-# process
-alias mps='p saux'
+alias mps='ps aux'
 alias mp="ps aux | grep "
 alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 
@@ -43,48 +38,14 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-# Git
-alias gits='git status'
-alias gitr='git reset'
-alias gita='git add --all'
-alias gitp='git pull'
-alias gitc='git commit -m'
-alias gitd='git diff'
-alias gutb='git branch -av'
-# Prett git log on the command line :) :)
-git config --global alias.lg "log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'"  
-
-# HG
-alias hgs='hg status'
-alias hgr='hg revert -all'
-alias hgpl='hg pull'
-alias hgps='hg push'
-alias hgu='hg update'
-alias hgd='hg diff'
-
 # Show me the size (sorted) of only the folders in this directory
 alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
 
 # Make colordiff a lil easier
 alias cdiff='colordiff'
+alias info='info --vi-keys'
 
-set show-all-if-ambiguous on
-set completion-ignore-case on 
-
-#########################################################################
-# Other exports 
-# GREP colors
-export GREP_OPTIONS='--color=auto'
-
-#Man page colors
-# Less Colors for Man Pages
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+alias man="vman "
 
 #########################################################################
 # Mah functions
@@ -121,21 +82,44 @@ extract () {
      fi
 }
 
+todo_print()
+{ 
+    cat $HOME/.todo | gawk '{printf "%d. %s\n", NR, $0}'
+}
 
-# A simple note taker
-note ()
+# A simple todo taker
+todo ()
 {
-    # if note does not exist ... make it
-    if [ -f $HOME/.notes ] ; then 
-            touch $HOME/.notes
+    if [ -f $HOME/.todo ] ; then 
+        touch $HOME/.todo
     fi
-    # no argumnets, print file
-    if [ $# = 0 ] ; then
-            cat $HOME/.notes
-    elif [ $1 = -c ]; then
-            > $HOME/.notes
+    if [ $# == 0 ] ; then
+        todo_print
+    elif [ $1 == -d ] ; then
+        if [[ $2 = *[[:digit:]]* ]] ; then
+            RES=$(cat $HOME/.todo | gawk -v INDEX=$2 '{if (INDEX != NR) {print}}')
+            echo "$RES" > $HOME/.todo
+            todo_print
+        else
+            echo "Unable to delete '$2' is NAN"
+        fi
     else
-            echo "$@" >> $HOME/.notes
+        echo "$@" >> $HOME/.todo
+    fi
+}
+
+killem()
+{
+    PROCESS_ID=$(ps aux | grep qemu | grep -v grep | awk '{print $2}')
+    echo "Process id $PROCESS_ID"
+    kill -9 "$PROCESS_ID"
+}
+
+vman() {
+    vim -c "SuperMan $*"
+
+    if [ "$?" != "0" ]; then
+        echo "No manual entry for $*"
     fi
 }
 #########################################################################
@@ -145,106 +129,13 @@ source ~/.bashrc_local
 
 #########################################################################
 # Mah prompt
-function __setprompt
-{
-    local LAST_COMMAND=$? # Must come first!
 
-    # Define colors
-    local LIGHTGRAY="\033[0;37m"
-    local WHITE="\033[1;37m"
-    local BLACK="\033[0;30m"
-    local DARKGRAY="\033[1;30m"
-    local RED="\033[0;31m"
-    local LIGHTRED="\033[1;31m"
-    local GREEN="\033[0;32m"
-    local LIGHTGREEN="\033[1;32m"
-    local BROWN="\033[0;33m"
-    local YELLOW="\033[1;33m"
-    local BLUE="\033[0;34m"
-    local LIGHTBLUE="\033[1;34m"
-    local MAGENTA="\033[0;35m"
-    local LIGHTMAGENTA="\033[1;35m"
-    local CYAN="\033[0;36m"
-    local LIGHTCYAN="\033[1;36m"
-    local NOCOLOR="\033[0m"
+source ~/git/bash_powerline/bash-powerline.sh
 
-    # Show error exit code if there is one
-    if [[ $LAST_COMMAND != 0 ]]; then
-        PS1="\[${DARKGRAY}\](\[${LIGHTRED}\]ERROR\[${DARKGRAY}\])-(\[${RED}\]Exit Code \[${LIGHTRED}\]${LAST_COMMAND}\[${DARKGRAY}\])-(\[${RED}\]"
-        if [[ $LAST_COMMAND == 1 ]]; then
-            PS1+="General error"
-        elif [ $LAST_COMMAND == 2 ]; then
-            PS1+="Missing keyword, command, or permission problem"
-        elif [ $LAST_COMMAND == 126 ]; then
-            PS1+="Permission problem or command is not an executable"
-        elif [ $LAST_COMMAND == 127 ]; then
-            PS1+="Command not found"
-        elif [ $LAST_COMMAND == 128 ]; then
-            PS1+="Invalid argument to exit"
-        elif [ $LAST_COMMAND == 129 ]; then
-            PS1+="Fatal error signal 1"
-        elif [ $LAST_COMMAND == 130 ]; then
-            PS1+="Script terminated by Control-C"
-        elif [ $LAST_COMMAND == 131 ]; then
-            PS1+="Fatal error signal 3"
-        elif [ $LAST_COMMAND == 132 ]; then
-            PS1+="Fatal error signal 4"
-        elif [ $LAST_COMMAND == 133 ]; then
-            PS1+="Fatal error signal 5"
-        elif [ $LAST_COMMAND == 134 ]; then
-            PS1+="Fatal error signal 6"
-        elif [ $LAST_COMMAND == 135 ]; then
-            PS1+="Fatal error signal 7"
-        elif [ $LAST_COMMAND == 136 ]; then
-            PS1+="Fatal error signal 8"
-        elif [ $LAST_COMMAND == 137 ]; then
-            PS1+="Fatal error signal 9"
-        elif [ $LAST_COMMAND -gt 255 ]; then
-            PS1+="Exit status out of range"
-        else
-            PS1+="Unknown error code"
-        fi
-        PS1+="\[${DARKGRAY}\])\[${NOCOLOR}\]\n"
-    else
-        PS1=""
-    fi
-
-    # Date
-    PS1+="\[${CYAN}\]\$(date +%a-%d-%b)" # Date
-    PS1+="${BLUE} $(date +%H:%M:%S) " # Time
-
-    # CPU
-    PS1+="\[${MAGENTA}\]$(ps ax | wc -l | awk '{print $1}')"
-
-    # Jobs
-    PS1+=":$(ps | wc -l | awk '{print $1}') "
-
-    # User and server
-    local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
-    local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
-    if [ $SSH2_IP ] || [ $SSH_IP ] ; then
-        PS1+="\[${RED}\]\u@\h"
-    else
-        PS1+="\[${RED}\]\u"
-    fi
-
-    # Current directory
-    PS1+="\[${BROWN}\]:\w "
-
-    # Total size of files in current directory
-    PS1+="\[${GREEN}\]$(/bin/ls -lah | /usr/bin/grep -m 1 total | awk '{print $2}')\[${DARKGRAY}\]:"
-
-    # Number of files
-    PS1+="\[${GREEN}\]$(/bin/ls -A -1 | /usr/bin/wc -l | awk '{print $1}')"
-
-    # Skip to the next line
-    PS1+="\n"
-
-    if [[ $EUID -ne 0 ]]; then
-        PS1+="\[${GREEN}\]:\[${NOCOLOR}\] " # Normal user
-    else
-        PS1+="\[${RED}\]:\[${NOCOLOR}\] " # Root user
-    fi
-
-}
-PROMPT_COMMAND='__setprompt'
+#########################################################################
+# Variables
+RVM_PATH=$HOME/.rvm/bin
+if [[ $PATH != ?(*:)"$RVM_PATH"?(:*) ]]
+then
+    export PATH="$PATH:$RVM_PATH" # Add RVM to PATH for scripting
+fi
