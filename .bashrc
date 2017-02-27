@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #########################################################################
-# Shell options
 shopt -s cdspell
 shopt -s checkjobs
 shopt -s cmdhist
@@ -13,17 +12,13 @@ shopt -s histverify
 shopt -s hostcomplete
 shopt -s huponexit
 
-#########################################################################
-#  Do some exports
-export HISTCONTROL=erasedups:ignoredups:ignorespace
+export HISTCONTROL=ignoredups:ignorespace
 export EDITOR=vim
 export HISTFILESIZE=10000 
 export HISTSIZE=100
 export FCEDIT=vim
 
 #########################################################################
-# Mah aliases
-
 alias lsl='ls -AlhG'
 alias cd..='cd ..'
 alias mkdirp='mkdir -p'
@@ -32,17 +27,14 @@ alias mps='ps aux'
 alias mp="ps aux | grep "
 alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 
-## a quick way to get out of current directory ##
 alias .1='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-# Show me the size (sorted) of only the folders in this directory
 alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
 
-# Make colordiff a lil easier
 alias cdiff='colordiff'
 alias info='info --vi-keys'
 
@@ -122,6 +114,18 @@ vman() {
     if [ "$?" != "0" ]; then
         echo "No manual entry for $*"
     fi
+}
+
+saverc()
+{
+    if [[ $# == 0 ]] ; then
+        "No command specififed"
+    fi
+    COMMAND=$(history | grep "$1" | grep -v "saverc" | sed -E 's/ +[0-9]+ +//')
+
+    echo "Saving command \"$COMMAND\" to bashrc"
+
+    echo "$COMMAND" >> "$HOME/.bashrc"
 }
 #########################################################################
 # Setup mcahine specific stuff
