@@ -14,11 +14,12 @@ shopt -s hostcomplete
 shopt -s huponexit
 
 #########################################################################
-# Shell history 
+#  Do some exports
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 export EDITOR=vim
 export HISTFILESIZE=10000 
 export HISTSIZE=100
+export FCEDIT=vim
 
 #########################################################################
 # Mah aliases

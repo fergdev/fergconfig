@@ -15,7 +15,7 @@ function compare_update(){
       echo "Response $response"
       if [ "$response" == "y" ]; then
         echo "Copying from $1 to $2"
-        #cp $1 $2
+        cp $1 $2
       fi
     else
       echo "No changes"
