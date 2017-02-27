@@ -3,7 +3,7 @@ echo "Checking for changes ... "
 
 function compare_update(){
   echo "Testing at locations ... $1 $2"
-  if [ -f "$1" ]; then
+  if [[ -f "$1" ]]; then
     DIFF_OUT="$(diff $1 $2)" 
     ERR_CODE=$?
     
@@ -15,7 +15,7 @@ function compare_update(){
       echo "Response $response"
       if [ "$response" == "y" ]; then
         echo "Copying from $1 to $2"
-        cp $1 $2
+        #cp $1 $2
       fi
     else
       echo "No changes"
