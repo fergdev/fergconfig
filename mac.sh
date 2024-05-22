@@ -1,10 +1,13 @@
 #!/bin/bash
+
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="bash"
+    export STOW_FOLDERS="bash,tmux"
 fi
 
 if [[ -z $DOTFILES ]]; then
-    DOTFILES=$HOME/.dotfiles
+    export DOTFILES=$HOME/.dotfiles
 fi
 
-STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
+echo $STOW_FOLDERS 
+echo $DOTFILES 
+$DOTFILES/install.sh
