@@ -61,3 +61,7 @@ killem()
     echo "Process id $PROCESS_ID"
     kill -9 "$PROCESS_ID"
 }
+
+if [ -f $HOME/.zshrc_local ]; then
+    source $HOME/.zshrc_local
+fi
