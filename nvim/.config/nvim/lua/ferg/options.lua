@@ -4,3 +4,4 @@ opt.cursorline = true
 opt.cursorline = true
 opt.tabstop = 4
 
+vim.opt.termguicolors = true
