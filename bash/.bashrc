@@ -1,6 +1,4 @@
 #!/bin/bash
-
-#########################################################################
 shopt -s cdspell
 shopt -s checkjobs
 shopt -s cmdhist
@@ -18,7 +16,8 @@ export HISTFILESIZE=10000
 export HISTSIZE=100
 export FCEDIT=vim
 
-#########################################################################
+alias vim="nvim"
+
 alias lsl='ls -AlhG'
 alias cd..='cd ..'
 alias mkdirp='mkdir -p'
@@ -33,17 +32,11 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
-
 alias cdiff='colordiff'
 alias info='info --vi-keys'
 
 alias man="vman "
 
-#########################################################################
-# Mah functions
-
-#dirsize - finds directory sizes and lists them for the current directory
 dirsize ()
 {
     du -shx * .[a-zA-Z0-9_]* 2> /dev/null | \
@@ -53,7 +46,6 @@ dirsize ()
     rm -rf /tmp/list
 }
 
-# Extract a file
 extract () {
      if [ -f $1 ] ; then
          case $1 in
@@ -73,32 +65,6 @@ extract () {
      else
          echo "'$1' is not a valid file"
      fi
-}
-
-todo_print()
-{ 
-    cat $HOME/.todo | gawk '{printf "%d. %s\n", NR, $0}'
-}
-
-# A simple todo taker
-todo ()
-{
-    if [ -f $HOME/.todo ] ; then 
-        touch $HOME/.todo
-    fi
-    if [ $# == 0 ] ; then
-        todo_print
-    elif [ $1 == -d ] ; then
-        if [[ $2 = *[[:digit:]]* ]] ; then
-            RES=$(cat $HOME/.todo | gawk -v INDEX=$2 '{if (INDEX != NR) {print}}')
-            echo "$RES" > $HOME/.todo
-            todo_print
-        else
-            echo "Unable to delete '$2' is NAN"
-        fi
-    else
-        echo "$@" >> $HOME/.todo
-    fi
 }
 
 killem()
@@ -127,20 +93,4 @@ saverc()
 
     echo "$COMMAND" >> "$HOME/.bashrc"
 }
-#########################################################################
-# Setup mcahine specific stuff
-
 source ~/.bashrc_local
-
-#########################################################################
-# Mah prompt
-
-source ~/git/bash_powerline/bash-powerline.sh
-
-#########################################################################
-# Variables
-RVM_PATH=$HOME/.rvm/bin
-if [[ $PATH != ?(*:)"$RVM_PATH"?(:*) ]]
-then
-    export PATH="$PATH:$RVM_PATH" # Add RVM to PATH for scripting
-fi
