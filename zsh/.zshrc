@@ -1,14 +1,3 @@
-shopt -s cdspell
-shopt -s checkjobs
-shopt -s cmdhist
-shopt -s dotglob
-shopt -s expand_aliases
-shopt -s extglob
-shopt -s histappend
-shopt -s histverify
-shopt -s hostcomplete
-shopt -s huponexit
-
 export HISTCONTROL=ignoredups:ignorespace
 export EDITOR=vim
 export HISTFILESIZE=10000 

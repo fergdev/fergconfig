@@ -1,0 +1,5 @@
+vim.api.nvim_create_user_command("FormatJson", function()
+	vim.cmd(":%!jq")
+	vim.cmd("setfiletype json")
+end, {})
+vim.keymap.set({"n", "v"}, "<leader>jf", vim.cmd.FormatJson)
