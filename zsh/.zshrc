@@ -1,4 +1,3 @@
-#!/bin/bash
 shopt -s cdspell
 shopt -s checkjobs
 shopt -s cmdhist
@@ -73,24 +72,3 @@ killem()
     echo "Process id $PROCESS_ID"
     kill -9 "$PROCESS_ID"
 }
-
-vman() {
-    vim -c "SuperMan $*"
-
-    if [ "$?" != "0" ]; then
-        echo "No manual entry for $*"
-    fi
-}
-
-saverc()
-{
-    if [[ $# == 0 ]] ; then
-        "No command specififed"
-    fi
-    COMMAND=$(history | grep "$1" | grep -v "saverc" | sed -E 's/ +[0-9]+ +//')
-
-    echo "Saving command \"$COMMAND\" to bashrc"
-
-    echo "$COMMAND" >> "$HOME/.bashrc"
-}
-source ~/.bashrc_local
