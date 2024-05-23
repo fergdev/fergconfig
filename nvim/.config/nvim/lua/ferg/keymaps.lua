@@ -14,3 +14,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
 vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
+
+vim.keymap.set("n", "]b", vim.cmd.bp)
+vim.keymap.set("n", "[b", vim.cmd.bn)

@@ -13,12 +13,9 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
-""" nnoremap <c-[> :action EditorEscape<CR>
-
 nnoremap <Leader>f :action ReformatCode<CR>
 nnoremap <leader>u :action FindUsages<CR>
 nnoremap <leader>a :action GotoAction<CR>
-nnoremap <leader>h :action CallHierarchy<CR>
 
 nnoremap <leader>c :action CommentByLineComment<CR>
 vnoremap <leader>c :action CommentByLineComment<CR>
@@ -42,3 +39,6 @@ nnoremap ,n :action ActivateDebugToolWindow<CR>
 
 nnoremap ]c <Action>(VcsShowNextChangeMarker)
 nnoremap [c <Action>(VcsShowPrevChangeMarker)
+
+nnoremap <leader>r :action ChooseRunConfiguration<CR>
+nnoremap <leader>h :action HideAllWindows<CR>
