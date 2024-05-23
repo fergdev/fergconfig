@@ -23,8 +23,6 @@ alias .5='cd ../../../../..'
 alias cdiff='colordiff'
 alias info='info --vi-keys'
 
-alias man="vman "
-
 dirsize ()
 {
     du -shx * .[a-zA-Z0-9_]* 2> /dev/null | \
@@ -61,6 +59,9 @@ killem()
     echo "Process id $PROCESS_ID"
     kill -9 "$PROCESS_ID"
 }
+
+alias zf='source ~/.zshrc'
+alias zfe='vim ~/.zshrc'
 
 if [ -f $HOME/.zshrc_local ]; then
     source $HOME/.zshrc_local
