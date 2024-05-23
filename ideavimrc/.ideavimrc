@@ -13,8 +13,12 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+nnoremap gu :action FindUsages<CR>
+nnoremap gi :action GotoImplementation<CR>
+
 nnoremap <Leader>f :action ReformatCode<CR>
-nnoremap <leader>u :action FindUsages<CR>
 nnoremap <leader>a :action GotoAction<CR>
 
 nnoremap <leader>c :action CommentByLineComment<CR>
