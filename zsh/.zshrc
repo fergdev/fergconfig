@@ -1,30 +1,13 @@
-export HISTCONTROL=ignoredups:ignorespace
-export EDITOR=vim
-export HISTFILESIZE=10000 
-export HISTSIZE=100
-export FCEDIT=vim
-
+set -o vi
 alias vim="nvim"
 
-alias lsl='ls -AlhG'
-alias cd..='cd ..'
-alias mkdirp='mkdir -p'
+export HISTCONTROL=ignoredups:ignorespace
+export EDITOR=nvim
+export HISTFILESIZE=10000 
+export HISTSIZE=100
+export FCEDIT=nvim
 
-alias mps='ps aux'
-alias mp="ps aux | grep "
-alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
-
-alias .1='cd ..'
-alias .2='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../../..'
-alias .5='cd ../../../../..'
-
-alias cdiff='colordiff'
-alias info='info --vi-keys'
-
-dirsize ()
-{
+dirsize () {
     du -shx * .[a-zA-Z0-9_]* 2> /dev/null | \
     egrep '^ *[0-9.]*[MG]' | sort -n > /tmp/list
     egrep '^ *[0-9.]*M' /tmp/list
@@ -53,9 +36,8 @@ extract () {
      fi
 }
 
-killem()
-{
-    PROCESS_ID=$(ps aux | grep qemu | grep -v grep | awk '{print $2}')
+killem() {
+    PROCESS_ID=$(ps aux | grep  $1 | grep -v grep | awk '{print $2}')
     echo "Process id $PROCESS_ID"
     kill -9 "$PROCESS_ID"
 }
