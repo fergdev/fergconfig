@@ -11,7 +11,7 @@ keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" 
 keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
-keymap.set("n", "<C-v>", vim.cmd.vertical, { desc = "Split vertical" })
+keymap.set("n", "<C-v>", vim.cmd.vsplit, { desc = "Split vertical" })
 keymap.set("n", "<C-h>", vim.cmd.split, { desc = "Split horizontal" })
 
 keymap.set("n", "]e", vim.diagnostic.goto_next)

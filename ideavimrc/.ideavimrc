@@ -13,12 +13,15 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
+nnoremap <c-h> :split<CR>
+nnoremap <c-v> :vsplit<CR>
+
 nnoremap gu :action FindUsages<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap ga :action GotoAction<CR>
 nnoremap ge :action SearchEverywhere<CR>
 
-nnoremap <Leader>f :action ReformatCode<CR>
+nnoremap <leader>f :action ReformatCode<CR>
 
 nnoremap <leader>c :action CommentByLineComment<CR>
 vnoremap <leader>c :action CommentByLineComment<CR>
@@ -27,7 +30,7 @@ nnoremap <leader>y \"*y<CR>
 vnoremap <leader>y \"*y<CR>
 nnoremap <leader>p \"*p<CR>
 
-noremap [e :action GotoNextError<CR>
+nnoremap [e :action GotoNextError<CR>
 nnoremap ]e :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
 
