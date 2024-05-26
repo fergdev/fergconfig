@@ -4,8 +4,8 @@ vim.g.maplocalleader = " "
 local keymap = vim.keymap
 
 keymap.set("n", "<leader>ee", vim.cmd.Ex)
-keymap.set("n", "<leader>p", "*p")
-keymap.set({ "n", "v" }, "<leader>y", "*y")
+keymap.set("n", "<leader>p", '"*p')
+keymap.set({ "n", "v" }, "<leader>y", '"*y')
 
 keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })

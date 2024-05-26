@@ -23,6 +23,10 @@ nnoremap <Leader>f :action ReformatCode<CR>
 nnoremap <leader>c :action CommentByLineComment<CR>
 vnoremap <leader>c :action CommentByLineComment<CR>
 
+nnoremap <leader>y \"*y<CR>
+vnoremap <leader>y \"*y<CR>
+nnoremap <leader>p \"*p<CR>
+
 noremap [e :action GotoNextError<CR>
 nnoremap ]e :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
