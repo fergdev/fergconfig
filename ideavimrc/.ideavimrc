@@ -4,6 +4,7 @@ set ideajoin
 set idearefactormode=keep
 set incsearch
 set highlightedyank
+set commentary
 
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
@@ -14,7 +15,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
 nnoremap <c-h> :split<CR>
-nnoremap <c-v> :vsplit<CR>
+nnoremap <c-n> :vsplit<CR>
 
 nnoremap gu :action FindUsages<CR>
 nnoremap gi :action GotoImplementation<CR>
@@ -48,8 +49,8 @@ nnoremap ,b :action ToggleLineBreakpoint<CR>
 nnoremap ,d :action ContextDebug<CR>
 nnoremap ,n :action ActivateDebugToolWindow<CR>
 
-nnoremap ]c <Action>(VcsShowNextChangeMarker)
-nnoremap [c <Action>(VcsShowPrevChangeMarker)
+nnoremap ]c :action VcsShowNextChangeMarker<CR>
+nnoremap [c :action VcsShowPrevChangeMarker<CR>
 
 nnoremap <leader>r :action ChooseRunConfiguration<CR>
 nnoremap <leader>h :action HideAllWindows<CR>
