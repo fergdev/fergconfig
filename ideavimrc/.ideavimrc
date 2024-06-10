@@ -53,4 +53,5 @@ nnoremap ]c :action VcsShowNextChangeMarker<CR>
 nnoremap [c :action VcsShowPrevChangeMarker<CR>
 
 nnoremap <leader>r :action ChooseRunConfiguration<CR>
+nnoremap <leader>d :action ChooseDebugConfiguration<CR>
 nnoremap <leader>h :action HideAllWindows<CR>
