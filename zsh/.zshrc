@@ -38,8 +38,8 @@ extract () {
 
 killem() {
     PROCESS_ID=$(ps aux | grep  $1 | grep -v grep | awk '{print $2}')
-    echo "Process id $PROCESS_ID"
-    kill -9 "$PROCESS_ID"
+    echo "killing id $PROCESS_ID"
+    echo $PROCESS_ID | xargs kill -9
 }
 
 alias zf='source ~/.zshrc'
