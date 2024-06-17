@@ -5,6 +5,7 @@ opt.expandtab = true
 opt.guicursor = ""
 opt.ignorecase = true
 opt.incsearch = true
+opt.relativenumber = true
 opt.scrolloff = 10
 opt.scrolloff = 10
 opt.shiftwidth = 4
