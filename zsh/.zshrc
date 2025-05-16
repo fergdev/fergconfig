@@ -1,10 +1,12 @@
 set -o vi
 alias vim="nvim"
 
-export HISTCONTROL=ignoredups:ignorespace
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt share_history
 export EDITOR=nvim
 export HISTFILESIZE=10000 
-export HISTSIZE=100
+export HISTSIZE=10000
 export FCEDIT=nvim
 
 dirsize () {
@@ -45,6 +47,8 @@ killem() {
 alias zf='source ~/.zshrc'
 alias zfe='vim ~/.zshrc'
 
+source <(fzf --zsh)
+
 if [ -f $HOME/.zshrc_local ]; then
-    source $HOME/.zshrc_local
+    source "${HOME}/.zshrc_local"
 fi

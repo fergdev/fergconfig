@@ -1,57 +1,141 @@
 let mapleader = " "
+
+set scrolloff=10
 set surround
 set ideajoin
 set idearefactormode=keep
 set incsearch
+set hlsearch
 set highlightedyank
 set commentary
+set relativenumber
 
+""" General
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
+nnoremap <c-[> :action EditorEscape<CR>
 
-nnoremap <c-h> :split<CR>
-nnoremap <c-n> :vsplit<CR>
+nnoremap gp :action Cargo.RefreshCargoProject<CR>
 
+""" Navigation
+nmap gy <Action>(GotoTypeDeclaration)
 nnoremap gu :action FindUsages<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap ga :action GotoAction<CR>
+vnoremap ga :action GotoAction<CR>
 nnoremap ge :action SearchEverywhere<CR>
-nnoremap gr :action RecentFiles<CR>
-
-nnoremap <leader>f :action ReformatCode<CR>
-
-nnoremap <leader>c :action CommentByLineComment<CR>
-vnoremap <leader>c :action CommentByLineComment<CR>
-
-nnoremap <leader>y \"*y<CR>
-vnoremap <leader>y \"*y<CR>
-nnoremap <leader>p \"*p<CR>
+nnoremap gf :action FileStructurePopup<CR>
 
 nnoremap [e :action GotoNextError<CR>
 nnoremap ]e :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
 
-nnoremap <leader>sl :action FindInPath<CR>
-
 """ Running and Debugging
-nnoremap ,r :action ContextRun<CR>
-nnoremap ,c :action RunClass<CR>
-nnoremap ,f :action ChooseRunConfiguration<CR>
-nnoremap ,t :action ActivateRunToolWindow<CR>
-nnoremap ,u :action Rerun<CR>
-nnoremap ,f :action RerunFailedTests<CR>
-nnoremap ,b :action ToggleLineBreakpoint<CR>
+nnoremap ,c :action RunCoverage<CR>
 nnoremap ,d :action ContextDebug<CR>
-nnoremap ,n :action ActivateDebugToolWindow<CR>
+nnoremap ,f :action ChooseRunConfiguration<CR>
+nnoremap ,r :action ContextRun<CR>
+nnoremap ,s :action Stop<CR>
+nnoremap ,u :action Rerun<CR>
+nnoremap <leader>d :action Resume<CR>
 
-nnoremap ]c :action VcsShowNextChangeMarker<CR>
-nnoremap [c :action VcsShowPrevChangeMarker<CR>
+""" VCS
+nnoremap ]c <Action>(VcsShowNextChangeMarker)
+nnoremap [c <Action>(VcsShowPrevChangeMarker)
 
-nnoremap <leader>r :action ChooseRunConfiguration<CR>
-nnoremap <leader>d :action ChooseDebugConfiguration<CR>
-nnoremap <leader>h :action HideAllWindows<CR>
+""" AI
+nnoremap <leader>a :action ActivateAIAssistantToolWindow<CR>
+vnoremap <leader>a :action ActivateAIAssistantToolWindow<CR>
+
+""" Bookmarks
+nnoremap <leader>ba :action ShowBookmarks<CR>
+nnoremap <leader>bb :action ToggleBookmark<CR>
+nnoremap [b :action GotoNextBookmark<CR>
+nnoremap ]b :action GotoBookmark<CR>
+
+""" Break points
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+
+" File navigation
+map <leader>ff <action>(GotoFile)
+map <leader>fr <action>(RecentFiles)
+map <leader>fc <action>(FindInPath)
+map <leader>fl <action>(RecentLocations)
+nnoremap <leader>fs :action NewScratchFile<CR>
+
+""" Refactoring
+map <leader>rn <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rf <Action>(IntroduceField)
+map <leader>rs <Action>(ChangeSignature)
+map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+map <leader>ro :action OptimizeImports<CR>
+
+""" Information
+nnoremap <leader>i :action ShowErrorDescription<CR>
+nnoremap <leader>j :action QuickJavaDoc<CR>
+
+" Window splits
+map <leader>sv <Action>(SplitVertically)
+ap <leader>ss <Action>(SplitHorizontally)
+map <leader>su <Action>(Unsplit)
+
+nmap <C-j> <Action>(StretchSplitToBottom)
+nmap <C-h> <Action>(StretchSplitToLeft)
+nmap <C-l> <Action>(StretchSplitToRight)
+nmap <C-k> <Action>(StretchSplitToTop)
+
+map <leader>sh <c-w>h
+map <leader>sl <c-w>l
+map <leader>sj <c-w>j
+map <leader>sk <c-w>k
+
+nnoremap <leader>c :action CommentByLineComment<CR>
+vnoremap <leader>c :action CommentByLineComment<CR>
+
+""" Global clipboard
+nnoremap <leader>y \"*y<CR>
+vnoremap <leader>y \"*y<CR>
+nnoremap <leader>p \"*p<CR>
+
+""" StringManipulation
+vnoremap <leader>ma :action StringManipulation.Group.Main<CR>
+vnoremap <leader>mc :action StringManipulation.ToCamelCase<CR>
+vnoremap <leader>mk :action StringManipulation.ToKebabCase<CR>
+vnoremap <leader>ms :action StringManipulation.ToSnakeCase<CR>
+vnoremap <leader>mp :action StringManipulation.ToPascalCase<CR>
+
+vnoremap <leader>mbe :action osmedile.intellij.stringmanip.EncodeBase64Action<CR>
+vnoremap <leader>mbd :action osmedile.intellij.stringmanip.DecodeBase64Action<CR>
+
+""" Windows
+nnoremap <leader>wb :action ActivateBookmarksToolWindow<CR>
+nnoremap <leader>wc :action ActivateCoverageToolWindow<CR>
+nnoremap <leader>wd :action ActivateDatabaseToolWindow<CR>
+nnoremap <leader>we :action ActivateDebugToolWindow<CR>
+nnoremap <leader>wf :action ActivateFindToolWindow<CR>
+nnoremap <leader>wp :action ActivateProjectToolWindow<CR>
+nnoremap <leader>wr :action ActivateRunToolWindow<CR>
+nnoremap <leader>ws :action ActivateServicesToolWindow<CR>
+nnoremap <leader>wt :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>wn :action ActivateNotificationsToolWindow<CR>
+
+nnoremap <leader>wx :action HideAllWindows<CR>
+
+""" Modes
+nnoremap <leader>z :action ToggleZenMode<CR>
+
+""" Local History
+nnoremap <leader>hl :action LocalHistory.ShowHistory<CR>
+vnoremap <leader>hl :action LocalHistory.ShowHistorySelection<CR>
+
+nnoremap <leader>hr :action Compare.Selected<CR>
+vnoremap <leader>hr :action Compare.Selected<CR>
+
+nnoremap <leader>hc :action LocalHistory.RevealCurrent<CR>
+
+""" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
