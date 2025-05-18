@@ -8,6 +8,8 @@ return {
 			ensure_installed = {
 				"c",
 				"lua",
+				"rust",
+				"make",
 				"vim",
 				"http",
 				"java",

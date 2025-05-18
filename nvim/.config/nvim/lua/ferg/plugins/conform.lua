@@ -23,6 +23,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			bash = { "bash-language-server" },
+			json = { "jq" },
 		},
 	},
 }

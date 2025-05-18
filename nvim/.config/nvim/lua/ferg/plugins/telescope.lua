@@ -28,10 +28,10 @@ return {
 					["<C-n>"] = actions.cycle_history_next,
 					["<C-p>"] = actions.cycle_history_prev,
 
-					-- ["<C-j>"] = actions.move_selection_next,
-					-- ["<C-k>"] = actions.move_selection_previous,
+					["<C-j>"] = actions.move_selection_next,
+					["<C-k>"] = actions.move_selection_previous,
 
-					-- ["<C-[>"] = actions.close,
+					["<C-[>"] = actions.close,
 
 					["<CR>"] = actions.select_default,
 					["<C-x>"] = actions.select_horizontal,

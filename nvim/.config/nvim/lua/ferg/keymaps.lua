@@ -31,6 +31,8 @@ keymap.set("n", "<leader>nh", ":noh<CR>")
 keymap.set("n", "\\c", ":e ~/.dotfiles/cheatsheet.md<CR>")
 keymap.set("n", "<leader>wt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show error under cursor" })
+
 vim.filetype.add({
 	extension = {
 		["http"] = "http",
