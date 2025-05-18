@@ -38,3 +38,14 @@ vim.filetype.add({
 		["http"] = "http",
 	},
 })
+
+vim.keymap.set("n", "<leader>lt", function()
+  vim.ui.select({ "json", "xml" }, { prompt = "Set buffer vibes:" }, function(choice)
+    if choice then
+        vim.cmd("echo 'Vibing with " .. choice .. " ft'")
+        vim.cmd("set filetype="..choice.."")
+    end
+  end)
+end, { desc = "Set buffer FT vibes" })
+
+vim.keymap.set("n", "<leader><leader>s", ":so %<CR>", { desc = "Source current file" })
