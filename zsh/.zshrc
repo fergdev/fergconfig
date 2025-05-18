@@ -46,6 +46,9 @@ killem() {
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
+alias tf='tmux source ~/.tmux.conf'
+alias tfe='vim ~/.tmux.conf'
+
 alias zf='source ~/.zshrc'
 alias zfe='vim ~/.zshrc'
 
@@ -54,3 +57,4 @@ source <(fzf --zsh)
 if [ -f $HOME/.zshrc_local ]; then
     source "${HOME}/.zshrc_local"
 fi
+
