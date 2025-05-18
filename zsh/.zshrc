@@ -44,6 +44,8 @@ killem() {
     echo $PROCESS_ID | xargs kill -9
 }
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
 alias zf='source ~/.zshrc'
 alias zfe='vim ~/.zshrc'
 
