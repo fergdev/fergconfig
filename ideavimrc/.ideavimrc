@@ -44,8 +44,8 @@ nnoremap ,u :action Rerun<CR>
 nnoremap <leader>d :action Resume<CR>
 
 """ VCS
-nnoremap ]c <Action>(VcsShowNextChangeMarker)
-nnoremap [c <Action>(VcsShowPrevChangeMarker)
+nnoremap ]c :action NextDiff<CR>
+nnoremap [c :action PreviousDiff<CR>
 
 """ AI
 nnoremap <leader>a :action ActivateAIAssistantToolWindow<CR>

@@ -1,25 +1,4 @@
 return {
-	-- "mistweaverco/kulala.nvim",
-	-- ft = { "http" },
-	-- opts = {
-	-- 	global_keymaps = false,
-	-- },
-	-- keys = {
-	-- 	{
-	-- 		"<leader>Rs",
-	-- 		function()
-	-- 			require("kulala").send_request()
-	-- 		end,
-	-- 		desc = "Send request under cursor",
-	-- 	},
-	-- 	{
-	-- 		"<leader>Rb",
-	-- 		function()
-	-- 			require("kulala").open_scratchpad()
-	-- 		end,
-	-- 		desc = "Open scratchpad",
-	-- 	},
-	-- },
 	"mistweaverco/kulala.nvim",
 	keys = {
 		{ "<leader>Rs", desc = "Send request" },
