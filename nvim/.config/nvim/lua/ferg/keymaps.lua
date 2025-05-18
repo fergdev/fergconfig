@@ -28,11 +28,9 @@ keymap.set("n", "[b", vim.cmd.bn)
 
 keymap.set("n", "<leader>nh", ":noh<CR>")
 
--- vim.filetype.add({
--- 	extension = {
--- 		http = "http",
--- 	},
--- })
+keymap.set("n", "\\c", ":e ~/.dotfiles/cheatsheet.md<CR>")
+keymap.set("n", "<leader>wt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+
 vim.filetype.add({
 	extension = {
 		["http"] = "http",
