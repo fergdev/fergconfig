@@ -31,7 +31,7 @@ return {
 					["<C-j>"] = actions.move_selection_next,
 					["<C-k>"] = actions.move_selection_previous,
 
-					["<C-[>"] = actions.close,
+					-- ["<C-[>"] = actions.close,
 
 					["<CR>"] = actions.select_default,
 					["<C-x>"] = actions.select_horizontal,
@@ -97,6 +97,7 @@ return {
 		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
 		vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
 		vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
+
 
 		vim.keymap.set("n", "<leader>f/", function()
 			builtin.live_grep({
