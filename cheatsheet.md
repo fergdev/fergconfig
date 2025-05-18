@@ -8,3 +8,7 @@
 <C-b>n - Next session.
 <C-b>p - Previous session.
 
+<C-b>[ - copy term mode
+ - space start copying
+ - enter finish copying
+
