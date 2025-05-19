@@ -86,5 +86,5 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	end,
 })
 
-
-
+vim.keymap.set('v', '<leader>be', [[:'<,'>!base64<CR>]], { desc = "[B]ase64 [E]ncode selection" })
+vim.keymap.set('v', '<leader>bd', [[:'<,'>!base64 -d<CR>]], { desc = "[B]ase64 [D]ecode selection" })
