@@ -1,7 +1,8 @@
+local enabled = false
 return {
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = false,
+		enabled = enabled,
 		cmd = "Copilot",
 		build = ":Copilot auth",
 		event = "BufReadPost",
@@ -39,7 +40,7 @@ return {
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		enabled = false,
+		enabled = enabled,
 		dependencies = {
 			{ "github/copilot.vim" },
 			{ "nvim-lua/plenary.nvim", branch = "master" },
