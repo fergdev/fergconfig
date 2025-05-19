@@ -20,8 +20,20 @@ keymap.set("n", "<C-j>", ":resize -2<CR>")
 keymap.set("n", "<C-l>", ":vertical resize -2<CR>")
 keymap.set("n", "<C-h>", ":vertical resize +2<CR>")
 
-keymap.set("n", "]e", vim.diagnostic.goto_next)
-keymap.set("n", "[e", vim.diagnostic.goto_prev)
+local diagnostic_goto = function(next, severity)
+	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+	severity = severity and vim.diagnostic.severity[severity] or nil
+	return function()
+		go({ severity = severity })
+	end
+end
+
+keymap.set("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+keymap.set("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+keymap.set("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 keymap.set("n", "]b", vim.cmd.bp)
 keymap.set("n", "[b", vim.cmd.bn)
@@ -40,12 +52,12 @@ vim.filetype.add({
 })
 
 vim.keymap.set("n", "<leader>lt", function()
-  vim.ui.select({ "json", "xml" }, { prompt = "Set buffer vibes:" }, function(choice)
-    if choice then
-        vim.cmd("echo 'Vibing with " .. choice .. " ft'")
-        vim.cmd("set filetype="..choice.."")
-    end
-  end)
+	vim.ui.select({ "json", "xml" }, { prompt = "Set buffer vibes:" }, function(choice)
+		if choice then
+			vim.cmd("echo 'Vibing with " .. choice .. " ft'")
+			vim.cmd("set filetype=" .. choice .. "")
+		end
+	end)
 end, { desc = "Set buffer FT vibes" })
 
 vim.keymap.set("n", "<leader><leader>s", ":so %<CR>", { desc = "Source current file" })
@@ -54,5 +66,25 @@ vim.keymap.set("n", "<leader><leader>s", ":so %<CR>", { desc = "Source current f
 vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", { desc = "[L]sp [I]nfo" })
 vim.keymap.set("n", "<leader>ll", ":LspLog<CR>", { desc = "[L]sp [L]og" })
 
-
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+
+vim.keymap.set("n", "<leader>ac", ":CopilotChatToggle<CR>", { desc = "Go to definition" })
+
+vim.keymap.set("n", "<leader>i", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
+end)
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "tokoyonight",
+	-- group = ...,
+	callback = function()
+		vim.api.nvim_set_hl(0, "CopilotSuggestion", {
+			fg = "#808080",
+			ctermfg = 8,
+			force = true,
+		})
+	end,
+})
+
+
+
