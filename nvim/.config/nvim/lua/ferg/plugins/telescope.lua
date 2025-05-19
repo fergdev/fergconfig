@@ -119,8 +119,9 @@ return {
 		vim.keymap.set("n", "<leader>ft", builtin.builtin, { desc = "[F]ind [T]elescope" })
 		vim.keymap.set("n", "<leader>fw", grep_string, { desc = "[F]ind current [W]ord" })
 		vim.keymap.set("n", "<leader>fg", live_grep, { desc = "[F]ind by [G]rep" })
-		vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
-		vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
+		vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = '[F]ind [R]ecent Files aka old' })
+		vim.keymap.set("n", "<leader>fl", builtin.resume, { desc = "[F]ind [L]ast aka resume" })
+		vim.keymap.set("n", "<leader>fp", builtin.registers, { desc = "[F]ind [P]aste aka registers" })
 
 		vim.keymap.set("n", "<leader>f/", function()
 			builtin.live_grep({
