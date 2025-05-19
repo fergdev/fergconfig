@@ -49,3 +49,10 @@ vim.keymap.set("n", "<leader>lt", function()
 end, { desc = "Set buffer FT vibes" })
 
 vim.keymap.set("n", "<leader><leader>s", ":so %<CR>", { desc = "Source current file" })
+
+-- LSP
+vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", { desc = "[L]sp [I]nfo" })
+vim.keymap.set("n", "<leader>ll", ":LspLog<CR>", { desc = "[L]sp [L]og" })
+
+
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })

@@ -33,7 +33,7 @@ return {
 			automatic_enable = true,
 			ensure_installed = {
 				"lua_ls",
-				"rust_analyzer",
+				-- "rust_analyzer",
 				"lemminx",
 				"bashls",
 				"taplo",
@@ -76,7 +76,6 @@ return {
 		})
 
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -98,6 +97,11 @@ return {
 		})
 
 		vim.diagnostic.config({
+			virtual_text = true,
+			signs = true,
+			underline = true,
+			update_in_insert = false,
+			severity_sort = true,
 			float = {
 				focusable = false,
 				style = "minimal",
@@ -107,5 +111,15 @@ return {
 				prefix = "",
 			},
 		})
+
+		local hover = vim.lsp.buf.hover
+		---@diagnostic disable-next-line: duplicate-set-field
+		vim.lsp.buf.hover = function()
+			return hover({
+				max_width = 100,
+				max_height = 14,
+				border = "rounded",
+			})
+		end
 	end,
 }
