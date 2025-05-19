@@ -5,12 +5,10 @@ return {
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
 	},
-
-
 	config = function()
 		require("neotest").setup({
 			adapters = {
-				require("rustaceanvim"),
+				require("rustaceanvim.neotest"),
 			},
 		})
 
