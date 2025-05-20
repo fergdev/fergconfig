@@ -3,7 +3,7 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap
 
-keymap.set("n", "<leader>ee", vim.cmd.Ex)
+-- keymap.set("n", "<leader>ee", vim.cmd.Ex)
 keymap.set("n", "<leader>p", '"*p')
 keymap.set({ "n", "v" }, "<leader>y", '"*y')
 
@@ -41,9 +41,7 @@ keymap.set("n", "[b", vim.cmd.bn)
 keymap.set("n", "<leader>nh", ":noh<CR>")
 
 keymap.set("n", "\\c", ":e ~/.dotfiles/cheatsheet.md<CR>")
-keymap.set("n", "<leader>wt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
-
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show error under cursor" })
+-- keymap.set("n", "<leader>wt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 
 vim.filetype.add({
 	extension = {
@@ -59,6 +57,39 @@ vim.keymap.set("n", "<leader>lt", function()
 		end
 	end)
 end, { desc = "Set buffer FT vibes" })
+
+vim.keymap.set("n", "<leader>lf", function()
+	vim.cmd("enew") -- create scratch buffer
+	vim.bo.buftype = "nofile"
+	vim.bo.bufhidden = "wipe"
+	vim.bo.swapfile = false
+
+	local fts = { "json", "xml", "yaml", "sql", "sh", "lua", "rust" }
+
+	vim.ui.select(fts, { prompt = "Choose filetype:" }, function(ft)
+		if not ft then
+			return
+		end
+		vim.bo.filetype = ft
+
+		-- Re-trigger FileType autocommands (LSP, Treesitter, etc.)
+		vim.api.nvim_exec_autocmds("FileType", { buffer = 0 })
+
+		vim.api.nvim_exec(":LspStart", true)
+
+		-- Log what's going on
+		print("🌟 Filetype set to:", ft)
+		--   vim.defer_fn(function()
+		--     vim.cmd("LspInfo")
+		--   end, 200)
+		local clients = require("lspconfig.util").get_config_by_ft(ft)
+		if clients then
+			for _, config in pairs(clients) do
+				vim.lsp.start(config)
+			end
+		end
+	end)
+end, { desc = "Open LSP-enabled scratch buffer" })
 
 vim.keymap.set("n", "<leader><leader>s", ":so %<CR>", { desc = "Source current file" })
 
@@ -99,3 +130,12 @@ vim.keymap.set("n", "<leader>bs", function()
 	require("ferg.git_custom").git_reflog_picker()
 end, { desc = "Git reflog branches" })
 
+vim.keymap.set(
+	"n",
+	"<leader>k",
+	'<cmd>lua require("kubectl").toggle({ tab = boolean })<cr>',
+	{ noremap = true, silent = true }
+)
+
+vim.keymap.set("n", "<M-C-n>", "<cmd>Scratch<cr>")
+vim.keymap.set("n", "<M-C-o>", "<cmd>ScratchOpen<cr>")

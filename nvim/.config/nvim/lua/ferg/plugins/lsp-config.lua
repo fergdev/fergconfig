@@ -32,9 +32,16 @@ return {
 		require("mason-lspconfig").setup({
 			automatic_enable = true,
 			ensure_installed = {
+				"docker_compose_language_service",
+				"dockerls",
+				"protols",
+                "helm_ls",
 				"lua_ls",
 				"lemminx",
 				"bashls",
+				"jsonls",
+				"yamlls",
+				"postgres_lsp",
 				"taplo",
 			},
 			handlers = {

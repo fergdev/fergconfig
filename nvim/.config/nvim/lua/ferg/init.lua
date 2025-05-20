@@ -1,5 +1,4 @@
 require("ferg.autocmd")
-require("ferg.format-json")
 require("ferg.globals")
 require("ferg.keymaps")
 require("ferg.lazy")
