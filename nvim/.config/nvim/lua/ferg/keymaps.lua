@@ -94,3 +94,8 @@ vim.api.nvim_create_user_command("MessagesBuffer", function()
 end, {})
 
 vim.keymap.set("n", "<leader>vm", "<cmd>MessagesBuffer<CR>", { desc = "[V]iew [m]esaages in buffer" })
+
+vim.keymap.set("n", "<leader>bs", function()
+	require("ferg.git_custom").git_reflog_picker()
+end, { desc = "Git reflog branches" })
+
