@@ -33,7 +33,6 @@ return {
 			automatic_enable = true,
 			ensure_installed = {
 				"lua_ls",
-				-- "rust_analyzer",
 				"lemminx",
 				"bashls",
 				"taplo",
