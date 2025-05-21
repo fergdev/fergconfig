@@ -69,7 +69,6 @@ return {
     },
   },
   keys = {
-    -- Top Pickers & Explorer
     {
       "<leader><space>",
       function()
@@ -178,7 +177,7 @@ return {
       desc = "Git Log Line",
     },
     {
-      "<leader>gs",
+      "<leader>gq",
       function()
         Snacks.picker.git_status()
       end,
@@ -484,13 +483,6 @@ return {
       end,
       desc = "Git Browse",
       mode = { "n", "v" },
-    },
-    {
-      "<leader>gg",
-      function()
-        Snacks.lazygit()
-      end,
-      desc = "Lazygit",
     },
     {
       "<leader>un",
