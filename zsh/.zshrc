@@ -1,3 +1,5 @@
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
 set -o vi
 alias vim="nvim"
 
@@ -52,7 +54,10 @@ alias tfe='vim ~/.tmux.conf'
 alias zf='source ~/.zshrc'
 alias zfe='vim ~/.zshrc'
 
+alias rgd="rg --hidden --glob '!.git/*' . | fzf"
+
 source <(fzf --zsh)
+
 
 if [ -f $HOME/.zshrc_local ]; then
     source "${HOME}/.zshrc_local"
