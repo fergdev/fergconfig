@@ -130,12 +130,6 @@ return {
       })
     end, { desc = "[F]ind [/] in Open Files" })
 
-    -- vim.keymap.set("n", "<leader>/", function()
-    -- 	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-    -- 		winblend = 10,
-    -- 		previewer = false,
-    -- 	}))
-    -- end, { desc = "[/] Fuzzily search in current buffer" })
     vim.keymap.set("n", "<leader>fn", function()
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "[F]ind [N]eovim files" })

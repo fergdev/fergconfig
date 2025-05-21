@@ -1,4 +1,5 @@
-local enabled = true
+local enabled = false
+
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -8,7 +9,7 @@ return {
     event = "BufReadPost",
     opts = {
       suggestion = {
-        enabled = not vim.g.ai_cmp,
+        enabled = false,
         auto_trigger = false,
         hide_during_completion = vim.g.ai_cmp,
         keymap = {
@@ -18,7 +19,7 @@ return {
         },
       },
       panel = {
-        enabled = true,
+        enabled = false,
         auto_refresh = false,
         keymap = {
           jump_prev = "[[",
