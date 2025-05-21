@@ -10,8 +10,8 @@ set highlightedyank
 set commentary
 set relativenumber
 
-""" General
 
+""" General
 nnoremap \f :action SplitVertically<CR>:e ~/.ideavimrc<CR>
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>

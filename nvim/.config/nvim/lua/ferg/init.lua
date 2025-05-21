@@ -1,6 +1,0 @@
-require("ferg.autocmd")
-require("ferg.globals")
-require("ferg.keymaps")
-require("ferg.lazy")
-require("ferg.options")
-require("ferg.android")

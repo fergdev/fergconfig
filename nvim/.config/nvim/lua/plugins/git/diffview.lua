@@ -1,3 +1,6 @@
+vim.keymap.set("n", "<leader>gdo", ":DiffviewOpen<CR>", { desc = "Open Diffview" })
+vim.keymap.set("n", "<leader>gdc", ":DiffviewClose<CR>", { desc = "Close Diffview" })
+
 return {
   {
     "sindrets/diffview.nvim",
