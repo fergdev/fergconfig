@@ -55,6 +55,12 @@ return {
         explorer = {
           hidden = true,
         },
+        files = {
+          hidden = true,
+        },
+        grep = {
+          hidden = true,
+        },
       },
     },
     quickfile = { enabled = true },
@@ -104,14 +110,6 @@ return {
       end,
       desc = "File Explorer",
     },
-    -- find
-    {
-      "<leader>fb",
-      function()
-        Snacks.picker.buffers()
-      end,
-      desc = "Buffers",
-    },
     {
       "<leader>fc",
       function()
@@ -120,7 +118,7 @@ return {
       desc = "Find Config File",
     },
     {
-      "<leader>ff",
+      "<leader>sf",
       function()
         Snacks.picker.files()
       end,
@@ -257,7 +255,7 @@ return {
       desc = "Buffer Lines",
     },
     {
-      "<leader>sC",
+      "<leader>sc",
       function()
         Snacks.picker.commands()
       end,
@@ -362,7 +360,7 @@ return {
       desc = "Undo History",
     },
     {
-      "<leader>uC",
+      "<leader>sC",
       function()
         Snacks.picker.colorschemes()
       end,
@@ -490,13 +488,6 @@ return {
         Snacks.terminal()
       end,
       desc = "Toggle Terminal",
-    },
-    {
-      "<c-_>",
-      function()
-        Snacks.terminal()
-      end,
-      desc = "which_key_ignore",
     },
     {
       "]]",

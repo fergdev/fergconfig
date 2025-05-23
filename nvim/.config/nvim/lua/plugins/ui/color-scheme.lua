@@ -1,55 +1,3 @@
-vim.keymap.set("n", "<leader>sc", function()
-  local Snacks = require("snacks")
-  local colors = vim.fn.getcompletion("", "color")
-
-  Snacks.picker({
-    finder = function()
-      local items = {}
-      for i, name in ipairs(colors) do
-        table.insert(items, {
-          idx = i,
-          name = name,
-          text = name,
-        })
-      end
-      return items
-    end,
-
-    layout = {
-      layout = {
-        box = "horizontal",
-        width = 0.5,
-        height = 0.5,
-        {
-          box = "vertical",
-          border = "rounded",
-          title = "🎨 Colorschemes",
-          { win = "input", height = 1, border = "bottom" },
-          { win = "list", border = "none" },
-        },
-      },
-    },
-
-    format = function(item, _)
-      return {
-        { " ", "Identifier" },
-        { item.name, "Normal" },
-      }
-    end,
-
-    highlight = function(item)
-      print("hi")
-      vim.cmd.colorscheme(item.name)
-    end,
-
-    confirm = function(picker, item)
-      picker:close()
-      vim.cmd.colorscheme(item.name)
-      vim.notify("🌈 Set colorscheme to: " .. item.name, vim.log.levels.INFO)
-    end,
-  })
-end, { desc = "Snacks: Pick colorscheme" })
-
 return {
   {
     "folke/tokyonight.nvim",
@@ -124,21 +72,78 @@ return {
         which_key = true,
       },
     },
-    specs = {
-      {
-        "akinsho/bufferline.nvim",
-        optional = true,
-        opts = function(_, opts)
-          if (vim.g.colors_name or ""):find("catppuccin") then
-            opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
-          end
-        end,
-      },
-    },
   },
 
   {
     "rose-pine/neovim",
     name = "rose-pine",
+  },
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = true,
+    priority = 1000,
+
+    opts = {},
+  },
+  {
+    "bluz71/vim-nightfly-colors",
+    name = "nightfly",
+    lazy = true,
+    priority = 1000,
+  },
+  {
+    "olimorris/onedarkpro.nvim",
+    lazy = true,
+    priority = 1000,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = true,
+    priority = 1000,
+  },
+  { "datsfilipe/vesper.nvim", lazy = true },
+  {
+    "sontungexpt/witch",
+    priority = 1000,
+    lazy = true,
+    config = function(_, opts)
+      require("witch").setup(opts)
+    end,
+  },
+  {
+    "rafamadriz/neon",
+    lazy = true,
+    priority = 1000,
+  },
+  {
+    "marko-cerovac/material.nvim",
+  },
+  { "nyoom-engineering/oxocarbon.nvim" },
+  { "sainnhe/edge" },
+  {
+    "AlexvZyl/nordic.nvim",
+    lazy = true,
+    priority = 1000,
+    config = function()
+      require("nordic").load()
+    end,
+  },
+  {
+    "navarasu/onedark.nvim",
+    priority = 1000,
+    lazy = true,
+    config = function()
+      require("onedark").setup({
+        style = "darker",
+      })
+      -- Enable theme
+      require("onedark").load()
+    end,
+  },
+  {
+    url = "https://codeberg.org/jthvai/lavender.nvim",
+    branch = "stable",
+    lazy = true,
+    priority = 1000,
   },
 }

@@ -1,5 +1,4 @@
-local enabled = false
-
+local enabled = true
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -9,11 +8,11 @@ return {
     event = "BufReadPost",
     opts = {
       suggestion = {
-        enabled = false,
+        enabled = true,
         auto_trigger = false,
         hide_during_completion = vim.g.ai_cmp,
         keymap = {
-          accept = false, -- handled by nvim-cmp / blink.cmp
+          accept = true, -- handled by nvim-cmp / blink.cmp
           next = "<C-o>",
           prev = "<C-i>",
         },
@@ -44,9 +43,13 @@ return {
     enabled = enabled,
     dependencies = {
       { "github/copilot.vim" },
-      { "nvim-lua/plenary.nvim", branch = "master" },
+      { "nvim-lua/plenary.nvim" },
     },
     build = "make tiktoken",
-    opts = {},
+    opts = {
+      show_diff = {
+        full_diff = true,
+      },
+    },
   },
 }

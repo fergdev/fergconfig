@@ -17,8 +17,6 @@ require("lazy").setup({
   },
 })
 
-
-
 -- Load current project conf
 local project_config = vim.fn.getcwd() .. "/.nvim.lua"
 if vim.fn.filereadable(project_config) == 1 then

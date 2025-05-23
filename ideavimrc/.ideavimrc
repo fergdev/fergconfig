@@ -1,6 +1,6 @@
 let mapleader = " "
 
-set scrolloff=10
+set scrolloff=40
 set surround
 set ideajoin
 set idearefactormode=keep
