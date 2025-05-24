@@ -13,3 +13,6 @@
  - space start copying
  - enter finish copying
 
+<C-b>% - split window vertically
+<C-b>" - split window horizontally
+

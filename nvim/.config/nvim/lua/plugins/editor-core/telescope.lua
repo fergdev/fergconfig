@@ -1,3 +1,15 @@
+function vim.getVisualSelection()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg("v")
+  vim.fn.setreg("v", {})
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ""
+  end
+end
+
 return {
   "nvim-telescope/telescope.nvim",
   event = "VimEnter",
@@ -96,17 +108,20 @@ return {
       })
     end
 
-    local live_grep = function()
-      builtin.live_grep({
+    local live_grep = function(opts)
+      local m_opts = vim.tbl_deep_extend("force", opts, {
         additional_args = function()
           return { "--hidden", "--glob", "!.git/*" }
         end,
       })
+      builtin.live_grep(m_opts)
     end
 
     vim.keymap.set("n", "<leader>ft", builtin.builtin, { desc = "[F]ind [T]elescope" })
     vim.keymap.set("n", "<leader>fw", grep_string, { desc = "[F]ind current [W]ord" })
-    vim.keymap.set("n", "<leader>fg", live_grep, { desc = "[F]ind by [G]rep" })
+    vim.keymap.set("n", "<leader>fg", function()
+      live_grep({})
+    end, { desc = "[F]ind by [G]rep" })
     vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "[F]ind [R]ecent Files aka old" })
     vim.keymap.set("n", "<leader>fl", builtin.resume, { desc = "[F]ind [L]ast aka resume" })
 
@@ -120,5 +135,13 @@ return {
     vim.keymap.set("n", "<leader>fn", function()
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "[F]ind [N]eovim files" })
+
+    local keymap = vim.keymap.set
+
+    keymap("v", "<space>fg", function()
+      local text = vim.getVisualSelection()
+      print("Selected text: " .. text)
+      live_grep({ default_text = text })
+    end, { noremap = true, silent = true })
   end,
 }

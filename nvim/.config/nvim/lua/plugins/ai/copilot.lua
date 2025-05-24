@@ -10,28 +10,20 @@ return {
       suggestion = {
         enabled = true,
         auto_trigger = false,
-        hide_during_completion = vim.g.ai_cmp,
+        hide_during_completion = true,
+        debounce = 15,
+        trigger_on_accept = true,
+        suggestion_notification = nil,
         keymap = {
-          accept = true, -- handled by nvim-cmp / blink.cmp
-          next = "<C-o>",
-          prev = "<C-i>",
+          accept = "<M-l>",
+          accept_word = false,
+          accept_line = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
         },
       },
-      panel = {
-        enabled = false,
-        auto_refresh = false,
-        keymap = {
-          jump_prev = "[[",
-          jump_next = "]]",
-          accept = "<CR>",
-          refresh = "gr",
-          open = "<leader>ai",
-        },
-        layout = {
-          position = "right", -- | top | left | right | horizontal | vertical
-          ratio = 0.3,
-        },
-      },
+      panel = { enabled = false },
       filetypes = {
         markdown = true,
         help = true,

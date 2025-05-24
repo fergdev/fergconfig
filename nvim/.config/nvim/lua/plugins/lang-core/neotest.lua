@@ -6,9 +6,27 @@ return {
     "antoinemadec/FixCursorHold.nvim",
   },
   config = function()
+    ---@diagnostic disable-next-line: missing-fields
     require("neotest").setup({
       adapters = {
         require("rustaceanvim.neotest"),
+      },
+      consumers = {
+        overseer = require("neotest.consumers.overseer"),
+      },
+      output = {
+        enter = true,
+        open_on_run = true,
+        enabled = true,
+      },
+      diagnostic = {
+        enabled = true,
+        severity = 1,
+      },
+      status = {
+        enabled = true,
+        virtual_text = false,
+        signs = true,
       },
     })
 

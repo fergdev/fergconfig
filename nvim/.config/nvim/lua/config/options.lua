@@ -18,3 +18,4 @@ opt.splitright = true
 opt.tabstop = 4
 opt.termguicolors = true
 opt.undofile = true
+opt.cmdheight = 0

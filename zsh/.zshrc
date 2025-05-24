@@ -1,5 +1,3 @@
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
 set -o vi
 alias vim="nvim"
 
@@ -47,6 +45,9 @@ killem() {
 }
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+alias nvd='cd ~/.local/share/nvim'
+alias df='cd ~/.dotfiles'
 
 alias tf='tmux source ~/.tmux.conf'
 alias tfe='vim ~/.tmux.conf'

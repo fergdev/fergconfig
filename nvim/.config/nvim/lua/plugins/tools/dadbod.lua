@@ -6,9 +6,16 @@ return {
   {
     "kristijanhusak/vim-dadbod-ui",
     cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
-    dependencies = "vim-dadbod",
+    dependencies = {
+      "vim-dadbod",
+      {
+        "kristijanhusak/vim-dadbod-completion",
+        ft = { "sql", "mysql", "plsql" },
+        lazy = true,
+      },
+    },
     keys = {
-      { "<leader>td", "<cmd>DBUIToggle<CR>", desc = "Toggle DBUI" },
+      { "<leader>tp", "<cmd>DBUIToggle<CR>", desc = "Toggle DBUI" },
     },
     init = function()
       local data_path = vim.fn.stdpath("data")

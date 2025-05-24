@@ -11,9 +11,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = { { import = "plugins" } },
   change_detection = {
-    -- automatically check for config file changes and reload the ui
     enabled = false,
-    notify = false, -- get a notification when changes are found
+    notify = false,
   },
 })
 
@@ -24,3 +23,4 @@ if vim.fn.filereadable(project_config) == 1 then
 end
 
 require("nvim-dap-projects").search_project_config()
+require("dev")

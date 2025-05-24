@@ -10,9 +10,8 @@ return {
       scratch_file_dir = vim.fn.stdpath("cache") .. "/scratch.nvim", -- where your scratch files will be put
       window_cmd = "rightbelow vsplit", -- 'vsplit' | 'split' | 'edit' | 'tabedit' | 'rightbelow vsplit'
       use_telescope = true,
-      -- fzf-lua is recommanded, since it will order the files by modification datetime desc. (require rg)
       file_picker = "fzflua", -- "fzflua" | "telescope" | nil
-      filetypes = { "json", "xml", "yaml", "lua", "sh", "py", "http" }, -- you can simply put filetype here
+      filetypes = { "json", "xml", "yaml", "lua", "sh", "py", "http", "text", "js" }, -- you can simply put filetype here
       filetype_details = { -- or, you can have more control here
         json = {}, -- empty table is fine
         ["project-name.md"] = {
@@ -43,8 +42,10 @@ return {
       },
       hooks = {
         {
-          callback = function()
-            vim.api.nvim_buf_set_lines(0, 0, -1, false, { "hello", "world" })
+          callback = function(opts)
+            -- vim.api.nvim_buf_set_lines(0, 0, -1, false, { "hello", "world" })
+            -- TODO figure out how to set the run command here
+            print(opts)
           end,
         },
       },

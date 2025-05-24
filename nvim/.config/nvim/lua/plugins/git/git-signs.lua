@@ -23,14 +23,14 @@ return {
       local function map(mode, l, r, desc)
         vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
       end
-      map("n", "]h", function()
+      map("n", "]c", function()
         if vim.wo.diff then
           vim.cmd.normal({ "]c", bang = true })
         else
           gs.nav_hunk("next")
         end
       end, "Next Hunk")
-      map("n", "[h", function()
+      map("n", "[c", function()
         if vim.wo.diff then
           vim.cmd.normal({ "[c", bang = true })
         else

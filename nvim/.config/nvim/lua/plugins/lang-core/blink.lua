@@ -4,10 +4,11 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
       "rafamadriz/friendly-snippets",
+      "L3MON4D3/LuaSnip",
       {
         "fang2hou/blink-copilot",
         opts = {
-          max_completions = 2, -- Global default for max completions
+          max_completions = 3, -- Global default for max completions
           max_attempts = 2, -- Global default for max attempts
           debounce = 100, -- Global default for debounce time
         },
@@ -27,7 +28,11 @@ return {
         signature = { enabled = true },
         sources = {
           default = { "lsp", "path", "snippets", "buffer", "copilot" },
+          per_filetype = {
+            sql = { "snippets", "dadbod", "buffer" },
+          },
           providers = {
+            dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
             copilot = {
               name = "copilot",
               module = "blink-copilot",
