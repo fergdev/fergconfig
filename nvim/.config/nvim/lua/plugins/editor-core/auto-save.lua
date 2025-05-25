@@ -1,32 +1,16 @@
--- local function save()
---   local buf = vim.api.nvim_get_current_buf()
---
---   vim.api.nvim_buf_call(buf, function()
---     vim.cmd("silent! write")
---   end)
--- end
---
--- function ToggleAutoSave()
---   local flag = vim.g.auto_save or false
---   if flag then
---     vim.g.auto_save = false
---     vim.api.nvim_del_augroup_by_name("AutoSave")
---   else
---     vim.api.nvim_create_augroup("AutoSave", {
---       clear = true,
---     })
---     vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
---       callback = save,
---       pattern = "*",
---       group = "AutoSave",
---     })
---     vim.g.auto_save = true
---   end
--- end
---
--- ToggleAutoSave()
--- vim.api.nvim_create_user_command("ToggleAutoSave", ToggleAutoSave, {})
---
--- return {}
-
-return { 'Pocco81/auto-save.nvim' }
+return {
+  "Pocco81/auto-save.nvim",
+  trigger_events = { "InsertLeave", "TextChanged" },
+  condition = function(buf)
+    local fn = vim.fn
+    local utils = require("auto-save.utils.data")
+    if
+      fn.getbufvar(buf, "&modifiable") == 1 and utils.not_in(fn.getbufvar(buf, "&filetype"), {})
+    then
+      return true
+    end
+    return false
+  end,
+  write_all_buffers = false,
+  debounce_delay = 135,
+}

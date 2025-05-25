@@ -10,8 +10,10 @@
 -- t - tools
 -- w - window
 -- , {run}
--- r - run
--- d - debug
+-- - r - run
+-- - d - debug
+--
+-- n - notes
 --
 --
 
@@ -132,3 +134,23 @@ vim.keymap.set("n", ",o", function()
 end, { desc = "Run a project task" })
 
 vim.keymap.set("n", ",q", "<cmd>OverseerQuickAction<cr>", { desc = "Overseer Quick Action" })
+
+vim.keymap.set("n", "<leader>qq", ":wqa!<CR>", { desc = "Quit!!!" })
+
+vim.keymap.set("n", "<leader>nd", ":ObsidianToday<cr>", { desc = "obsidian [d]aily" })
+vim.keymap.set("n", "<leader>nt", ":ObsidianToday 1<cr>", { desc = "obsidian [t]omorrow" })
+vim.keymap.set("n", "<leader>ny", ":ObsidianToday -1<cr>", { desc = "obsidian [y]esterday" })
+vim.keymap.set("n", "<leader>nb", ":ObsidianBacklinks<cr>", { desc = "obsidian [b]acklinks" })
+vim.keymap.set("n", "<leader>nl", ":ObsidianLink<cr>", { desc = "obsidian [l]ink selection" })
+vim.keymap.set("n", "<leader>nf", ":ObsidianFollowLink<cr>", { desc = "obsidian [f]ollow link" })
+vim.keymap.set("n", "<leader>nn", ":ObsidianNew<cr>", { desc = "obsidian [n]ew" })
+vim.keymap.set("n", "<leader>ns", ":ObsidianSearch<cr>", { desc = "obsidian [s]earch" })
+vim.keymap.set(
+  "n",
+  "<leader>no",
+  ":ObsidianQuickSwitch<cr>",
+  { desc = "obsidian [o]pen quickswitch" }
+)
+vim.keymap.set("n", "<leader>nO", ":ObsidianOpen<cr>", { desc = "obsidian [O]pen in app" })
+
+

@@ -1,6 +1,6 @@
 # Here is cheat sheet
 
-\c to open cheet sheet
+\c to open cheat sheet
 
 # TMUX
 

@@ -1,7 +1,6 @@
 return {
   {
     "saghen/blink.cmp",
-    -- optional: provides snippets for the snippet source
     dependencies = {
       "rafamadriz/friendly-snippets",
       "L3MON4D3/LuaSnip",
@@ -24,7 +23,17 @@ return {
     opts_extend = { "sources.default" },
     config = function()
       require("blink.cmp").setup({
-        completion = { documentation = { auto_show = true } },
+        completion = {
+          menu = {
+            border = "single",
+          },
+          documentation = {
+            auto_show = true,
+            window = {
+              border = "single",
+            },
+          },
+        },
         signature = { enabled = true },
         sources = {
           default = { "lsp", "path", "snippets", "buffer", "copilot" },

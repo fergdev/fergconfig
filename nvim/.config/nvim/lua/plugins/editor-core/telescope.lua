@@ -26,6 +26,14 @@ return {
     },
     { "nvim-telescope/telescope-ui-select.nvim" },
     { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+    -- {
+    --   "nvim-telescope/telescope-frecency.nvim",
+    --   -- install the latest stable version
+    --   version = "*",
+    --   config = function()
+    --     require("telescope").load_extension "frecency"
+    --   end,
+    -- }
   },
   config = function()
     local actions = require("telescope.actions")

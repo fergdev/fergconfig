@@ -1,4 +1,13 @@
+local function set_normal_float_highlight()
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = set_normal_float_highlight,
+})
 return {
+
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
@@ -11,6 +20,7 @@ return {
     notifier = {
       enabled = true,
       timeout = 5000,
+      top_down = false,
     },
     picker = {
       sources = {
@@ -23,6 +33,16 @@ return {
         grep = {
           hidden = true,
         },
+      },
+      layout = {
+        preset = "ivy",
+        cycle = false,
+      },
+      debug = {
+        scores = false,
+      },
+      matcher = {
+        frecency = true,
       },
     },
     quickfile = { enabled = false },
@@ -64,7 +84,7 @@ return {
       desc = "Command History",
     },
     {
-      "<leader>n",
+      "<leader>sn",
       function()
         Snacks.picker.notifications()
       end,

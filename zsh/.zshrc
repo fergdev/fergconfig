@@ -44,6 +44,33 @@ killem() {
     echo $PROCESS_ID | xargs kill -9
 }
 
+vlt() {
+  local vlt_dir="$HOME/.vlt"
+  local archive="$HOME/.vlts.tar.gz"
+  local encrypted="$HOME/.vlts.tar.gz.age"
+
+  case "$1" in
+    e)
+      echo "[*] Archiving and encrypting $vlt_dir..."
+      tar -czf "$archive" -C "$HOME" "vlts" && \
+      age -p -o "$encrypted" "$archive" && \
+      rm -rf "$vlt_dir" "$archive"
+      echo "[✓] Encrypted to $encrypted and wiped plaintext."
+      ;;
+    d)
+      echo "[*] Decrypting $encrypted..."
+      age -d -o "$archive" "$encrypted" && \
+      tar -xzf "$archive" -C "$HOME" && \
+      rm -f "$archive"
+      rm -f "$encrypted"
+      echo "[✓] Decrypted and extracted to $vlt_dir."
+      ;;
+    *)
+      echo "Usage: vlt encrypt | decrypt"
+      ;;
+  esac
+}
+
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 alias nvd='cd ~/.local/share/nvim'
@@ -57,10 +84,17 @@ alias zfe='vim ~/.zshrc'
 
 alias rgd="rg --hidden --glob '!.git/*' . | fzf"
 
-source <(fzf --zsh)
+alias ta="tmux attach"
 
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+alias ff='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 
 if [ -f $HOME/.zshrc_local ]; then
     source "${HOME}/.zshrc_local"
 fi
 
+source <(fzf --zsh)
+
+PROMPT='%1~ %# '
