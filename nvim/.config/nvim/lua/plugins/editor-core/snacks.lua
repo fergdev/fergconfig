@@ -22,6 +22,52 @@ return {
       timeout = 5000,
       top_down = false,
     },
+    layouts = {
+      -- I wanted to modify the ivy layout height and preview pane width,
+      -- this is the only way I was able to do it
+      -- NOTE: I don't think this is the right way as I'm declaring all the
+      -- other values below, if you know a better way, let me know
+      --
+      -- Then call this layout in the keymaps above
+      -- got example from here
+      -- https://github.com/folke/snacks.nvim/discussions/468
+      ivy = {
+        layout = {
+          box = "vertical",
+          backdrop = false,
+          row = -1,
+          width = 0,
+          height = 0.5,
+          border = "top",
+          title = " {title} {live} {flags}",
+          title_pos = "left",
+          { win = "input", height = 1, border = "bottom" },
+          {
+            box = "horizontal",
+            { win = "list", border = "none" },
+            { win = "preview", title = "{preview}", width = 0.5, border = "left" },
+          },
+        },
+      },
+      -- I wanted to modify the layout width
+      --
+      vertical = {
+        layout = {
+          backdrop = false,
+          width = 0.8,
+          min_width = 80,
+          height = 0.8,
+          min_height = 30,
+          box = "vertical",
+          border = "rounded",
+          title = "{title} {live} {flags}",
+          title_pos = "center",
+          { win = "input", height = 1, border = "bottom" },
+          { win = "list", border = "none" },
+          { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+        },
+      },
+    },
     picker = {
       sources = {
         explorer = {
@@ -469,6 +515,66 @@ return {
       end,
       desc = "Prev Reference",
       mode = { "n", "t" },
+    },
+    {
+      -- -- You can confirm in your teminal lamw26wmal with:
+      -- -- rg "^\s*-\s\[ \]" test-markdown.md
+      "<leader>tt",
+      function()
+        Snacks.picker.grep({
+          prompt = " ",
+          -- pass your desired search as a static pattern
+          search = "^\\s*- \\[ \\]",
+          -- we enable regex so the pattern is interpreted as a regex
+          regex = true,
+          -- no “live grep” needed here since we have a fixed pattern
+          live = false,
+          -- restrict search to the current working directory
+          dirs = { vim.fn.getcwd() },
+          -- include files ignored by .gitignore
+          args = { "--no-ignore" },
+          -- Start in normal mode
+          on_show = function()
+            vim.cmd.stopinsert()
+          end,
+          finder = "grep",
+          format = "file",
+          show_empty = true,
+          supports_live = false,
+          layout = "ivy",
+        })
+      end,
+      desc = "[P]Search for incomplete tasks",
+    },
+    -- -- Iterate throuth completed tasks in Snacks_picker lamw26wmal
+    {
+      "<leader>tc",
+      function()
+        Snacks.picker.grep({
+          prompt = " ",
+          -- pass your desired search as a static pattern
+          -- search = "^\\s*- \\[x\\] `done:",
+          search = "^\\s*- \\[x\\]",
+          -- we enable regex so the pattern is interpreted as a regex
+          regex = true,
+          -- no “live grep” needed here since we have a fixed pattern
+          live = false,
+          -- restrict search to the current working directory
+          dirs = { vim.fn.getcwd() },
+          -- include files ignored by .gitignore
+          args = { "--no-ignore" },
+          -- Start in normal mode
+          on_show = function()
+            vim.cmd.stopinsert()
+          end,
+          finder = "grep",
+          format = "file",
+          show_empty = true,
+          supports_live = false,
+          layout = "ivy",
+        })
+      end,
+      desc = "[P]Search for complete tasks",
     },
   },
   init = function()

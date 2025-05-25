@@ -20,5 +20,4 @@ opt.termguicolors = true
 opt.undofile = true
 opt.cmdheight = 0
 opt.conceallevel = 2
-
 vim.opt_local.conceallevel = 2

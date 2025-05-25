@@ -4,14 +4,23 @@ return {
     "stevearc/conform.nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "j-hui/fidget.nvim",
+    {
+      "j-hui/fidget.nvim",
+      opts = {
+        notification = {
+          window = {
+            winblend = 0,
+          },
+        },
+      },
+    },
   },
 
   config = function()
     require("conform").setup({
       formatters_by_ft = {},
     })
-    require("fidget").setup({})
+
     require("mason").setup()
     require("mason-lspconfig").setup({
       automatic_enable = true,

@@ -8,11 +8,11 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "~/vaults/personal",
+        path = "~/.vlt/personal",
       },
       {
         name = "work",
-        path = "~/vaults/work",
+        path = "~/.vlt/work",
       },
     },
     templates = {
