@@ -7,14 +7,13 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = set_normal_float_highlight,
 })
 return {
-
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = false },
-    explorer = { enabled = true },
+    explorer = { enabled = false },
     indent = { enabled = true },
     input = { enabled = true },
     notifier = {
@@ -23,14 +22,6 @@ return {
       top_down = false,
     },
     layouts = {
-      -- I wanted to modify the ivy layout height and preview pane width,
-      -- this is the only way I was able to do it
-      -- NOTE: I don't think this is the right way as I'm declaring all the
-      -- other values below, if you know a better way, let me know
-      --
-      -- Then call this layout in the keymaps above
-      -- got example from here
-      -- https://github.com/folke/snacks.nvim/discussions/468
       ivy = {
         layout = {
           box = "vertical",
@@ -108,8 +99,15 @@ return {
     },
   },
   keys = {
+    -- {
+    --   "<leader>sf",
+    --   function()
+    --     Snacks.picker.files()
+    --   end,
+    --   desc = "Find Files",
+    -- },
     {
-      "<leader><space>",
+      "<leader>sf",
       function()
         Snacks.picker.smart()
       end,
@@ -136,13 +134,13 @@ return {
       end,
       desc = "Notification History",
     },
-    {
-      "<leader>e",
-      function()
-        Snacks.explorer()
-      end,
-      desc = "File Explorer",
-    },
+    -- {
+    --   "<leader>e",
+    --   function()
+    --     Snacks.explorer()
+    --   end,
+    --   desc = "File Explorer",
+    -- },
     {
       "<leader>fc",
       function()
@@ -151,28 +149,21 @@ return {
       desc = "Find Config File",
     },
     {
-      "<leader>sf",
-      function()
-        Snacks.picker.files()
-      end,
-      desc = "Find Files",
-    },
-    {
       "<leader>fg",
       function()
         Snacks.picker.git_files()
       end,
       desc = "Find Git Files",
     },
+    -- {
+    --   "<leader>fp",
+    --   function()
+    --     Snacks.picker.projects()
+    --   end,
+    --   desc = "Projects",
+    -- },
     {
-      "<leader>fp",
-      function()
-        Snacks.picker.projects()
-      end,
-      desc = "Projects",
-    },
-    {
-      "<leader>fr",
+      "<leader>sr",
       function()
         Snacks.picker.recent()
       end,
@@ -230,7 +221,7 @@ return {
     },
     -- Grep
     {
-      "<leader>sb",
+      "<leader>/",
       function()
         Snacks.picker.lines()
       end,
@@ -343,20 +334,20 @@ return {
       end,
       desc = "Keymaps",
     },
-    {
-      "<leader>sl",
-      function()
-        Snacks.picker.loclist()
-      end,
-      desc = "Location List",
-    },
-    {
-      "<leader>sm",
-      function()
-        Snacks.picker.marks()
-      end,
-      desc = "Marks",
-    },
+    -- {
+    --   "<leader>sl",
+    --   function()
+    --     Snacks.picker.loclist()
+    --   end,
+    --   desc = "Location List",
+    -- },
+    -- {
+    --   "<leader>sm",
+    --   function()
+    --     Snacks.picker.marks()
+    --   end,
+    --   desc = "Marks",
+    -- },
     {
       "<leader>sM",
       function()
@@ -450,23 +441,8 @@ return {
       end,
       desc = "LSP Workspace Symbols",
     },
-    -- Other
     {
-      "<leader>z",
-      function()
-        Snacks.zen()
-      end,
-      desc = "Toggle Zen Mode",
-    },
-    {
-      "<leader>Z",
-      function()
-        Snacks.zen.zoom()
-      end,
-      desc = "Toggle Zoom",
-    },
-    {
-      "<leader>n",
+      "<leader>in",
       function()
         Snacks.notifier.show_history()
       end,
@@ -479,13 +455,13 @@ return {
       end,
       desc = "Delete Buffer",
     },
-    {
-      "<leader>cR",
-      function()
-        Snacks.rename.rename_file()
-      end,
-      desc = "Rename File",
-    },
+    -- {
+    --   "<leader>cR",
+    --   function()
+    --     Snacks.rename.rename_file()
+    --   end,
+    --   desc = "Rename File",
+    -- },
     {
       "<leader>un",
       function()
@@ -585,7 +561,7 @@ return {
         Snacks.toggle.inlay_hints():map("<leader>uh")
         Snacks.toggle.indent():map("<leader>ug")
 
-        vim.keymap.set("n", "<leader>sn", function()
+        vim.keymap.set("n", "<leader>sl", function()
           local dir = "~/.local/share/nvim/"
           Snacks.picker({
             layout = "vertical",

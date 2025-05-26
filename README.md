@@ -1,4 +1,3 @@
-# fergConfig
+# FergConfig
 
 My dotfiles.
-

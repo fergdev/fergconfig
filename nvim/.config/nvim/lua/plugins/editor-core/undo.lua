@@ -8,7 +8,7 @@ return {
 	},
 	keys = {
 		{
-			"<leader>u",
+			"<leader>tu",
 			"<cmd>Telescope undo<cr>",
 			desc = "undo history",
 		},

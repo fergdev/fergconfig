@@ -22,7 +22,6 @@ return {
     end,
     formatters_by_ft = {
       lua = { "stylua" },
-      bash = { "bashls" },
       json = { "jq" },
     },
   },

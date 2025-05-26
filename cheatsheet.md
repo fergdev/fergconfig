@@ -15,4 +15,4 @@
 
 <C-b>% - split window vertically
 <C-b>" - split window horizontally
-
+<C-b>o - session search

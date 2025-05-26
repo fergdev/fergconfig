@@ -16,6 +16,8 @@
 -- n - notes
 --
 --
+--
+
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -70,7 +72,7 @@ vim.keymap.set("n", "<leader>ri", ":LspInfo<CR>", { desc = "[L]sp [I]nfo" })
 vim.keymap.set("n", "<leader>rl", ":LspLog<CR>", { desc = "[L]sp [L]og" })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
+-- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
 
 -- Ai
 vim.keymap.set(
@@ -152,5 +154,18 @@ vim.keymap.set(
   { desc = "obsidian [o]pen quickswitch" }
 )
 vim.keymap.set("n", "<leader>nO", ":ObsidianOpen<cr>", { desc = "obsidian [O]pen in app" })
+
+vim.keymap.set("n", "<leader>xl", ":g/^\\s*$/d<cr>", { desc = "[X]elete empty [l]ines" })
+
+-- use gh to move to the beginning of the line in normal mode
+-- use gl to move to the end of the line in normal mode
+vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
+vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
+
+-- When searching for stuff, search results show in the middle
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+vim.keymap.set("n", "<leader>ih", ":checkhealth<CR>", { desc = "Check health" })
 
 
