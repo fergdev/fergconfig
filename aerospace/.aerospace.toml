@@ -85,28 +85,24 @@ automatically-unhide-macos-hidden-apps = false
     alt-equal = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    alt-1 = 'workspace 1'
-    alt-2 = 'workspace 2'
-    alt-3 = 'workspace 3'
-    alt-4 = 'workspace 4'
-    alt-5 = 'workspace 5'
-    alt-a = 'workspace A'
-    alt-s = 'workspace S'
-    alt-d = 'workspace D'
-    alt-e = 'workspace E'
-    alt-f = 'workspace F'
+    alt-a = 'workspace a'
+    alt-s = 'workspace s'
+    alt-d = 'workspace d'
+    alt-f = 'workspace f'
+    alt-q = 'workspace q'
+    alt-w = 'workspace w'
+    alt-e = 'workspace e'
+    alt-r = 'workspace r'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    alt-shift-1 = 'move-node-to-workspace 1'
-    alt-shift-2 = 'move-node-to-workspace 2'
-    alt-shift-3 = 'move-node-to-workspace 3'
-    alt-shift-4 = 'move-node-to-workspace 4'
-    alt-shift-5 = 'move-node-to-workspace 5'
-    alt-shift-a = 'move-node-to-workspace A'
-    alt-shift-b = 'move-node-to-workspace S'
-    alt-shift-c = 'move-node-to-workspace D'
-    alt-shift-d = 'move-node-to-workspace E'
-    alt-shift-e = 'move-node-to-workspace F'
+    alt-shift-a = 'move-node-to-workspace a'
+    alt-shift-s = 'move-node-to-workspace s'
+    alt-shift-d = 'move-node-to-workspace d'
+    alt-shift-f = 'move-node-to-workspace f'
+    alt-shift-q = 'move-node-to-workspace q'
+    alt-shift-w = 'move-node-to-workspace w'
+    alt-shift-e = 'move-node-to-workspace e'
+    alt-shift-r = 'move-node-to-workspace r'
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
@@ -117,16 +113,14 @@ automatically-unhide-macos-hidden-apps = false
 
 
 [workspace-to-monitor-force-assignment]
-1 = 'main'
-2 = 'main'
-3 = 'main'
-4 = 'main'
-5 = 'main'
-A = ['secondary', 'main']
-S = ['secondary', 'main']
-D = ['secondary', 'main']
-F = ['secondary', 'main']
-E = ['secondary', 'main']
+a = 'main'
+s = 'main'
+d = 'main'
+f = 'main'
+q = ['secondary', 'main']
+w = ['secondary', 'main']
+e = ['secondary', 'main']
+r = ['secondary', 'main']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

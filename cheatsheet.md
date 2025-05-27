@@ -16,3 +16,18 @@
 <C-b>% - split window vertically
 <C-b>" - split window horizontally
 <C-b>o - session search
+
+# Aerospace
+
+<M-(hjkl)> - Move cursor in the direction of the key.
+<M-(HJKL)> - Move window in the direction of the key.
+
+<M-(asdf)> - Laptop screen - navigate to the workspace with the corresponding letter.
+<M-(qwer)> - External screen - navigate to the workspace with the corresponding letter.
+
+<M-(ASDF)> - Laptop - Send window to workspace.
+<M-(QWER)> - External - Send window to workspace.
+
+<M-;> - Service mode.
+- f = float - dock
+- 

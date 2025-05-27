@@ -88,6 +88,7 @@ alias zle='vim ~/.zshrc_local'
 alias rgd="rg --hidden --glob '!.git/*' . | fzf"
 
 alias ta="tmux attach"
+alias td="tmux detatch"
 
 # ls replacement
 # exa is unmaintained, so now using eza
@@ -114,6 +115,7 @@ if command -v bat &>/dev/null; then
     alias cata='bat --show-all --paging=never'
 fi
 
+alias gcfg='cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/'
 alias ff='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias yz='yazi'
 

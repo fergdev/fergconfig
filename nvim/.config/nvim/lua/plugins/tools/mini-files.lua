@@ -1,5 +1,13 @@
+-- vim.keymap.set("n", "<leader>e", function()
+--   local mini = require("mini.files")
+--   mini.open(vim.api.nvim_buf_get_name(0), false)
+--   mini.reveal_cwd()
+-- end, { desc = "Open Mini Files Explorer" })
+
 vim.keymap.set("n", "<leader>e", function()
-  require("mini.files").open()
+  local mini = require("mini.files")
+  mini.open(vim.fn.expand("%:p:h"), false)
+  mini.reveal_cwd()
 end, { desc = "Open Mini Files Explorer" })
 
 return {

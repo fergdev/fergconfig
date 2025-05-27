@@ -64,9 +64,9 @@ vim.keymap.set(
 
 vim.keymap.set(
   { "n", "v" },
-  "<leader>ra",
+  "<leader>a",
   vim.lsp.buf.code_action,
-  { desc = "[R]efactor [A]ctions" }
+  { desc = "Refactor [A]ctions" }
 )
 vim.keymap.set("n", "<leader>ri", ":LspInfo<CR>", { desc = "[L]sp [I]nfo" })
 vim.keymap.set("n", "<leader>rl", ":LspLog<CR>", { desc = "[L]sp [L]og" })

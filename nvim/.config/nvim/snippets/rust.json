@@ -1,0 +1,11 @@
+{
+  "async-test": {
+    "prefix": "testasync",
+    "body": [
+      "#[tokio::test]",
+      "async fn ${1:test_name}() {",
+      "    ${2:// test code here}",
+      "}"
+    ]
+  }
+}

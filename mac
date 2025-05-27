@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+# not used
+# - yabai
+# - skhd
+
 if [[ -z $STOW_FOLDERS ]]; then
     export STOW_FOLDERS="zsh,tmux,ideavimrc,nvim,btop,aerospace"
 fi

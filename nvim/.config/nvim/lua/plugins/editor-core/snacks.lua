@@ -14,7 +14,7 @@ return {
   opts = {
     bigfile = { enabled = false },
     explorer = { enabled = false },
-    indent = { enabled = true },
+    indent = { enabled = true, animate = { enabled = false } },
     input = { enabled = true },
     notifier = {
       enabled = true,
@@ -470,7 +470,7 @@ return {
       desc = "Dismiss All Notifications",
     },
     {
-      "<C-/>",
+      "<leader>tt",
       function()
         Snacks.terminal()
       end,
@@ -495,7 +495,7 @@ return {
     {
       -- -- You can confirm in your teminal lamw26wmal with:
       -- -- rg "^\s*-\s\[ \]" test-markdown.md
-      "<leader>tt",
+      "<leader>nst",
       function()
         Snacks.picker.grep({
           prompt = " ",
