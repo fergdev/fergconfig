@@ -125,7 +125,11 @@ source <(fzf --zsh)
 
 export PROMPT='%1~ %# '
 
-res() {
-    skhd --restart-service
-    yabai --restart-service
+# res() {
+#     skhd --restart-service
+#     yabai --restart-service
+# }
+
+start_aero() {
+    open -a Aerospace
 }

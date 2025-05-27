@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 if [[ -z $STOW_FOLDERS ]]; then
-    export STOW_FOLDERS="zsh,tmux,ideavimrc,nvim,btop,yabai,skhd"
+    export STOW_FOLDERS="zsh,tmux,ideavimrc,nvim,btop,aerospace"
 fi
 
 if [[ -z $DOTFILES ]]; then
