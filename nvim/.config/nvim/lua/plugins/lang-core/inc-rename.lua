@@ -1,4 +1,6 @@
 return {
   "smjonas/inc-rename.nvim",
-  opts = {}
+  opts = {
+    preview_empty_name = true,
+  },
 }

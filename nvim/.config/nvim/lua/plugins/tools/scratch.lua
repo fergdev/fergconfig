@@ -11,7 +11,7 @@ return {
       window_cmd = "rightbelow vsplit", -- 'vsplit' | 'split' | 'edit' | 'tabedit' | 'rightbelow vsplit'
       use_telescope = true,
       file_picker = "fzflua", -- "fzflua" | "telescope" | nil
-      filetypes = { "json", "xml", "yaml", "lua", "sh", "py", "http", "text", "js" }, -- you can simply put filetype here
+      filetypes = { "json", "xml", "yaml", "lua", "sh", "py", "http", "text", "js" , "log"}, -- you can simply put filetype here
       filetype_details = { -- or, you can have more control here
         json = {}, -- empty table is fine
         ["project-name.md"] = {

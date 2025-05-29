@@ -11,7 +11,7 @@ return {
         enabled = true,
         auto_trigger = false,
         hide_during_completion = true,
-        debounce = 15,
+        debounce = 2000,
         trigger_on_accept = true,
         suggestion_notification = nil,
         keymap = {

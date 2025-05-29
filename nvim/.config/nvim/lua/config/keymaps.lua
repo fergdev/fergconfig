@@ -18,7 +18,6 @@
 --
 --
 
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -58,16 +57,19 @@ vim.keymap.set("n", "<leader><leader>s", ":so %<CR>", { desc = "Source current f
 vim.keymap.set(
   "n",
   "<leader>rn",
-  ":IncRename " .. vim.fn.expand("<cword>"),
+  ":IncRename ",
   { desc = "LSP Rename" }
 )
+vim.keymap.set("n", "<leader>vrn", function()
+  -- requiring it to make sure inc_rename is loaded
 
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>a",
-  vim.lsp.buf.code_action,
-  { desc = "Refactor [A]ctions" }
-)
+  local ok, _ = pcall(require, "inc_rename")
+  if ok then
+    return ":IncRename " .. vim.fn.expand("<cword>")
+  end
+end, { expr = true, silent = false, desc = "Rename" })
+
+vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Refactor [A]ctions" })
 vim.keymap.set("n", "<leader>ri", ":LspInfo<CR>", { desc = "[L]sp [I]nfo" })
 vim.keymap.set("n", "<leader>rl", ":LspLog<CR>", { desc = "[L]sp [L]og" })
 
@@ -167,5 +169,3 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("n", "<leader>ih", ":checkhealth<CR>", { desc = "Check health" })
-
-
