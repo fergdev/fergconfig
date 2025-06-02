@@ -130,14 +130,12 @@ end, { desc = "Run file tests and show output" })
 
 vim.keymap.set("n", ",tn", function()
   require("neotest").run.run()
-  require("neotest").output.open({ enter = true, auto_close = true })
+  require("neotest").output.open({ enter = true, auto_close = false })
 end, { desc = "Run nearest test and show output" })
 
-vim.keymap.set("n", ",o", function()
-  vim.api.nvim_set_keymap("n", ",o", ":OverseerToggle<CR>", { noremap = true, silent = true })
-end, { desc = "Run a project task" })
-
-vim.keymap.set("n", ",q", "<cmd>OverseerQuickAction<cr>", { desc = "Overseer Quick Action" })
+vim.keymap.set("n", ",to", function()
+  require("neotest").output.open({ enter = true, auto_close = false })
+end, { desc = "Show test output" })
 
 vim.keymap.set("n", "<leader>qq", ":wqa!<CR>", { desc = "Quit!!!" })
 

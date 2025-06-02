@@ -11,9 +11,9 @@ return {
       adapters = {
         require("rustaceanvim.neotest"),
       },
-      consumers = {
-        overseer = require("neotest.consumers.overseer"),
-      },
+      -- consumers = {
+      --   overseer = require("neotest.consumers.overseer"),
+      -- },
       output = {
         enter = true,
         open_on_run = true,
