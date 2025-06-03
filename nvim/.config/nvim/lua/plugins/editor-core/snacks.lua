@@ -10,7 +10,6 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
-  ---@type snacks.Config
   opts = {
     bigfile = { enabled = false },
     explorer = { enabled = false },
@@ -240,14 +239,6 @@ return {
         Snacks.picker.grep()
       end,
       desc = "Grep",
-    },
-    {
-      "<leader>sw",
-      function()
-        Snacks.picker.grep_word()
-      end,
-      desc = "Visual selection or word",
-      mode = { "n", "x" },
     },
     -- search
     {

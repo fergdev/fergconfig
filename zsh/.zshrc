@@ -135,3 +135,12 @@ export PROMPT='%1~ %# '
 start_aero() {
     open -a Aerospace
 }
+
+kp() {
+    # ps -ef | fzf -m --preview="echo {}" --height=40% | awk '{print $2}' | xargs -r kill -9
+    ps -ef | fzf -m | awk '{print $2}' | xargs -r kill -9
+}
+
+kc() {
+    docker ps | fzf -m | awk '{print $1}' | xargs -r docker kill
+}
