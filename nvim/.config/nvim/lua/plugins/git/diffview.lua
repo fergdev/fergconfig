@@ -1,5 +1,4 @@
-vim.keymap.set("n", "<leader>gdo", ":DiffviewOpen<CR>", { desc = "Open Diffview" })
-vim.keymap.set("n", "<leader>gdc", ":DiffviewClose<CR>", { desc = "Close Diffview" })
+vim.keymap.set("n", "<leader>tgd", ":DiffviewOpen<CR>", { desc = "Open Diffview" })
 
 return {
   {
@@ -26,8 +25,7 @@ return {
             { "n", "fa", "g!=a", { remap = true } },
             { "n", "ff", "g!--", { remap = true } },
           },
-          file_panel = {
-          },
+          file_panel = {},
         },
         view = {
           default = {

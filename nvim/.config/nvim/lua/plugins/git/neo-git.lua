@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>gs", ":Neogit<CR>", { desc = "Git status" })
+vim.keymap.set("n", "<leader>tgs", ":Neogit<CR>", { desc = "Git status" })
 
 return {
   "NeogitOrg/neogit",

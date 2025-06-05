@@ -138,7 +138,7 @@ start_aero() {
 
 kp() {
     # ps -ef | fzf -m --preview="echo {}" --height=40% | awk '{print $2}' | xargs -r kill -9
-    ps -ef | fzf -m | awk '{print $2}' | xargs -r kill -9
+    ps -ef | fzf -m | awk '{print $2}' | tee /dev/tty | xargs -r kill -9
 }
 
 kc() {
