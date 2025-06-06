@@ -36,7 +36,8 @@ return {
         },
         signature = { enabled = true },
         sources = {
-          default = { "lsp", "path", "snippets", "buffer", "copilot" },
+          -- default = { "lsp", "path", "snippets", "buffer", "copilot" },
+          default = { "lsp", "path", "snippets", "buffer" },
           per_filetype = {
             sql = { "snippets", "dadbod", "buffer" },
           },

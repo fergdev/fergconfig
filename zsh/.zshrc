@@ -120,7 +120,7 @@ alias ff='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias yz='yazi'
 
 if [ -f "$HOME"/.zshrc_local ]; then
-    source "${HOME}/.zshrc_local"
+    source "$HOME/.zshrc_local"
 fi
 
 source <(fzf --zsh)
@@ -143,4 +143,8 @@ kp() {
 
 kc() {
     docker ps | fzf -m | awk '{print $1}' | xargs -r docker kill
+}
+
+j() {
+    echo "$JAVA_HOME"
 }

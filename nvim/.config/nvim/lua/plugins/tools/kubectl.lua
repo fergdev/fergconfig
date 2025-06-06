@@ -1,8 +1,9 @@
 return {
   {
     "ramilito/kubectl.nvim",
-    config = function()
-      require("kubectl").setup()
+    opts = { logs = { prefix = false, timestamps = false, since = "5m" } },
+    config = function(_, opts)
+      require("kubectl").setup(opts)
     end,
   },
 }
