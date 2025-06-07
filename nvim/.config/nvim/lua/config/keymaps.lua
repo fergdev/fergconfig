@@ -1,4 +1,7 @@
--- Keymaps - tracking info
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
+---- Keymaps - tracking info
 --
 -- g {go}
 --
@@ -19,7 +22,7 @@
 --
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 local keymap = vim.keymap
 
@@ -54,12 +57,7 @@ keymap.set("n", "\\c", ":e ~/.dotfiles/cheatsheet.md<CR>")
 vim.keymap.set("n", "<leader><leader>s", ":so %<CR>", { desc = "Source current file" })
 
 -- LSP
-vim.keymap.set(
-  "n",
-  "<leader>rn",
-  ":IncRename ",
-  { desc = "LSP Rename" }
-)
+vim.keymap.set("n", "<leader>rn", ":IncRename ", { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>vrn", function()
   -- requiring it to make sure inc_rename is loaded
 
@@ -77,32 +75,17 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 -- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
 
 -- Ai
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>ac",
-  ":CopilotChatToggle<CR>",
-  { desc = "Copilot chat toggle" }
-)
+vim.keymap.set({ "n", "v" }, "<leader>ac", ":CopilotChatToggle<CR>", { desc = "Copilot chat toggle" })
 
 -- Strings
 vim.keymap.set("v", "<leader>be", [[:'<,'>!base64<CR>]], { desc = "[B]ase64 [E]ncode selection" })
-vim.keymap.set(
-  "v",
-  "<leader>bd",
-  [[:'<,'>!base64 -d<CR>]],
-  { desc = "[B]ase64 [D]ecode selection" }
-)
+vim.keymap.set("v", "<leader>bd", [[:'<,'>!base64 -d<CR>]], { desc = "[B]ase64 [D]ecode selection" })
 
 vim.api.nvim_create_user_command("MessagesBuffer", function()
   vim.cmd("redir @a | messages | redir END | new | put a")
 end, {})
 
-vim.keymap.set(
-  "n",
-  "<leader>vm",
-  "<cmd>MessagesBuffer<CR>",
-  { desc = "[V]iew [m]esaages in buffer" }
-)
+vim.keymap.set("n", "<leader>vm", "<cmd>MessagesBuffer<CR>", { desc = "[V]iew [m]esaages in buffer" })
 
 vim.keymap.set("n", "<leader>gr", function()
   require("config.dev.git_custom").git_reflog_picker()
@@ -147,12 +130,7 @@ vim.keymap.set("n", "<leader>nl", ":ObsidianLink<cr>", { desc = "obsidian [l]ink
 vim.keymap.set("n", "<leader>nf", ":ObsidianFollowLink<cr>", { desc = "obsidian [f]ollow link" })
 vim.keymap.set("n", "<leader>nn", ":ObsidianNew<cr>", { desc = "obsidian [n]ew" })
 vim.keymap.set("n", "<leader>ns", ":ObsidianSearch<cr>", { desc = "obsidian [s]earch" })
-vim.keymap.set(
-  "n",
-  "<leader>no",
-  ":ObsidianQuickSwitch<cr>",
-  { desc = "obsidian [o]pen quickswitch" }
-)
+vim.keymap.set("n", "<leader>no", ":ObsidianQuickSwitch<cr>", { desc = "obsidian [o]pen quickswitch" })
 vim.keymap.set("n", "<leader>nO", ":ObsidianOpen<cr>", { desc = "obsidian [O]pen in app" })
 
 vim.keymap.set("n", "<leader>xl", ":g/^\\s*$/d<cr>", { desc = "[X]elete empty [l]ines" })

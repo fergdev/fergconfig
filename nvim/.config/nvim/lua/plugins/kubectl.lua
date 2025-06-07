@@ -1,0 +1,5 @@
+return {
+  {
+    "ramilito/kubectl.nvim",
+  },
+}

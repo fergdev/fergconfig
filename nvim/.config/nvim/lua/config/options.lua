@@ -1,23 +1,3 @@
-local opt = vim.opt
-opt.clipboard = "unnamedplus"
-opt.cursorline = true
-opt.expandtab = true
-opt.guicursor = ""
-opt.ignorecase = true
-opt.incsearch = true
-opt.number = true
-opt.relativenumber = true
-opt.scrolloff = 10
-opt.shiftwidth = 4
-opt.showmode = false
-opt.signcolumn = "yes:2"
-opt.smartcase = true
-opt.smarttab = true
-opt.splitbelow = true
-opt.splitright = true
-opt.tabstop = 4
-opt.termguicolors = true
-opt.undofile = true
-opt.cmdheight = 0
-opt.conceallevel = 2
-vim.opt_local.conceallevel = 2
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
