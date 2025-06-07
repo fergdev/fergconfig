@@ -150,3 +150,7 @@ kc() {
 j() {
     echo "$JAVA_HOME"
 }
+
+venv() {
+   source ./.venv/bin/activate
+}
