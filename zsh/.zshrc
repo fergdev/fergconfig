@@ -119,6 +119,8 @@ alias gcfg='cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/'
 alias ff='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias yz='yazi'
 
+alias cdd='cd "$(fd -t d | fzf)"'
+
 if [ -f "$HOME"/.zshrc_local ]; then
     source "$HOME/.zshrc_local"
 fi
