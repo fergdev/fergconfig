@@ -1,5 +1,7 @@
 let mapleader = " "
 
+set visualbell
+set noerrorbells
 set scrolloff=40
 set surround
 set ideajoin
@@ -9,7 +11,7 @@ set hlsearch
 set highlightedyank
 set commentary
 set relativenumber
-
+set number
 
 """ General
 nnoremap \f :action SplitVertically<CR>:e ~/.ideavimrc<CR>
@@ -20,24 +22,40 @@ nnoremap <c-[> :action EditorEscape<CR>
 
 nnoremap gp :action Cargo.RefreshCargoProject<CR>
 
+
+""" Completion
+inoremap <C-y> :action EditorChooseLookupItemReplace<CR>
+vnoremap <leader>a :action ShowIntentionActions<CR>
+nnoremap <leader>a :action ShowIntentionActions<CR>
+
+
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
+
+""" Break points
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+"""nnoremap <leader>b :action ToggleLineBreakpoint<CR>
+
 """ Navigation
 nmap gy <Action>(GotoTypeDeclaration)
-nnoremap gu :action FindUsages<CR>
+nnoremap gr :action FindUsages<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap ga :action GotoAction<CR>
 vnoremap ga :action GotoAction<CR>
 nnoremap ge :action SearchEverywhere<CR>
 nnoremap gf :action FileStructurePopup<CR>
 
-nnoremap [e :action GotoNextError<CR>
-nnoremap ]e :action GotoPreviousError<CR>
+nnoremap ]e :action GotoNextError<CR>
+nnoremap [e :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
+
+nnoremap <leader>tw :action FileStructurePopup<CR>
 
 """ Running and Debugging
 nnoremap ,c :action RunCoverage<CR>
 nnoremap ,d :action ContextDebug<CR>
-nnoremap ,f :action ChooseRunConfiguration<CR>
-nnoremap ,r :action ContextRun<CR>
+nnoremap ,r :action ChooseRunConfiguration<CR>
+"""nnoremap ,r :action ContextRun<CR>
 nnoremap ,s :action Stop<CR>
 nnoremap ,u :action Rerun<CR>
 
@@ -48,29 +66,27 @@ nnoremap ]c :action NextDiff<CR>
 nnoremap [c :action PreviousDiff<CR>
 
 """ AI
-nnoremap <leader>a :action ActivateAIAssistantToolWindow<CR>
-vnoremap <leader>a :action ActivateAIAssistantToolWindow<CR>
+"""nnoremap <leader>a :action ActivateAIAssistantToolWindow<CR>
+"""vnoremap <leader>a :action ActivateAIAssistantToolWindow<CR>
 
 """ Bookmarks
-nnoremap <leader>ba :action ShowBookmarks<CR>
-nnoremap <leader>bb :action ToggleBookmark<CR>
-nnoremap [b :action GotoNextBookmark<CR>
-nnoremap ]b :action GotoBookmark<CR>
-
-""" Break points
-nnoremap ,b :action ToggleLineBreakpoint<CR>
+nnoremap <leader>H :action ShowBookmarks<CR>
+nnoremap <leader>h :action ToggleBookmark<CR>
+nnoremap [h :action GotoNextBookmark<CR>
+nnoremap ]h :action GotoBookmark<CR>
 
 " File navigation
-map <leader>ff <action>(GotoFile)
-map <leader>fr <action>(RecentFiles)
-map <leader>fp <action>(FindInPath)
-vmap <leader>fp <action>(FindInPath)
-map <leader>fl <action>(RecentLocations)
-nnoremap <leader>fs :action NewScratchFile<CR>
+map <leader>sa <action>(SearchEverywhere)
+map <leader>sf <action>(GotoFile)
+map <leader>sr <action>(RecentFiles)
+map <leader>sg <action>(FindInPath)
+vmap <leader>sg <action>(FindInPath)
+map <leader>sl <action>(RecentLocations)
+nnoremap <leader>tn :action NewScratchFile<CR>
 
 """ Refactoring
 map <leader>rn <Action>(RenameElement)
-map <leader>rm <Action>(ExtractMethod)
+map <leader>rm <Action>(ExtractFunction)
 map <leader>rv <Action>(IntroduceVariable)
 map <leader>rf <Action>(IntroduceField)
 nnoremap <leader>rc :action IntroduceConstant<CR>
@@ -100,10 +116,10 @@ nmap <C-l> <Action>(StretchSplitToRight)
 nmap <C-k> <Action>(StretchSplitToTop)
 
 " Switch windows
-map <leader>sh <c-w>h
-map <leader>sl <c-w>l
-map <leader>sj <c-w>j
-map <leader>sk <c-w>k
+map <leader>wh <c-w>h
+map <leader>wl <c-w>l
+map <leader>wj <c-w>j
+map <leader>wk <c-w>k
 
 nnoremap <leader>c :action CommentByLineComment<CR>
 vnoremap <leader>c :action CommentByLineComment<CR>
@@ -124,17 +140,22 @@ vnoremap <leader>mbe :action osmedile.intellij.stringmanip.EncodeBase64Action<CR
 vnoremap <leader>mbd :action osmedile.intellij.stringmanip.DecodeBase64Action<CR>
 
 """ Windows
-nnoremap <leader>wb :action ActivateBookmarksToolWindow<CR>
-nnoremap <leader>wc :action ActivateCoverageToolWindow<CR>
-nnoremap <leader>wd :action ActivateDatabaseToolWindow<CR>
-nnoremap <leader>we :action ActivateDebugToolWindow<CR>
-nnoremap <leader>wf :action ActivateFindToolWindow<CR>
-nnoremap <leader>wp :action ActivateProjectToolWindow<CR>
-nnoremap <leader>wr :action ActivateRunToolWindow<CR>
-nnoremap <leader>ws :action ActivateServicesToolWindow<CR>
-nnoremap <leader>wt :action ActivateTerminalToolWindow<CR>
-nnoremap <leader>wn :action ActivateNotificationsToolWindow<CR>
+nnoremap <leader>e :action ActivateProjectToolWindow<CR>
 
+nnoremap <leader>tb :action ActivateBookmarksToolWindow<CR>
+nnoremap <leader>tc :action ActivateCoverageToolWindow<CR>
+nnoremap <leader>td :action ActivateDatabaseToolWindow<CR>
+nnoremap <leader>te :action ActivateDebugToolWindow<CR>
+nnoremap <leader>tf :action ActivateFindToolWindow<CR>
+nnoremap <leader>tr :action ActivateRunToolWindow<CR>
+nnoremap <leader>ts :action ActivateServicesToolWindow<CR>
+nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>tn :action ActivateNotificationsToolWindow<CR>
+nnoremap <leader>to :action ActivateBuildToolWindow<CR>
+
+nnoremap <leader>wo :action HideAllWindows<CR>
+
+""" TODO this should close the current window
 nnoremap <leader>wx :action HideAllWindows<CR>
 
 """ Modes
