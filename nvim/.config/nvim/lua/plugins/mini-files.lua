@@ -1,18 +1,7 @@
--- vim.keymap.set("n", "<leader>e", function()
---   local mini = require("mini.files")
---   mini.open(vim.api.nvim_buf_get_name(0), false)
---   mini.reveal_cwd()
--- end, { desc = "Open Mini Files Explorer" })
-
-vim.keymap.set("n", "<leader>e", function()
-  local mini = require("mini.files")
-  mini.open(vim.fn.expand("%:p:h"), false)
-  mini.reveal_cwd()
-end, { desc = "Open Mini Files Explorer" })
-
 return {
   "echasnovski/mini.files",
   version = false,
+  enabled = false,
   opts =
     -- No need to copy this inside `setup()`. Will be used automatically.
     {
@@ -66,4 +55,13 @@ return {
         width_preview = 25,
       },
     },
+
+  config = function(_, opts)
+    require("mini.files").setup(opts)
+    vim.keymap.set("n", "<leader>e", function()
+      local mini = require("mini.files")
+      mini.open(vim.fn.expand("%:p:h"), false)
+      mini.reveal_cwd()
+    end, { desc = "Open Mini Files Explorer" })
+  end,
 }
