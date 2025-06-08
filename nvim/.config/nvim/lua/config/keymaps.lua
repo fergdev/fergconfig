@@ -137,8 +137,8 @@ vim.keymap.set("n", "<leader>xl", ":g/^\\s*$/d<cr>", { desc = "[X]elete empty [l
 
 -- use gh to move to the beginning of the line in normal mode
 -- use gl to move to the end of the line in normal mode
-vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
-vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
+-- vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "[P]Go to the beginning line" })
+-- vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "[P]go to the end of the line" })
 
 -- When searching for stuff, search results show in the middle
 vim.keymap.set("n", "n", "nzzzv")
