@@ -20,5 +20,8 @@ return {
       date_format = "%Y-%m-%d-%a",
       time_format = "%H:%M",
     },
+    ui = {
+      enable = false,
+    },
   },
 }
