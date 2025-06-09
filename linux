@@ -1,0 +1,12 @@
+
+#!/usr/bin/env zsh
+
+if [[ -z $STOW_FOLDERS ]]; then
+    export STOW_FOLDERS="zsh,tmux,ideavimrc,nvim,btop"
+fi
+
+if [[ -z $DOTFILES ]]; then
+    export DOTFILES=$HOME/.dotfiles
+fi
+
+$DOTFILES/install
