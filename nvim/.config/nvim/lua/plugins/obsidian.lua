@@ -24,4 +24,8 @@ return {
       enable = false,
     },
   },
+
+  ui = {
+    enable = true, -- set to false to disable all additional syntax features
+  },
 }

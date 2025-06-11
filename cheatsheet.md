@@ -10,12 +10,14 @@
 <C-b>c - create new window
 
 <C-b>[ - copy term mode
- - space start copying
- - enter finish copying
+
+- space start copying
+- enter finish copying
 
 <C-b>% - split window vertically
 <C-b>" - split window horizontally
 <C-b>o - session search
+<C-b> <M-o> - rotate panes
 
 # Aerospace
 
@@ -29,5 +31,6 @@
 <M-(QWER)> - External - Send window to workspace.
 
 <M-;> - Service mode.
+
 - f = float - dock
-- 
+-

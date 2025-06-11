@@ -30,19 +30,15 @@ keymap.set("n", "<leader>p", '"*p')
 keymap.set({ "n", "v" }, "<leader>y", '"*y')
 
 -- Windows
-keymap.set("n", "<leader>wh", "<C-w><C-h>", { desc = "Move focus to the left window" })
-keymap.set({ "n", "v" }, "<leader>wl", "<C-w><C-l>", { desc = "Move focus to the right window" })
-keymap.set("n", "<leader>wj", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-keymap.set("n", "<leader>wk", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 keymap.set("n", "<leader>wo", ":only<CR>", { desc = "[W]indow [O]nly this" })
 keymap.set("n", "<leader>wv", vim.cmd.vsplit, { desc = "Split vertical" })
 keymap.set("n", "<leader>ws", vim.cmd.split, { desc = "Split horizontal" })
 keymap.set("n", "<leader>wx", vim.cmd.close, { desc = "Close current window" })
 
-keymap.set("n", "<C-k>", ":resize +2<CR>")
-keymap.set("n", "<C-j>", ":resize -2<CR>")
-keymap.set("n", "<C-l>", ":vertical resize -2<CR>")
-keymap.set("n", "<C-h>", ":vertical resize +2<CR>")
+-- keymap.set("n", "<C-i>", ":resize +2<CR>")
+-- keymap.set("n", "<C-u>", ":resize -2<CR>")
+-- keymap.set("n", "<C-o>", ":vertical resize -2<CR>")
+-- keymap.set("n", "<C-y>", ":vertical resize +2<CR>")
 
 vim.keymap.set("n", "]t", ":tabnext<CR>", { desc = "Next Tab" })
 vim.keymap.set("n", "[t", ":tabprevious<CR>", { desc = "Prev Tab" })

@@ -105,9 +105,9 @@ nnoremap <leader>j :action QuickJavaDoc<CR>
 
 """ Windows
 " Splits
-map <leader>sv <Action>(SplitVertically)
-map <leader>ss <Action>(SplitHorizontally)
-map <leader>su <Action>(Unsplit)
+map <leader>wv <Action>(SplitVertically)
+map <leader>ws <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
 
 " Stretch splits
 nmap <C-j> <Action>(StretchSplitToBottom)

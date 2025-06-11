@@ -1,6 +1,8 @@
 set -o vi
 alias vim="nvim"
 
+export PROMPT='%1~ %# '
+
 setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt share_history
@@ -10,66 +12,72 @@ export HISTSIZE=10000
 export FCEDIT=nvim
 
 dirsize() {
-    du -shx * .[a-zA-Z0-9_]* 2>/dev/null |
-        grep -E '^ *[0-9.]*[MG]' | sort -n >/tmp/list
-    grep -E '^ *[0-9.]*M' /tmp/list
-    grep -E '^ *[0-9.]*G' /tmp/list
-    rm -rf /tmp/list
+  du -shx * .[a-zA-Z0-9_]* 2>/dev/null |
+    grep -E '^ *[0-9.]*[MG]' | sort -n >/tmp/list
+  grep -E '^ *[0-9.]*M' /tmp/list
+  grep -E '^ *[0-9.]*G' /tmp/list
+  rm -rf /tmp/list
 }
 
 extract() {
-    if [ -f $1 ]; then
-        case $1 in
-        *.tar.bz2) tar xjf $1 ;;
-        *.tar.gz) tar xzf $1 ;;
-        *.bz2) bunzip2 $1 ;;
-        *.rar) rar x $1 ;;
-        *.gz) gunzip $1 ;;
-        *.tar) tar xf $1 ;;
-        *.tbz2) tar xjf $1 ;;
-        *.tgz) tar xzf $1 ;;
-        *.zip) unzip $1 ;;
-        *.Z) uncompress $1 ;;
-        *.7z) 7z x $1 ;;
-        *) echo "'$1' cannot be extracted via extract()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
+  if [ -f $1 ]; then
+    case $1 in
+    *.tar.bz2) tar xjf $1 ;;
+    *.tar.gz) tar xzf $1 ;;
+    *.bz2) bunzip2 $1 ;;
+    *.rar) rar x $1 ;;
+    *.gz) gunzip $1 ;;
+    *.tar) tar xf $1 ;;
+    *.tbz2) tar xjf $1 ;;
+    *.tgz) tar xzf $1 ;;
+    *.zip) unzip $1 ;;
+    *.Z) uncompress $1 ;;
+    *.7z) 7z x $1 ;;
+    *) echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
 
 killem() {
-    PROCESS_ID=$(ps aux | grep "$1" | grep -v grep | awk '{print $2}')
-    echo "killing id $PROCESS_ID"
-    echo "$PROCESS_ID" | xargs kill -9
+  PROCESS_ID=$(ps aux | grep "$1" | grep -v grep | awk '{print $2}')
+  echo "killing id $PROCESS_ID"
+  echo "$PROCESS_ID" | xargs kill -9
 }
 
 vlt() {
-    local vlt_dir="$HOME/.vlt"
-    local archive="$HOME/.vlts.tar.gz"
-    local encrypted="$HOME/.vlts.tar.gz.age"
+  local vlt_dir="$HOME/.vlt"
+  local archive="$HOME/.vlts.tar.gz"
+  local encrypted="$HOME/.vlts.tar.gz.age"
 
-    case "$1" in
-    e)
-        echo "[*] Archiving and encrypting $vlt_dir..."
-        tar -czf "$archive" -C "$HOME" "vlts" &&
-            age -p -o "$encrypted" "$archive" &&
-            rm -rf "$vlt_dir" "$archive"
-        echo "[✓] Encrypted to $encrypted and wiped plaintext."
-        ;;
-    d)
-        echo "[*] Decrypting $encrypted..."
-        age -d -o "$archive" "$encrypted" &&
-            tar -xzf "$archive" -C "$HOME" &&
-            rm -f "$archive"
-        rm -f "$encrypted"
-        echo "[✓] Decrypted and extracted to $vlt_dir."
-        ;;
-    *)
-        echo "Usage: vlt encrypt | decrypt"
-        ;;
-    esac
+  case "$1" in
+  e)
+    echo "[*] Archiving and encrypting $vlt_dir..."
+    tar -czf "$archive" -C "$HOME" "vlts" &&
+      age -p -o "$encrypted" "$archive" &&
+      rm -rf "$vlt_dir" "$archive"
+    echo "[✓] Encrypted to $encrypted and wiped plaintext."
+    ;;
+  d)
+    echo "[*] Decrypting $encrypted..."
+    age -d -o "$archive" "$encrypted" &&
+      tar -xzf "$archive" -C "$HOME" &&
+      rm -f "$archive"
+    rm -f "$encrypted"
+    echo "[✓] Decrypted and extracted to $vlt_dir."
+    ;;
+  *)
+    echo "Usage: vlt encrypt | decrypt"
+    ;;
+  esac
 }
+
+if [ -f "$HOME"/.zshrc_local ]; then
+  source "$HOME/.zshrc_local"
+fi
+
+source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
@@ -94,25 +102,29 @@ alias td="tmux detatch"
 # exa is unmaintained, so now using eza
 # https://github.com/ogham/exa
 if command -v eza &>/dev/null; then
-    alias ls='eza'
-    alias ll='eza -lhg'
-    alias lla='eza -alhg'
-    alias tree='eza --tree'
+  alias ls='eza'
+  alias ll='eza -lhg'
+  alias lla='eza -alhg'
+  alias tree='eza --tree'
 else
-    alias ls='ls --color=auto'
-    alias ll='ls -lhg --color=auto'
-    alias lla='ls -alhg --color=auto'
-    alias grep='grep --color=auto'
+  alias ls='ls --color=auto'
+  alias ll='ls -lhg --color=auto'
+  alias lla='ls -alhg --color=auto'
+  alias grep='grep --color=auto'
 fi
 
 # Bat -> Cat with wings
 # https://github.com/sharkdp/bat
 if command -v bat &>/dev/null; then
-    # --style=plain - removes line numbers and got modifications
-    # --paging=never - doesnt pipe it through less
-    alias cat='bat --paging=never --style=plain'
-    alias catt='bat'
-    alias cata='bat --show-all --paging=never'
+  # --style=plain - removes line numbers and got modifications
+  # --paging=never - doesnt pipe it through less
+
+  cat() {
+    bat "$1"
+  }
+  # alias cat='bat --paging=never --style=plain'
+  alias catt='bat'
+  alias cata='bat --show-all --paging=never'
 fi
 
 alias gcfg='cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/'
@@ -121,36 +133,23 @@ alias yz='yazi'
 
 alias cdd='cd "$(fd -t d | fzf)"'
 
-if [ -f "$HOME"/.zshrc_local ]; then
-    source "$HOME/.zshrc_local"
-fi
-
-source <(fzf --zsh)
-
-export PROMPT='%1~ %# '
-
-# res() {
-#     skhd --restart-service
-#     yabai --restart-service
-# }
-
 start_aero() {
-    open -a Aerospace
+  open -a Aerospace
 }
 
 kp() {
-    # ps -ef | fzf -m --preview="echo {}" --height=40% | awk '{print $2}' | xargs -r kill -9
-    ps -ef | fzf -m | awk '{print $2}' | tee /dev/tty | xargs -r kill -9
+  # ps -ef | fzf -m --preview="echo {}" --height=40% | awk '{print $2}' | xargs -r kill -9
+  ps -ef | fzf -m | awk '{print $2}' | tee /dev/tty | xargs -r kill -9
 }
 
 kc() {
-    docker ps | fzf -m | awk '{print $1}' | xargs -r docker kill
+  docker ps | fzf -m | awk '{print $1}' | xargs -r docker kill
 }
 
 j() {
-    echo "$JAVA_HOME"
+  echo "$JAVA_HOME"
 }
 
 venv() {
-   source ./.venv/bin/activate
+  source ./.venv/bin/activate
 }
