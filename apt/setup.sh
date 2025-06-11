@@ -7,3 +7,4 @@ apt install ripgrep
 apt install lazygit
 apt install fd-find
 apt install bat
+apt install luarocks
