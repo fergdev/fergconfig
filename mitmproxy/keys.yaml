@@ -1,0 +1,12 @@
+-
+  key: ctrl a
+  cmd: replay.client @marked
+-
+  key: ctrl u
+  cmd: console.nav.pageup
+  help: Pageup
+-
+  key: ctrl d
+  cmd: console.nav.pagedown
+  help: Page down
+

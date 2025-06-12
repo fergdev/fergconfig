@@ -73,6 +73,37 @@ vlt() {
   esac
 }
 
+wow() {
+  set -o pipefail
+
+  local vlt_dir="$2"
+  local archive="$2.tar.gz"
+  local encrypted="$2.tar.gz.age"
+
+  echo "vltdir $vlt_dir"
+
+  case "$1" in
+  e)
+    echo "[*] Archiving and encrypting $vlt_dir..."
+    tar czf "$archive" "$vlt_dir" &&
+      age -p -o "$encrypted" "$archive" &&
+      rm -rf "$vlt_dir" "$archive"
+    echo "[✓] Encrypted to $encrypted and wiped plaintext."
+    ;;
+  d)
+    echo "[*] Decrypting $encrypted..."
+    age -d -o "$archive" "$encrypted" &&
+      tar xzf "$archive" &&
+      rm -f "$archive"
+    rm -f "$encrypted"
+    echo "[✓] Decrypted and extracted to $vlt_dir."
+    ;;
+  *)
+    echo "Usage: vlt encrypt | decrypt"
+    ;;
+  esac
+}
+
 if [ -f "$HOME"/.zshrc_local ]; then
   source "$HOME/.zshrc_local"
 fi
