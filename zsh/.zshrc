@@ -161,8 +161,8 @@ fi
 alias gcfg='cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/'
 alias ff='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias yz='yazi'
-
 alias cdd='cd "$(fd -t d | fzf)"'
+alias lg='lazygit'
 
 start_aero() {
   open -a Aerospace
