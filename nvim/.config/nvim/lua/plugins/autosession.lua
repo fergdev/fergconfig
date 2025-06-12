@@ -12,6 +12,7 @@ return {
     auto_save = true,
     auto_restore = true,
     close_unsupported_windows = true,
+    bypass_save_filetypes = { "alpha", "copilot-chat" },
     session_lens = {
       previewer = true, -- File preview for session picker
     },
