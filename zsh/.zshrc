@@ -11,41 +11,6 @@ export HISTFILESIZE=10000
 export HISTSIZE=10000
 export FCEDIT=nvim
 
-dirsize() {
-  du -shx * .[a-zA-Z0-9_]* 2>/dev/null |
-    grep -E '^ *[0-9.]*[MG]' | sort -n >/tmp/list
-  grep -E '^ *[0-9.]*M' /tmp/list
-  grep -E '^ *[0-9.]*G' /tmp/list
-  rm -rf /tmp/list
-}
-
-extract() {
-  if [ -f $1 ]; then
-    case $1 in
-    *.tar.bz2) tar xjf $1 ;;
-    *.tar.gz) tar xzf $1 ;;
-    *.bz2) bunzip2 $1 ;;
-    *.rar) rar x $1 ;;
-    *.gz) gunzip $1 ;;
-    *.tar) tar xf $1 ;;
-    *.tbz2) tar xjf $1 ;;
-    *.tgz) tar xzf $1 ;;
-    *.zip) unzip $1 ;;
-    *.Z) uncompress $1 ;;
-    *.7z) 7z x $1 ;;
-    *) echo "'$1' cannot be extracted via extract()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-killem() {
-  PROCESS_ID=$(ps aux | grep "$1" | grep -v grep | awk '{print $2}')
-  echo "killing id $PROCESS_ID"
-  echo "$PROCESS_ID" | xargs kill -9
-}
-
 vlt() {
   local vlt_dir="$HOME/.vlt"
   local archive="$HOME/.vlts.tar.gz"
@@ -144,33 +109,26 @@ else
   alias grep='grep --color=auto'
 fi
 
-# Bat -> Cat with wings
-# https://github.com/sharkdp/bat
 if command -v bat &>/dev/null; then
-  # --style=plain - removes line numbers and got modifications
-  # --paging=never - doesnt pipe it through less
-
-  cat() {
-    bat "$1"
-  }
-  # alias cat='bat --paging=never --style=plain'
+  alias cat='bat --paging=never --style=plain'
   alias catt='bat'
   alias cata='bat --show-all --paging=never'
 fi
 
 alias gcfg='cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/'
-alias ff='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
+alias fv='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias yz='yazi'
 alias cdd='cd "$(fd -t d | fzf)"'
 alias lg='lazygit'
 alias gcf='git checkout $(git branch | fzf)'
+alias lzd='cd ~/.local/share/nvim/lazy'
+alias em='emulator -avd $(emulator -list-avds | fzf)'
 
 start_aero() {
   open -a Aerospace
 }
 
 kp() {
-  # ps -ef | fzf -m --preview="echo {}" --height=40% | awk '{print $2}' | xargs -r kill -9
   ps -ef | fzf -m | awk '{print $2}' | tee /dev/tty | xargs -r kill -9
 }
 
@@ -185,7 +143,3 @@ j() {
 venv() {
   source ./.venv/bin/activate
 }
-
-alias lzd='cd ~/.local/share/nvim/lazy'
-
-alias em='emulator -avd $(emulator -list-avds | fzf)'

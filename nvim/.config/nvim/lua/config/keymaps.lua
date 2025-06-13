@@ -30,15 +30,25 @@ keymap.set("n", "<leader>p", '"*p')
 keymap.set({ "n", "v" }, "<leader>y", '"*y')
 
 -- Windows
-keymap.set("n", "<leader>wo", ":only<CR>", { desc = "[W]indow [O]nly this" })
-keymap.set("n", "<leader>wv", vim.cmd.vsplit, { desc = "Split vertical" })
-keymap.set("n", "<leader>ws", vim.cmd.split, { desc = "Split horizontal" })
-keymap.set("n", "<leader>wx", vim.cmd.close, { desc = "Close current window" })
+keymap.set("n", "<leader>q", ":only<CR>", { desc = "[W]indow [O]nly this" })
+keymap.set("n", "%", vim.cmd.vsplit, { desc = "Split vertical" })
+keymap.set("n", '"', vim.cmd.split, { desc = "Split horizontal" })
+keymap.set("n", "<leader>Q", vim.cmd.close, { desc = "Close current window" })
 
--- keymap.set("n", "<C-i>", ":resize +2<CR>")
--- keymap.set("n", "<C-u>", ":resize -2<CR>")
--- keymap.set("n", "<C-o>", ":vertical resize -2<CR>")
--- keymap.set("n", "<C-y>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], { desc = "make the window biger vertically" })
+vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]], { desc = "make the window smaller vertically" })
+vim.keymap.set(
+  "n",
+  "+",
+  [[<cmd>horizontal resize +2<cr>]],
+  { desc = "make the window bigger horizontally by pressing shift and " }
+)
+vim.keymap.set(
+  "n",
+  "_",
+  [[<cmd>horizontal resize -2<cr>]],
+  { desc = "make the window smaller horizontally by pressing shift and " }
+)
 
 vim.keymap.set("n", "]t", ":tabnext<CR>", { desc = "Next Tab" })
 vim.keymap.set("n", "[t", ":tabprevious<CR>", { desc = "Prev Tab" })
