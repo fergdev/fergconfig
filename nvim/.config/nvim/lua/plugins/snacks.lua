@@ -10,6 +10,9 @@ return {
         explorer = {
           hidden = true,
         },
+        files = {
+          hidden = true,
+        },
       },
     },
   },

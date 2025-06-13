@@ -163,6 +163,7 @@ alias ff='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias yz='yazi'
 alias cdd='cd "$(fd -t d | fzf)"'
 alias lg='lazygit'
+alias gcf='git checkout $(git branch | fzf)'
 
 start_aero() {
   open -a Aerospace
@@ -184,3 +185,7 @@ j() {
 venv() {
   source ./.venv/bin/activate
 }
+
+alias lzd='cd ~/.local/share/nvim/lazy'
+
+alias em='emulator -avd $(emulator -list-avds | fzf)'

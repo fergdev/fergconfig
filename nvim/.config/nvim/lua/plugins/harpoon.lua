@@ -2,11 +2,14 @@ local M = {}
 local terminals = {}
 
 local log_level = vim.log.levels.TRACE
+local log_enabled = false
 
 local log = function(...)
   local msg = table.concat(vim.tbl_map(tostring, { ... }), " ")
   -- print(msg)
-  vim.notify(msg, log_level, { title = "Harpoon" })
+  if log_enabled then
+    vim.notify(msg, log_level, { title = "Harpoon" })
+  end
 end
 
 local function create_terminal(create_with)

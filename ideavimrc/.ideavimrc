@@ -110,16 +110,16 @@ map <leader>ws <Action>(SplitHorizontally)
 map <leader>wu <Action>(Unsplit)
 
 " Stretch splits
-nmap <C-j> <Action>(StretchSplitToBottom)
-nmap <C-h> <Action>(StretchSplitToLeft)
-nmap <C-l> <Action>(StretchSplitToRight)
-nmap <C-k> <Action>(StretchSplitToTop)
+"nmap <C-j> <Action>(StretchSplitToBottom)
+"nmap <C-h> <Action>(StretchSplitToLeft)
+"nmap <C-l> <Action>(StretchSplitToRight)
+"nmap <C-k> <Action>(StretchSplitToTop)
 
 " Switch windows
-map <leader>wh <c-w>h
-map <leader>wl <c-w>l
-map <leader>wj <c-w>j
-map <leader>wk <c-w>k
+map <C-h> <c-w>h
+map <C-l> <c-w>l
+map <C-j> <c-w>j
+map <C-k> <c-w>k
 
 nnoremap <leader>c :action CommentByLineComment<CR>
 vnoremap <leader>c :action CommentByLineComment<CR>
@@ -186,3 +186,6 @@ vnoremap < <gv
 vnoremap > >gv
 
 nnoremap <leader>nh :noh<CR>
+
+nnoremap <leader>aa :action copilot.chat.show<CR>
+nnoremap <leader>ap :action copilot.toolsActionGroupLoggedIn<CR>

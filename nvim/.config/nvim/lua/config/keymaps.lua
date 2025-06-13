@@ -68,10 +68,6 @@ vim.keymap.set("n", "<leader>ri", ":LspInfo<CR>", { desc = "[L]sp [I]nfo" })
 vim.keymap.set("n", "<leader>rl", ":LspLog<CR>", { desc = "[L]sp [L]og" })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
--- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
-
--- Ai
-vim.keymap.set({ "n", "v" }, "<leader>ac", ":CopilotChatToggle<CR>", { desc = "Copilot chat toggle" })
 
 -- Strings
 vim.keymap.set("v", "<leader>be", [[:'<,'>!base64<CR>]], { desc = "[B]ase64 [E]ncode selection" })
