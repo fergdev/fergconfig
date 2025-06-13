@@ -1,7 +1,8 @@
 set -o vi
 alias vim="nvim"
 
-export PROMPT='%1~ %# '
+# export PROMPT='%1~ %# '
+export PROMPT='> '
 
 setopt hist_ignore_all_dups
 setopt hist_ignore_dups
