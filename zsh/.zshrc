@@ -11,60 +11,26 @@ export HISTFILESIZE=10000
 export HISTSIZE=10000
 export FCEDIT=nvim
 
-vlt() {
-  local vlt_dir="$HOME/.vlt"
-  local archive="$HOME/.vlts.tar.gz"
-  local encrypted="$HOME/.vlts.tar.gz.age"
-
-  case "$1" in
-  e)
-    echo "[*] Archiving and encrypting $vlt_dir..."
-    tar -czf "$archive" -C "$HOME" "vlts" &&
-      age -p -o "$encrypted" "$archive" &&
-      rm -rf "$vlt_dir" "$archive"
-    echo "[✓] Encrypted to $encrypted and wiped plaintext."
-    ;;
-  d)
-    echo "[*] Decrypting $encrypted..."
-    age -d -o "$archive" "$encrypted" &&
-      tar -xzf "$archive" -C "$HOME" &&
-      rm -f "$archive"
-    rm -f "$encrypted"
-    echo "[✓] Decrypted and extracted to $vlt_dir."
-    ;;
-  *)
-    echo "Usage: vlt encrypt | decrypt"
-    ;;
-  esac
-}
-
 wow() {
   set -o pipefail
 
-  local vlt_dir="$2"
-  local archive="$2.tar.gz"
-  local encrypted="$2.tar.gz.age"
-
-  echo "vltdir $vlt_dir"
-
+  local v_dir="$2"
+  local arch="$2.tar.gz"
+  local enc="$2.tga"
   case "$1" in
   e)
-    echo "[*] Archiving and encrypting $vlt_dir..."
-    tar czf "$archive" "$vlt_dir" &&
-      age -p -o "$encrypted" "$archive" &&
-      rm -rf "$vlt_dir" "$archive"
-    echo "[✓] Encrypted to $encrypted and wiped plaintext."
+    tar czf "$arch" "$v_dir" &&
+      age -p -o "$enc" "$arch" &&
+      rm -rf "$v_dir" "$arch"
     ;;
   d)
-    echo "[*] Decrypting $encrypted..."
-    age -d -o "$archive" "$encrypted" &&
-      tar xzf "$archive" &&
-      rm -f "$archive"
-    rm -f "$encrypted"
-    echo "[✓] Decrypted and extracted to $vlt_dir."
+    age -d -o "$arch" "$enc" &&
+      tar xzf "$arch" &&
+      rm -f "$arch"
+    rm -f "$enc"
     ;;
   *)
-    echo "Usage: vlt encrypt | decrypt"
+    echo "Usage e|d"
     ;;
   esac
 }
@@ -92,11 +58,8 @@ alias zle='vim ~/.zshrc_local'
 alias rgd="rg --hidden --glob '!.git/*' . | fzf"
 
 alias ta="tmux attach"
-alias td="tmux detatch"
+alias td="tmux detach"
 
-# ls replacement
-# exa is unmaintained, so now using eza
-# https://github.com/ogham/exa
 if command -v eza &>/dev/null; then
   alias ls='eza'
   alias ll='eza -lhg'
@@ -116,12 +79,16 @@ if command -v bat &>/dev/null; then
 fi
 
 alias gcfg='cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/'
-alias fv='fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim'
 alias yz='yazi'
 alias cdd='cd "$(fd -t d | fzf)"'
-alias lg='lazygit'
-alias gcf='git checkout $(git branch | fzf)'
 alias lzd='cd ~/.local/share/nvim/lazy'
+
+# Git
+alias lg='lazygit'
+alias gcb='git checkout $(git branch | fzf)'
+alias grr="git reflog --pretty='%gD %gs' | fzf | awk '{ print $1 }'"
+
+# And
 alias em='emulator -avd $(emulator -list-avds | fzf)'
 
 start_aero() {
@@ -142,4 +109,8 @@ j() {
 
 venv() {
   source ./.venv/bin/activate
+}
+
+nhist() {
+  export HISTFILE=/dev/null
 }

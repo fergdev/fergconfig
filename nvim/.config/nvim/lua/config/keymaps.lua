@@ -17,23 +17,23 @@
 -- - d - debug
 --
 -- n - notes
---
---
---
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 local keymap = vim.keymap
 
+-- Unset
+vim.keymap.del("n", "<leader>gd")
+
 keymap.set("n", "<leader>p", '"*p')
 keymap.set({ "n", "v" }, "<leader>y", '"*y')
 
 -- Windows
-keymap.set("n", "<leader>q", ":only<CR>", { desc = "[W]indow [O]nly this" })
+keymap.set("n", "<leader>Q", ":only<CR>", { desc = "[W]indow [O]nly this" })
 keymap.set("n", "%", vim.cmd.vsplit, { desc = "Split vertical" })
 keymap.set("n", '"', vim.cmd.split, { desc = "Split horizontal" })
-keymap.set("n", "<leader>Q", vim.cmd.close, { desc = "Close current window" })
+keymap.set("n", "<leader>q", vim.cmd.close, { desc = "Close current window" })
 
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], { desc = "make the window biger vertically" })
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]], { desc = "make the window smaller vertically" })
@@ -89,9 +89,21 @@ end, {})
 
 vim.keymap.set("n", "<leader>vm", "<cmd>MessagesBuffer<CR>", { desc = "[V]iew [m]esaages in buffer" })
 
-vim.keymap.set("n", "<leader>gr", function()
-  require("config.dev.git_custom").git_reflog_picker()
-end, { desc = "Git reflog branches" })
+vim.keymap.set("n", "<leader>gcr", function()
+  require("dev.git-custom").git_reflog_picker()
+end, { desc = "Git checkout reflog" })
+
+vim.keymap.set("n", "<leader>gdb", function()
+  require("dev.git-custom").diff_with_branch()
+end, { desc = "Git diff branch" })
+
+vim.keymap.set("n", "<leader>gdl", function()
+  require("dev.git-custom").diff_with_log()
+end, { desc = "Git diff log" })
+
+vim.keymap.set("n", "<leader>gdh", function()
+  vim.cmd("DiffviewOpen")
+end, { desc = "Git diff head" })
 
 vim.keymap.set(
   "n",
