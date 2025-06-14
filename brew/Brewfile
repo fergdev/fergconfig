@@ -26,6 +26,7 @@ brew "zig"
 brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zsh-vi-mode"
+brew "go"
 
 cask "gh"
 cask "font-jetbrains-mono-nerd-font"
