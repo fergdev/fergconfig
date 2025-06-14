@@ -11,8 +11,18 @@ return {
       },
       on_colors = function(colors)
         colors.bg_statusline = colors.none
+        -- colors.bg_highlight = colors.none -- the current line
         colors.comment = "#5dcfff"
-        -- colors.bg_highlight = "#2f334d"
+      end,
+
+      on_highlights = function(hl, colors)
+        -- look into tokyonight.nvim/extras/lua/tokyonight_<theme>.lua
+        hl.LspInlayHint = {
+          bg = colors.none,
+          fg = "#fca7ea",
+          -- bold = true,
+          italic = true,
+        }
       end,
     },
   },
