@@ -60,6 +60,7 @@ alias rgd="rg --hidden --glob '!.git/*' . | fzf"
 
 alias ta="tmux attach"
 alias td="tmux detach"
+alias tc="tmux clear-history"
 
 if command -v eza &>/dev/null; then
   alias ls='eza'
@@ -81,6 +82,8 @@ fi
 
 alias gcfg='cd $HOME/Library/Application\ Support/com.mitchellh.ghostty/'
 alias yz='yazi'
+
+alias fdi='fd . --no-ignore'
 alias cdd='cd "$(fd -t d | fzf)"'
 alias lzd='cd ~/.local/share/nvim/lazy'
 
@@ -91,6 +94,7 @@ alias grr="git reflog --pretty='%gD %gs' | fzf | awk '{ print $1 }'"
 
 # And
 alias em='emulator -avd $(emulator -list-avds | fzf)'
+alias apk='adb install $(fd --no-ignore . | grep apk | fzf )'
 
 start_aero() {
   open -a Aerospace
