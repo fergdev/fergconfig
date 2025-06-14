@@ -1,6 +1,8 @@
 return {
   {
     "folke/tokyonight.nvim",
+
+    ---@class tokyonight.Config
     opts = {
       transparent = true,
       style = "storm",
@@ -11,18 +13,20 @@ return {
       },
       on_colors = function(colors)
         colors.bg_statusline = colors.none
-        -- colors.bg_highlight = colors.none -- the current line
-        colors.comment = "#5dcfff"
+        colors.comment = colors.fg
       end,
 
-      on_highlights = function(hl, colors)
+      on_highlights = function(highlights, colors)
         -- look into tokyonight.nvim/extras/lua/tokyonight_<theme>.lua
-        hl.LspInlayHint = {
+        highlights.LspInlayHint = {
           bg = colors.none,
           fg = "#fca7ea",
-          -- bold = true,
           italic = true,
         }
+        highlights.DiagnosticVirtualTextError.bg = colors.none
+        highlights.DiagnosticVirtualTextHint.bg = colors.none
+        highlights.DiagnosticVirtualTextInfo.bg = colors.none
+        highlights.DiagnosticVirtualTextWarn.bg = colors.none
       end,
     },
   },
