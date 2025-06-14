@@ -1,10 +1,10 @@
 return {
   {
     "NeogitOrg/neogit",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
       "sindrets/diffview.nvim", -- optional - Diff integration
-
       -- Only one of these is needed.
       "nvim-telescope/telescope.nvim", -- optional
       "ibhagwan/fzf-lua", -- optional
@@ -14,6 +14,10 @@ return {
   },
   {
     "sindrets/diffview.nvim",
-    opts = {},
+    opts = {
+      file_panel = {
+        win_config = { type = "split", position = "bottom", height = 10 },
+      },
+    },
   },
 }

@@ -31,9 +31,9 @@ keymap.set({ "n", "v" }, "<leader>y", '"*y')
 
 -- Windows
 keymap.set("n", "<leader>Q", ":only<CR>", { desc = "[W]indow [O]nly this" })
-keymap.set("n", "%", vim.cmd.vsplit, { desc = "Split vertical" })
-keymap.set("n", '"', vim.cmd.split, { desc = "Split horizontal" })
 keymap.set("n", "<leader>q", vim.cmd.close, { desc = "Close current window" })
+keymap.set("n", "<leader>%", vim.cmd.vsplit, { desc = "Split vertical" })
+keymap.set("n", '<leader>"', vim.cmd.split, { desc = "Split horizontal" })
 
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], { desc = "make the window biger vertically" })
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]], { desc = "make the window smaller vertically" })
@@ -80,14 +80,14 @@ vim.keymap.set("n", "<leader>rl", ":LspLog<CR>", { desc = "[L]sp [L]og" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 
 -- Strings
-vim.keymap.set("v", "<leader>be", [[:'<,'>!base64<CR>]], { desc = "[B]ase64 [E]ncode selection" })
-vim.keymap.set("v", "<leader>bd", [[:'<,'>!base64 -d<CR>]], { desc = "[B]ase64 [D]ecode selection" })
+-- vim.keymap.set("v", "<leader>be", [[:'<,'>!base64<CR>]], { desc = "[B]ase64 [E]ncode selection" })
+-- vim.keymap.set("v", "<leader>bd", [[:'<,'>!base64 -d<CR>]], { desc = "[B]ase64 [D]ecode selection" })
 
-vim.api.nvim_create_user_command("MessagesBuffer", function()
-  vim.cmd("redir @a | messages | redir END | new | put a")
-end, {})
-
-vim.keymap.set("n", "<leader>vm", "<cmd>MessagesBuffer<CR>", { desc = "[V]iew [m]esaages in buffer" })
+-- vim.api.nvim_create_user_command("MessagesBuffer", function()
+--   vim.cmd("redir @a | messages | redir END | new | put a")
+-- end, {})
+--
+-- vim.keymap.set("n", "<leader>vm", "<cmd>MessagesBuffer<CR>", { desc = "[V]iew [m]esaages in buffer" })
 
 vim.keymap.set("n", "<leader>gcr", function()
   require("dev.git-custom").git_reflog_picker()
@@ -104,6 +104,10 @@ end, { desc = "Git diff log" })
 vim.keymap.set("n", "<leader>gdh", function()
   vim.cmd("DiffviewOpen")
 end, { desc = "Git diff head" })
+
+vim.keymap.set("n", "<leader>gdf", function()
+  vim.cmd("DiffviewFileHistory")
+end, { desc = "Git diff file history" })
 
 vim.keymap.set(
   "n",
@@ -134,8 +138,6 @@ vim.keymap.set("n", ",to", function()
   require("neotest").output.open({ enter = true, auto_close = false })
 end, { desc = "Show test output" })
 
-vim.keymap.set("n", "<leader>qq", ":wqa!<CR>", { desc = "Quit!!!" })
-
 vim.keymap.set("n", "<leader>nd", ":ObsidianToday<cr>", { desc = "obsidian [d]aily" })
 vim.keymap.set("n", "<leader>nt", ":ObsidianToday 1<cr>", { desc = "obsidian [t]omorrow" })
 vim.keymap.set("n", "<leader>ny", ":ObsidianToday -1<cr>", { desc = "obsidian [y]esterday" })
@@ -157,5 +159,3 @@ vim.keymap.set("n", "<leader>xl", ":g/^\\s*$/d<cr>", { desc = "[X]elete empty [l
 -- When searching for stuff, search results show in the middle
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-
-vim.keymap.set("n", "<leader>ih", ":checkhealth<CR>", { desc = "Check health" })
