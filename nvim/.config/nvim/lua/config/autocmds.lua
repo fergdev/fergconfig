@@ -2,19 +2,16 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 --
+local function augroup(name)
+  return vim.api.nvim_create_augroup("ferg_" .. name, { clear = true })
 end
+
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.zsh*",
   command = "set filetype=bash",
 })
 
--- close some filetypes with <q>
-
 vim.api.nvim_del_augroup_by_name("lazyvim_close_with_q")
-
-local function augroup(name)
-  return vim.api.nvim_create_augroup("ferg_" .. name, { clear = true })
-end
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
@@ -50,7 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "DiffviewFiles",
+  pattern = { "DiffviewFiles", "DiffviewFileHistory" },
   callback = function()
     vim.api.nvim_buf_set_keymap(0, "n", "q", ":DiffviewClose<CR>", { noremap = true, silent = true })
   end,

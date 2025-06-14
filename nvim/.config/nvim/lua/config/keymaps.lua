@@ -79,16 +79,6 @@ vim.keymap.set("n", "<leader>rl", ":LspLog<CR>", { desc = "[L]sp [L]og" })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 
--- Strings
--- vim.keymap.set("v", "<leader>be", [[:'<,'>!base64<CR>]], { desc = "[B]ase64 [E]ncode selection" })
--- vim.keymap.set("v", "<leader>bd", [[:'<,'>!base64 -d<CR>]], { desc = "[B]ase64 [D]ecode selection" })
-
--- vim.api.nvim_create_user_command("MessagesBuffer", function()
---   vim.cmd("redir @a | messages | redir END | new | put a")
--- end, {})
---
--- vim.keymap.set("n", "<leader>vm", "<cmd>MessagesBuffer<CR>", { desc = "[V]iew [m]esaages in buffer" })
-
 vim.keymap.set("n", "<leader>gcr", function()
   require("dev.git-custom").git_reflog_picker()
 end, { desc = "Git checkout reflog" })
