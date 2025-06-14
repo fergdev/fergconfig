@@ -30,3 +30,6 @@ brew "zsh-vi-mode"
 cask "gh"
 cask "font-jetbrains-mono-nerd-font"
 cask "ghostty"
+
+brew tap FelixKratz/formulae
+brew install borders
