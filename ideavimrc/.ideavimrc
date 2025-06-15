@@ -39,17 +39,17 @@ nnoremap ,b :action ToggleLineBreakpoint<CR>
 """ Navigation
 nmap gy <Action>(GotoTypeDeclaration)
 nnoremap gr :action FindUsages<CR>
-nnoremap gi :action GotoImplementation<CR>
+nnoremap gI :action GotoImplementation<CR>
 nnoremap ga :action GotoAction<CR>
 vnoremap ga :action GotoAction<CR>
 nnoremap ge :action SearchEverywhere<CR>
-nnoremap gf :action FileStructurePopup<CR>
+nnoremap <leader>cs :action FileStructurePopup<CR>
 
 nnoremap ]e :action GotoNextError<CR>
 nnoremap [e :action GotoPreviousError<CR>
 nnoremap gt :action GotoTest<CR>
+nnoremap <leader>fr :action RecentFiles<CR>
 
-nnoremap <leader>tw :action FileStructurePopup<CR>
 
 """ Running and Debugging
 nnoremap ,c :action RunCoverage<CR>
@@ -149,7 +149,7 @@ nnoremap <leader>te :action ActivateDebugToolWindow<CR>
 nnoremap <leader>tf :action ActivateFindToolWindow<CR>
 nnoremap <leader>tr :action ActivateRunToolWindow<CR>
 nnoremap <leader>ts :action ActivateServicesToolWindow<CR>
-nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>ft :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>tn :action ActivateNotificationsToolWindow<CR>
 nnoremap <leader>to :action ActivateBuildToolWindow<CR>
 

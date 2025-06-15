@@ -13,7 +13,7 @@ return {
       },
       on_colors = function(colors)
         colors.bg_statusline = colors.none
-        colors.comment = colors.fg
+        colors.comment = "#a9b1d6"
       end,
 
       on_highlights = function(highlights, colors)

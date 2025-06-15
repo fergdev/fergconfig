@@ -93,8 +93,15 @@ alias gcb='git checkout $(git branch | fzf)'
 alias grr="git reflog --pretty='%gD %gs' | fzf | awk '{ print $1 }'"
 
 # And
-alias em='emulator -avd $(emulator -list-avds | fzf)'
-alias apk='adb install $(fd --no-ignore . | grep apk | fzf )'
+apk() {
+  local device
+  device=$(adb devices | grep -v 'List' | fzf | awk '{ print $1}')
+  local apk
+  apk=$(fd --no-ignore . | grep -e 'apk$' | fzf)
+  adb -s "$device" install "$apk"
+}
+
+alias em='adb install $(fd --no-ignore . | grep apk | fzf )'
 
 start_aero() {
   open -a Aerospace
