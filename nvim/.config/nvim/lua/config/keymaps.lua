@@ -26,12 +26,7 @@ local keymap = vim.keymap
 -- Unset
 vim.keymap.del("n", "<leader>gd")
 
-keymap.set("n", "<leader>p", '"*p')
-keymap.set({ "n", "v" }, "<leader>y", '"*y')
-
 -- Windows
-keymap.set("n", "<leader>Q", ":only<CR>", { desc = "[W]indow [O]nly this" })
-keymap.set("n", "<leader>q", vim.cmd.close, { desc = "Close current window" })
 keymap.set("n", "<leader>%", vim.cmd.vsplit, { desc = "Split vertical" })
 keymap.set("n", '<leader>"', vim.cmd.split, { desc = "Split horizontal" })
 
