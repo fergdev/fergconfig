@@ -8,3 +8,5 @@ apt install lazygit
 apt install fd-find
 apt install bat
 apt install luarocks
+apt install pipx
+apt install fzf
