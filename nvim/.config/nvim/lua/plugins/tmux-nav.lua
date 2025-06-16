@@ -24,10 +24,4 @@ return {
       vim.keymap.set({ "n", "v" }, "<c-k>", "<cmd>TmuxNavigateUp<cr>", { silent = true })
     end,
   },
-  {
-    "aserowy/tmux.nvim",
-    config = function()
-      return require("tmux").setup()
-    end,
-  },
 }
