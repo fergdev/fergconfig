@@ -126,3 +126,28 @@ venv() {
 nhist() {
   export HISTFILE=/dev/null
 }
+
+aliasify() {
+  local selected cmd aliasname escaped
+
+  # Use HISTTIMEFORMAT='' to avoid timestamps interfering
+  selected=$(HISTTIMEFORMAT= history | fzf --tac --no-sort --height=40% --reverse) || return
+
+  # Extract everything after the command number using awk
+  cmd=$(echo "$selected" | awk '{$1=""; sub(/^ +/, ""); print}')
+
+  echo "Command: $cmd"
+  echo -n "Alias name: "
+  read aliasname
+
+  if [[ -z "$aliasname" ]]; then
+    echo "❌ No alias name given."
+    return 1
+  fi
+
+  # Properly quote the command
+  escaped=$(printf '%q' "$cmd")
+
+  echo "alias $aliasname='$escaped'" >>~/.zshrc
+  echo "✅ Alias '$aliasname' added to ~/.zshrc"
+}
