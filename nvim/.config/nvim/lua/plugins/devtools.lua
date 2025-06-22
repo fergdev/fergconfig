@@ -2,6 +2,7 @@ return {
   "fergdev/devtools.nvim",
   lazy = false,
   opts = {
-    output = "register",
+    output = "window",
+    prefix = "<leader>t",
   },
 }

@@ -14,7 +14,7 @@ return {
     close_unsupported_windows = true,
     bypass_save_filetypes = { "alpha", "copilot-chat" },
     session_lens = {
-      previewer = true, -- File preview for session picker
+      previewer = false, -- File preview for session picker
     },
   },
 }
