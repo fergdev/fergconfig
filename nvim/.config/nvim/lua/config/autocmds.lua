@@ -8,8 +8,10 @@ end
 
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("bash_ft"),
-  pattern = { "*.zsh*", "sketchybarrc" },
-  command = "set filetype=bash",
+  pattern = { "zsh" },
+  callback = function()
+    vim.cmd("set filetype=bash")
+  end,
 })
 
 vim.api.nvim_del_augroup_by_name("lazyvim_close_with_q")

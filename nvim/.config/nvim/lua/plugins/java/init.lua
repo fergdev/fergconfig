@@ -1,3 +1,6 @@
+if true then
+  return {}
+end
 return {
   "nvim-java/nvim-java",
   config = false,
@@ -6,36 +9,31 @@ return {
       "neovim/nvim-lspconfig",
       opts = {
         servers = {
-          -- Your JDTLS configuration goes here
           jdtls = {
-            -- settings = {
-            --   java = {
-            --     configuration = {
-            --       runtimes = {
-            --         {
-            --           name = "JavaSE-23",
-            --           path = "/usr/local/sdkman/candidates/java/23-tem",
-            --         },
-            --       },
-            --     },
-            --   },
-            -- },
+            -- androidSupport = { enable = true },
+            on_attach = function()
+              vim.keymap.set("n", "<leader>rv", ":JavaRefactorExtractVariableAllOccurrence<CR>")
+              vim.keymap.set("n", "<leader>rV", ":JavaRefactorExtractVariable<CR>")
+              vim.keymap.set("n", "<leader>rc", ":JavaRefactorExtractConstant<CR>")
+              vim.keymap.set("n", "<leader>rm", ":JavaRefactorExtractMethod<CR>")
+              vim.keymap.set("n", "<leader>rf", ":JavaRefactorExtractField<CR>")
+            end,
           },
         },
         setup = {
           jdtls = function()
             -- Your nvim-java configuration goes here
             require("java").setup({
-              -- root_markers = {
-              --   "settings.gradle",
-              --   "settings.gradle.kts",
-              --   "pom.xml",
-              --   "build.gradle",
-              --   "mvnw",
-              --   "gradlew",
-              --   "build.gradle",
-              --   "build.gradle.kts",
-              -- },
+              root_markers = {
+                "settings.gradle",
+                "settings.gradle.kts",
+                "pom.xml",
+                "build.gradle",
+                "mvnw",
+                "gradlew",
+                "build.gradle",
+                "build.gradle.kts",
+              },
             })
           end,
         },

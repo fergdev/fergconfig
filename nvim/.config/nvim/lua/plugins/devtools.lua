@@ -3,6 +3,6 @@ return {
   lazy = false,
   opts = {
     output = "window",
-    prefix = "<leader>t",
+    prefix = "<leader>i",
   },
 }

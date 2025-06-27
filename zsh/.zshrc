@@ -1,7 +1,9 @@
 set -o vi
 alias vim="nvim"
 
-# export PROMPT='%1~ %# '
+autoload -Uz compinit
+compinit
+
 export PROMPT='> '
 
 setopt hist_ignore_all_dups
@@ -44,6 +46,7 @@ source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
+alias dir_size='du -hs'
 alias nvd='cd ~/.local/share/nvim'
 alias df='cd ~/.dotfiles'
 
@@ -93,15 +96,14 @@ alias gcb='git checkout $(git branch | fzf)'
 alias grr="git reflog --pretty='%gD %gs' | fzf | awk '{ print $1 }'"
 
 # And
-apk() {
+and_apk() {
   local device
   device=$(adb devices | grep -v 'List' | fzf | awk '{ print $1}')
   local apk
   apk=$(fd --no-ignore . | grep -e 'apk$' | fzf)
   adb -s "$device" install "$apk"
 }
-
-alias em='adb install $(fd --no-ignore . | grep apk | fzf )'
+alias and_em='emulator -avd $(emulator -list-avds | fzf)'
 
 start_aero() {
   open -a Aerospace
@@ -138,16 +140,17 @@ aliasify() {
 
   echo "Command: $cmd"
   echo -n "Alias name: "
-  read aliasname
+  read -r aliasname
 
   if [[ -z "$aliasname" ]]; then
-    echo "❌ No alias name given."
+    echo "No alias name given."
     return 1
   fi
 
-  # Properly quote the command
-  escaped=$(printf '%q' "$cmd")
+  # Properly quote the command TODO: escape this properly
+  escaped=$cmd
 
   echo "alias $aliasname='$escaped'" >>~/.zshrc
-  echo "✅ Alias '$aliasname' added to ~/.zshrc"
+  echo "Alias '$aliasname' added to ~/.zshrc"
 }
+alias ppath='echo $PATH | sed "s/:/\n/g"'

@@ -43,6 +43,7 @@ return {
         window = {
           width = 0.4,
         },
+        proxy = "socks5://127.0.0.1:2420",
         temperature = 0.5,
         context = "buffers",
         mappings = {

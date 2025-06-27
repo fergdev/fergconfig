@@ -90,19 +90,24 @@ vim.keymap.set("n", "<leader>gdh", function()
   vim.cmd("DiffviewOpen")
 end, { desc = "Git diff head" })
 
-vim.keymap.set("n", "<leader>gdf", function()
-  vim.cmd("DiffviewFileHistory")
+vim.keymap.set({ "n" }, "<leader>gdf", function()
+  vim.cmd("DiffviewFileHistory %")
 end, { desc = "Git diff file history" })
+
+vim.keymap.set("v", "<leader>gdf", function()
+  vim.cmd("normal! gv") -- Reselect visual area
+  vim.cmd("'<,'>DiffviewFileHistory")
+end, { desc = "Git diff file history for selection" })
 
 vim.keymap.set(
   "n",
-  "<leader>tk",
+  "<leader>ik",
   '<cmd>lua require("kubectl").toggle({ tab = boolean })<cr>',
   { desc = "KubeTime", noremap = true, silent = true }
 )
 
-vim.keymap.set("n", "<leader>tn", "<cmd>Scratch<cr>")
-vim.keymap.set("n", "<leader>to", "<cmd>ScratchOpen<cr>")
+vim.keymap.set("n", "<leader>in", "<cmd>Scratch<cr>")
+vim.keymap.set("n", "<leader>io", "<cmd>ScratchOpen<cr>")
 
 -- Running things
 vim.keymap.set("n", ",ts", function()

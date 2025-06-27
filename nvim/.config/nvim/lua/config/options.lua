@@ -3,6 +3,8 @@
 -- Add any additional options here
 --
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 vim.opt_local.conceallevel = 2
 -- Clipboard
 if vim.env.SSH_TTY then
