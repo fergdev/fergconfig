@@ -95,14 +95,20 @@ alias lg='lazygit'
 alias gcb='git checkout $(git branch | fzf)'
 alias grr="git reflog --pretty='%gD %gs' | fzf | awk '{ print $1 }'"
 
-# And
+and_apk_last() {
+  adb -s "$LAST_DEVICE" install "$LAST_APK"
+}
+
 and_apk() {
   local device
   device=$(adb devices | grep -v 'List' | fzf | awk '{ print $1}')
+  export LAST_DEVICE="$device"
   local apk
   apk=$(fd --no-ignore . | grep -e 'apk$' | fzf)
+  export LAST_APK="$apk"
   adb -s "$device" install "$apk"
 }
+
 alias and_em='emulator -avd $(emulator -list-avds | fzf)'
 
 start_aero() {

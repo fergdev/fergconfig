@@ -24,7 +24,8 @@ nnoremap gp :action Cargo.RefreshCargoProject<CR>
 
 
 """ Completion
-inoremap <C-y> :action EditorChooseLookupItemReplace<CR>
+inoremap <C-u> :action InsertInlineCompletionAction<CR>
+inoremap <C-y> :action EditorChooseLookupItem<CR>
 vnoremap <leader>a :action ShowIntentionActions<CR>
 nnoremap <leader>a :action ShowIntentionActions<CR>
 
@@ -42,7 +43,7 @@ nnoremap gr :action FindUsages<CR>
 nnoremap gI :action GotoImplementation<CR>
 nnoremap ga :action GotoAction<CR>
 vnoremap ga :action GotoAction<CR>
-nnoremap ge :action SearchEverywhere<CR>
+nnoremap <leader>sa :action SearchEverywhere<CR>
 nnoremap <leader>cs :action FileStructurePopup<CR>
 
 nnoremap ]e :action GotoNextError<CR>

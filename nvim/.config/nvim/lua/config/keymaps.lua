@@ -68,7 +68,7 @@ vim.keymap.set("n", "<leader>vrn", function()
   end
 end, { expr = true, silent = false, desc = "Rename" })
 
-vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Refactor [A]ctions" })
+vim.keymap.set({ "n", "v" }, "<M-CR>", vim.lsp.buf.code_action, { desc = "Refactor [A]ctions" })
 vim.keymap.set("n", "<leader>ri", ":LspInfo<CR>", { desc = "[L]sp [I]nfo" })
 vim.keymap.set("n", "<leader>rl", ":LspLog<CR>", { desc = "[L]sp [L]og" })
 

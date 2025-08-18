@@ -116,10 +116,10 @@ return {
     vim.keymap.set("n", "<leader>H", function()
       harpoon.ui:toggle_quick_menu(harpoon:list())
     end)
-    vim.keymap.set("n", "]y", function()
+    vim.keymap.set("n", "]g", function()
       harpoon:list():next({ ui_nav_wrap = true })
     end)
-    vim.keymap.set("n", "[y", function()
+    vim.keymap.set("n", "[g", function()
       harpoon:list():prev({ ui_nav_wrap = true })
     end)
 
