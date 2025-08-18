@@ -42,7 +42,6 @@ if [ -f "$HOME"/.zshrc_local ]; then
   source "$HOME/.zshrc_local"
 fi
 
-source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
@@ -181,3 +180,5 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=separator:#ff9e64 \
   --color=spinner:#ff007c \
 "
+
+source <(fzf --zsh)
