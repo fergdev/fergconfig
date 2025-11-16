@@ -108,6 +108,20 @@ and_apk() {
 }
 
 alias and_em='emulator -avd $(emulator -list-avds | fzf)'
+alias and_tb_on='adb shell settings put secure enabled_accessibility_services com.google.android.marvin.talkback/com.google.android.marvin.talkback.TalkBackService'
+alias and_tb_off='adb shell settings put secure enabled_accessibility_services com.android.talkback/com.google.android.marvin.talkback.TalkBackService'
+alias and_fs_sm='adb shell settings put system font_scale 0.85'
+alias and_fs_df='adb shell settings put system font_scale 1.0'
+alias and_fs_l='adb shell settings put system font_scale 1.15'
+alias and_fs_xl='adb shell settings put system font_scale 1.3'
+alias and_fs_xxl='adb shell settings put system font_scale 2.0'
+alias and_colinv_on'adb shell settings put secure accessibility_display_inversion_enabled 1'
+alias and_colinv_off'adb shell settings put secure accessibility_display_inversion_enabled 0'
+alias and_htc_on='adb shell settings put secure high_text_contrast_enabled 1'
+alias and_htc_off='adb shell settings put secure high_text_contrast_enabled 0'
+alias and_nav_gesture='adb shell cmd overlay enable com.android.internal.systemui.navbar.gestural'
+alias and_nav_button='adb shell cmd overlay disable com.android.internal.systemui.navbar.gestural && adb shell cmd overlay enable com.android.internal.systemui.navbar.threebutton'
+# alias and_nav_button='adb shell cmd overlay enable com.android.internal.systemui.navbar.button'
 
 start_aero() {
   open -a Aerospace
@@ -127,6 +141,9 @@ j() {
 
 venv() {
   source ./.venv/bin/activate
+}
+mvenv() {
+  python3 -m venv .venv && source ./.venv/bin/activate
 }
 
 nhist() {
@@ -181,5 +198,22 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 "
 
 source <(fzf --zsh)
-
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
+
+de_quarantine() {
+  xattr -d com.apple.quarantine $1
+}
+
+lower_case_dir() {
+  dir="."
+  for file in "$dir"/*; do
+    if [[ -f "$file" ]]; then
+      base=$(basename "$file")
+      newname=$(echo "$base" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+      if [[ "$base" != "$newname" ]]; then
+        mv "$file" "$dir/$newname"
+        echo "Renamed $base -> $newname"
+      fi
+    fi
+  done
+}
