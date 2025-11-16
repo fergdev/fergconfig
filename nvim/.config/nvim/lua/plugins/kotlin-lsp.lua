@@ -1,9 +1,9 @@
-vim.lsp.config["kotlin_lsp"] = {
-  cmd = vim.lsp.rpc.connect("127.0.0.1", tonumber(9999)),
-  single_file_support = true,
-  filetypes = { "kotlin" },
-  root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
-}
+-- vim.lsp.config["kotlin_lsp"] = {
+--   cmd = vim.lsp.rpc.connect("127.0.0.1", tonumber(9999)),
+--   single_file_support = true,
+--   filetypes = { "kotlin" },
+--   root_markers = { "build.gradle", "build.gradle.kts", "pom.xml" },
+-- }
 return {}
 
 -- TODO: configure with lsp-config

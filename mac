@@ -5,11 +5,11 @@
 # - skhd
 
 if [[ -z $STOW_FOLDERS ]]; then
-    export STOW_FOLDERS="zsh,tmux,ideavimrc,nvim,btop,aerospace"
+  export STOW_FOLDERS="zsh,tmux,ideavimrc,nvim,btop,aerospace,gradle"
 fi
 
 if [[ -z $DOTFILES ]]; then
-    export DOTFILES=$HOME/.dotfiles
+  export DOTFILES=$HOME/.dotfiles
 fi
 
 $DOTFILES/install

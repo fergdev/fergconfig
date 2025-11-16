@@ -13,6 +13,8 @@ set commentary
 set relativenumber
 set number
 
+nnoremap <S-S> <Action>(EditorEscape)
+
 """ General
 nnoremap \f :action SplitVertically<CR>:e ~/.ideavimrc<CR>
 nnoremap \e :e ~/.ideavimrc<CR>
@@ -22,6 +24,7 @@ nnoremap <c-[> :action EditorEscape<CR>
 
 nnoremap gp :action Cargo.RefreshCargoProject<CR>
 
+nnoremap <leader>cf :action ReformatCode<CR>
 
 """ Completion
 inoremap <C-u> :action InsertInlineCompletionAction<CR>

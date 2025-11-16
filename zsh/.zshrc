@@ -42,7 +42,6 @@ if [ -f "$HOME"/.zshrc_local ]; then
   source "$HOME/.zshrc_local"
 fi
 
-
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 alias dir_size='du -hs'
@@ -182,3 +181,5 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 "
 
 source <(fzf --zsh)
+
+export K9S_CONFIG_DIR="$HOME/.config/k9s"

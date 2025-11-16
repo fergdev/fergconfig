@@ -1,4 +1,5 @@
 brew "age"
+brew "llvm"
 brew "bat"
 brew "btop"
 brew "eza"
