@@ -123,6 +123,7 @@ alias and_nav_gesture='adb shell cmd overlay enable com.android.internal.systemu
 alias and_nav_button='adb shell cmd overlay disable com.android.internal.systemui.navbar.gestural && adb shell cmd overlay enable com.android.internal.systemui.navbar.threebutton'
 # alias and_nav_button='adb shell cmd overlay enable com.android.internal.systemui.navbar.button'
 
+alias open_ports='lsof -iTCP -sTCP:LISTEN -P -n'
 start_aero() {
   open -a Aerospace
 }
