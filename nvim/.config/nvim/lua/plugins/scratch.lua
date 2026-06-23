@@ -18,15 +18,15 @@ return {
           subdir = "project-name", -- group scratch files under specific sub folder
         },
         ["yaml"] = {},
-        go = {
-          requireDir = true, -- true if each scratch file requires a new directory
-          filename = "main", -- the filename of the scratch file in the new directory
-          content = { "package main", "", "func main() {", "  ", "}" },
-          cursor = {
-            location = { 4, 2 },
-            insert_mode = true,
-          },
-        },
+        -- go = {
+        --   requireDir = true, -- true if each scratch file requires a new directory
+        --   filename = "main", -- the filename of the scratch file in the new directory
+        --   content = { "package main", "", "func main() {", "  ", "}" },
+        --   cursor = {
+        --     location = { 4, 2 },
+        --     insert_mode = true,
+        --   },
+        -- },
       },
       localKeys = {
         {
